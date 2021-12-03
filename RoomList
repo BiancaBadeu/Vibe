@@ -14,7 +14,7 @@ public class RoomList
       roomList.add(room);
    }
 
-   public Room getRoomByID(String id)
+   public static Room getRoomByID(String id)
    {
       for(int i=0;i<roomList.size();i++)
       {
