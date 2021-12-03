@@ -22,6 +22,11 @@ public class TeacherList
     }
   }
 
+  public static ArrayList<Teacher> getAllTeachers()
+  {
+    return teachers;
+  }
+
   public static Teacher getTeacherByID(String id)
   {
     for(int i=0;i<teachers.size();i++)
