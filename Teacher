@@ -28,6 +28,6 @@ public class Teacher
     if(!(obj instanceof Teacher))
       return false;
     Teacher other = (Teacher) obj;
-    return id.equals(other.id);
+    return id.equals(other.id) && name.equals(other.name);
   }
 }
