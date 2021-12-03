@@ -32,13 +32,11 @@ public class Room
   {
     return unitedWith;
   }
-  public boolean getIsBooked()
-  {
-  return booked;
-  }
+  public boolean getIsBooked(){return booked;}
+
   public void setBooked(boolean booked)
   {
-  this.booked = booked;
+    this.booked = booked;
   }
 
   public String toString()
