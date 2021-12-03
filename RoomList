@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class RoomList
 {
-   private ArrayList<Room> roomList;
+   private static ArrayList<Room> roomList;
 
    public RoomList()
    {
@@ -65,7 +65,7 @@ public class RoomList
       }
       return null;
    }
-   public ArrayList<Room> getAllUnbookedRooms()
+   public static ArrayList<Room> getAllUnbookedRooms()
    {
       ArrayList<Room> unbookedRooms = new ArrayList<>();
       for(int i=0;i<roomList.size();i++)
@@ -75,7 +75,7 @@ public class RoomList
       }
       return unbookedRooms;
    }
-   public ArrayList<Room> getAllBookedRooms()
+   public static ArrayList<Room> getAllBookedRooms()
    {
       ArrayList<Room> bookedRooms = new ArrayList<>();
       for(int i=0;i<roomList.size();i++)
