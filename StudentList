@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class StudentList
 {
-  private ArrayList<Student> studentList;
+  private static ArrayList<Student> studentList;
 
   public StudentList()
   {
@@ -23,7 +23,7 @@ public class StudentList
     }
   }
 
-  public ArrayList<Student> getStudentsByClassID(String classID)
+  public static ArrayList<Student> getStudentsByClassID(String classID)
   {
     ArrayList<Student> studentsByClass = new ArrayList<>();
     for(int i=0;i<studentList.size();i++)
@@ -33,7 +33,7 @@ public class StudentList
     }
     return studentsByClass;
   }
-  public ArrayList<Student> getStudentsByName(String name)
+  public static ArrayList<Student> getStudentsByName(String name)
   {
     ArrayList<Student> studentsByName = new ArrayList<>();
     for(int i=0;i<studentList.size();i++)
