@@ -3,18 +3,21 @@ public class Room
   private String id;
   private int capacity;
   private String unitedWith;
+  private boolean booked;
 
   public Room(String id, int capacity, String unitedWith)
   {
     this.id = id;
     this.capacity = capacity;
     this.unitedWith = unitedWith;
+    this.booked = false;
   }
   public Room(String id, int capacity)
   {
     this.id = id;
     this.capacity = capacity;
     this.unitedWith = null;
+    this.booked = false;
   }
 
   public String getId()
@@ -29,13 +32,21 @@ public class Room
   {
     return unitedWith;
   }
+  public boolean getIsBooked()
+  {
+  return booked;
+  }
+  public void setBooked(boolean booked)
+  {
+  this.booked = booked;
+  }
 
   public String toString()
   {
     if(unitedWith == null)
-      return "ID: " + this.id + ", capacity: " + this.capacity;
+      return "ID: " + this.id + ", capacity: " + this.capacity + ", is booked: " + this.booked;
     else
-      return "ID: " + this.id + ", capacity: " + this.capacity + ", can be united with: " + unitedWith;
+      return "ID: " + this.id + ", capacity: " + this.capacity + ", can be united with: " + this.unitedWith + ", is booked: " + this.booked;
   }
 
   public boolean equals(Object obj)
@@ -46,6 +57,6 @@ public class Room
     if(unitedWith == null)
       if(other.unitedWith != null)
         return false;
-    return id.equals(other.id) && capacity == other.capacity && unitedWith.equals(other.unitedWith);
+    return id.equals(other.id) && capacity == other.capacity && unitedWith.equals(other.unitedWith) && this.booked == other.booked;
   }
 }
