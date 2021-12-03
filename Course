@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+
+public class Course
+{
+  private String courseID;
+  private ArrayList<Student> students;
+  private ArrayList<Teacher> teachers;
+  private int ects;
+
+  public Course(String courseID, int ects, String teacherID)
+  {
+    this.courseID = courseID;
+    this.ects = ects;
+    String classID = "";
+    classID += this.courseID.charAt(0);
+    classID += this.courseID.charAt(1);
+    this.students = new ArrayList<>();
+    this.students = StudentList.getStudentsByClassID(classID);
+    this.teachers = new ArrayList<>();
+    this.teachers.add(TeacherList.getTeacherByID(teacherID));
+  }
+
+  public String getCourseID()
+  {
+    return courseID;
+  }
+  public int getEcts()
+  {
+    return ects;
+  }
+  public ArrayList<Student> getStudentList()
+  {
+    return students;
+  }
+  public ArrayList<Teacher> getTeacherList()
+  {
+    return teachers;
+  }
+
+  public void addTeacher(Teacher teacher)
+  {
+    teachers.add(teacher);
+  }
+
+  public void removeTeacherByID(String id)
+  {
+    for(int i=0;i<teachers.size();i++)
+    {
+      if(id.equals(teachers.get(i).getId()))
+        teachers.remove(teachers.get(i));
+    }
+  }
+  public void removeStudentByID(int id)
+  {
+    for(int i=0;i<students.size();i++)
+    {
+      if(id == students.get(i).getStudentID())
+        students.remove(students.get(i));
+    }
+  }
+
+  public String toString()
+  {
+    return "Course: " + courseID + ", Student list: " + students + ", Teacher list: " + teachers + ", ECTS: " + ects;
+  }
+
+  public boolean equals(Object obj)
+  {
+    if(!(obj instanceof Course))
+      return false;
+    Course other = (Course) obj;
+    return this.courseID.equals(other.courseID) && this.ects == other.ects
+        && this.students.equals(other.students) && this.teachers.equals(other.teachers);
+  }
+}
