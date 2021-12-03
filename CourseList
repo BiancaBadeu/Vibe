@@ -1,48 +1,25 @@
 import java.util.ArrayList;
 
-public class CourseList
+public class Manager
 {
+  private ArrayList<Teacher> teacherList;
   private ArrayList<Course> courseList;
+  private ArrayList<Student> studentList;
+  private ArrayList<Session> sessionList;
+  private ArrayList<Room> roomList;
 
-  public CourseList()
+  public Manager()
   {
-    this.courseList = new ArrayList<>();
-  }
-
-  public void addCourse(Course course)
-  {
-    courseList.add(course);
-  }
-  public Course getCourseByID(String id)
-  {
-    for(int i=0;i<courseList.size();i++)
-    {
-      if(id.equals(courseList.get(i).getCourseID()))
-        return courseList.get(i);
-    }
-    return null;
+    this.teacherList = TeacherList.getAllTeachers();
+    this.courseList = CourseList.getAllCourses();
+    this.sessionList = new ArrayList<>();
+    this.studentList = new ArrayList<>();
+    this.roomList = new ArrayList<>();
   }
 
-  public void addTeacherToCourse(Teacher teacher, String courseID)
+  public ArrayList<Teacher> getAllTeachers()
   {
-    Course course = getCourseByID(courseID);
-    course.addTeacher(teacher);
-  }
-
-  public void removeTeacherFromCourseByID(String teacherID, String courseID)
-  {
-    Course course = getCourseByID(courseID);
-    course.removeTeacherByID(teacherID);
-  }
-  public void removeStudentFromCourseByID(int studentID, String courseID)
-  {
-    Course course = getCourseByID(courseID);
-    course.removeStudentByID(studentID);
-  }
-
-  public String toString()
-  {
-    return "List: " + courseList;
+    return teacherList;
   }
 
 }
