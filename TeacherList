@@ -13,9 +13,33 @@ public class TeacherList
   {
     teachers.add(teacher);
   }
-  public void removeTeacher(Teacher teacher)
+  public void removeTeacherByID(String id)
   {
-    teachers.remove(teacher);
+    for(int i=0;i<teachers.size();i++)
+    {
+      if(id.equals(teachers.get(i).getId()))
+        teachers.remove(teachers.get(i));
+    }
+  }
+
+  public Teacher getTeacherByID(String id)
+  {
+    for(int i=0;i<teachers.size();i++)
+    {
+      if(id.equals(teachers.get(i).getId()))
+        return teachers.get(i);
+    }
+    return null;
+  }
+  public ArrayList<Teacher> getTeachersByName(String name)
+  {
+    ArrayList<Teacher> teachersByName = new ArrayList<>();
+    for(int i=0;i<teachers.size();i++)
+    {
+      if(name.equals(teachers.get(i).getName()))
+        teachersByName.add(teachers.get(i));
+    }
+    return teachersByName;
   }
 
   public String toString()
