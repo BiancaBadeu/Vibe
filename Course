@@ -3,21 +3,28 @@ import java.util.ArrayList;
 public class Course
 {
   private String courseID;
-  private ArrayList<Student> students;
-  private ArrayList<Teacher> teachers;
+  private StudentList students;
+  private TeacherList teachers;
   private int ects;
 
-  public Course(String courseID, int ects, String teacherID)
+  public Course(String courseID, int ects)
   {
     this.courseID = courseID;
     this.ects = ects;
     String classID = "";
     classID += this.courseID.charAt(0);
     classID += this.courseID.charAt(1);
-    this.students = new ArrayList<>();
-    this.students = StudentList.getStudentsByClassID(classID);
-    this.teachers = new ArrayList<>();
-    this.teachers.add(TeacherList.getTeacherByID(teacherID));
+    this.students = new StudentList();
+    this.teachers = new TeacherList();
+  }
+
+  public void setStudentList(StudentList students)
+  {
+    this.students = students;
+  }
+  public void addTeacher(Teacher teacher)
+  {
+    this.teachers.addTeacher(teacher);
   }
 
   public String getCourseID()
@@ -28,35 +35,22 @@ public class Course
   {
     return ects;
   }
-  public ArrayList<Student> getStudentList()
+  public StudentList getStudentList()
   {
     return students;
   }
-  public ArrayList<Teacher> getTeacherList()
+  public TeacherList getTeacherList()
   {
     return teachers;
   }
 
-  public void addTeacher(Teacher teacher)
+  public void removeTeacherByIDFromCourse(String id)
   {
-    teachers.add(teacher);
+      teachers.removeTeacherByID(id);
   }
-
-  public void removeTeacherByID(String id)
+  public void removeStudentByIDFromCourse(int id)
   {
-    for(int i=0;i<teachers.size();i++)
-    {
-      if(id.equals(teachers.get(i).getId()))
-        teachers.remove(teachers.get(i));
-    }
-  }
-  public void removeStudentByID(int id)
-  {
-    for(int i=0;i<students.size();i++)
-    {
-      if(id == students.get(i).getStudentID())
-        students.remove(students.get(i));
-    }
+      students.removeStudentByID(id);
   }
 
   public String toString()
