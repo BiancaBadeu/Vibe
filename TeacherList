@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TeacherList
 {
-  private static ArrayList<Teacher> teachers;
+  private ArrayList<Teacher> teachers;
 
   public TeacherList()
   {
@@ -22,12 +22,17 @@ public class TeacherList
     }
   }
 
-  public static ArrayList<Teacher> getAllTeachers()
+  public TeacherList getAllTeachers()
   {
-    return teachers;
+    TeacherList teacherList = new TeacherList();
+    for(int i=0;i<teachers.size();i++)
+    {
+      teacherList.addTeacher(teachers.get(i));
+    }
+    return teacherList;
   }
 
-  public static Teacher getTeacherByID(String id)
+  public Teacher getTeacherByID(String id)
   {
     for(int i=0;i<teachers.size();i++)
     {
@@ -36,13 +41,13 @@ public class TeacherList
     }
     return null;
   }
-  public static ArrayList<Teacher> getTeachersByName(String name)
+  public TeacherList getTeachersByName(String name)
   {
-    ArrayList<Teacher> teachersByName = new ArrayList<>();
+    TeacherList teachersByName = new TeacherList();
     for(int i=0;i<teachers.size();i++)
     {
       if(name.equals(teachers.get(i).getName()))
-        teachersByName.add(teachers.get(i));
+        teachersByName.addTeacher(teachers.get(i));
     }
     return teachersByName;
   }
