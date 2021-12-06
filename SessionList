@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class SessionList
 {
-  private static ArrayList<Session> sessionList;
+  private ArrayList<Session> sessionList;
 
   public SessionList()
   {
@@ -17,7 +17,7 @@ public class SessionList
   {
     sessionList.remove(session);
   }
-  public static ArrayList<Session> getAllSessions()
+  public ArrayList<Session> getAllSessions()
   {
     return sessionList;
   }
@@ -43,15 +43,15 @@ public class SessionList
     return unbookedSessions;
   }
 
-  public ArrayList<Room> getRoomsAvailableInPeriod(DateTime dateAndStartTime, DateTime dateAndEndTime)
+  public ArrayList<Room> getRoomsAvailableInPeriod(DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
     ArrayList<Room> roomsAvailable = new ArrayList<>();
-    for(int i=0;i<RoomList.getAllBookedRooms().size();i++)
+    for(int i=0;i<rooms.getAllBookedRooms().size();i++)
     {
       int ok=1;
       for(int j=0;j<sessionList.size();j++)
       {
-        if(sessionList.get(j).getRoom() == RoomList.getAllBookedRooms().get(i))
+        if(sessionList.get(j).getRoom().equals(rooms.getAllBookedRooms().get(i)))
           if(sessionList.get(j).getDateAndStartTime().isAfter(dateAndStartTime) &&
               dateAndEndTime.isAfter(sessionList.get(j).getDateAndStartTime()))
               ok=0;
@@ -60,17 +60,17 @@ public class SessionList
             ok=0;
       }
       if(ok==1)
-        roomsAvailable.add(RoomList.getAllBookedRooms().get(i));
+        roomsAvailable.add(rooms.getAllBookedRooms().get(i));
     }
-    for(int i=0;i<RoomList.getAllUnbookedRooms().size();i++)
+    for(int i=0;i<rooms.getAllUnbookedRooms().size();i++)
     {
-      roomsAvailable.add(RoomList.getAllUnbookedRooms().get(i));
+      roomsAvailable.add(rooms.getAllUnbookedRooms().get(i));
     }
     return roomsAvailable;
   }
-  public ArrayList<Room> getRoomsAvailableInPeriodBySize(int capacity, DateTime dateAndStartTime, DateTime dateAndEndTime)
+  public ArrayList<Room> getRoomsAvailableInPeriodBySize(int capacity, DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
-    ArrayList<Room> roomsAvailableBySize = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime);
+    ArrayList<Room> roomsAvailableBySize = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms);
     for(int i=0;i<roomsAvailableBySize.size();i++)
     {
       if(roomsAvailableBySize.get(i).getCapacity() != capacity)
@@ -78,27 +78,27 @@ public class SessionList
     }
     return roomsAvailableBySize;
   }
-  public ArrayList<Room> getRoomsAvailableInPeriodBySizeBiggerThan(int capacity, DateTime dateAndStartTime, DateTime dateAndEndTime)
+  public ArrayList<Room> getRoomsAvailableInPeriodBySizeBiggerThan(int capacity, DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
-    ArrayList<Room> roomsAvailableBySizeBiggerThan = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime);
+    ArrayList<Room> roomsAvailableBySizeBiggerThan = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms);
     for(int i=0;i<roomsAvailableBySizeBiggerThan.size();i++)
     {
-      if(roomsAvailableBySizeBiggerThan.get(i).getCapacity() < capacity)
+      if(roomsAvailableBySizeBiggerThan.get(i).getCapacity() >= capacity)
         roomsAvailableBySizeBiggerThan.remove(roomsAvailableBySizeBiggerThan.get(i));
     }
     return roomsAvailableBySizeBiggerThan;
   }
-  public ArrayList<Room> getUnitableRoomsInPeriod(DateTime dateAndStartTime, DateTime dateAndEndTime)
+  public ArrayList<Room> getUnitableRoomsInPeriod(DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
-    ArrayList<Room> unitableRooms = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime);
+    ArrayList<Room> unitableRooms = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms);
     for(int i=0;i<unitableRooms.size();i++)
     {
       if(unitableRooms.get(i).getUnitedWith() == null)
         unitableRooms.remove(unitableRooms.get(i));
       else
       {
-        Room room = RoomList.getRoomByID(unitableRooms.get(i).getUnitedWith());
-        if(!(getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime).contains(room)))
+        Room room = rooms.getRoomByID(unitableRooms.get(i).getUnitedWith());
+        if(!(getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms).contains(room)))
           unitableRooms.remove(unitableRooms.get(i));
       }
     }
