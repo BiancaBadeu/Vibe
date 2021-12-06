@@ -2,11 +2,16 @@ import java.util.ArrayList;
 
 public class StudentList
 {
-  private static ArrayList<Student> studentList;
+  private ArrayList<Student> studentList;
 
   public StudentList()
   {
     this.studentList = new ArrayList<>();
+  }
+
+  public int getSize()
+  {
+    return studentList.size();
   }
 
   public void addStudent(Student student)
@@ -22,24 +27,42 @@ public class StudentList
         studentList.remove(studentList.get(i));
     }
   }
-
-  public static ArrayList<Student> getStudentsByClassID(String classID)
+  public StudentList getAllStudents()
   {
-    ArrayList<Student> studentsByClass = new ArrayList<>();
+    StudentList students = new StudentList();
+    for(int i=0;i<studentList.size();i++)
+      students.addStudent(studentList.get(i));
+    return students;
+  }
+
+  public StudentList getStudentsByClassID(String classID)
+  {
+    StudentList studentsByClass = new StudentList();
     for(int i=0;i<studentList.size();i++)
     {
       if(classID.equals(studentList.get(i).getClassID()))
-        studentsByClass.add(studentList.get(i));
+      {
+        studentsByClass.addStudent(studentList.get(i));
+      }
     }
     return studentsByClass;
   }
-  public static ArrayList<Student> getStudentsByName(String name)
+  public Student getStudentByID(int studentID)
   {
-    ArrayList<Student> studentsByName = new ArrayList<>();
+    for(int i=0;i<studentList.size();i++)
+    {
+      if(studentID == studentList.get(i).getStudentID())
+        return studentList.get(i);
+    }
+    return null;
+  }
+  public StudentList getStudentsByName(String name)
+  {
+    StudentList studentsByName = new StudentList();
     for(int i=0;i<studentList.size();i++)
     {
       if(name.equals(studentList.get(i).getName()))
-        studentsByName.add(studentList.get(i));
+        studentsByName.addStudent(studentList.get(i));
     }
     return studentsByName;
   }
