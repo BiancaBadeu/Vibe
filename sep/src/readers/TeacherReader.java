@@ -7,13 +7,24 @@ import model.*;
 
 public class TeacherReader
 {
-  public static void main(String[] args) throws Exception
+  private TeacherList listOfTeachers;
+
+  public TeacherReader()
+  {
+    this.listOfTeachers = new TeacherList();
+  }
+
+  public TeacherList getTeacherList()
+  {
+    return listOfTeachers;
+  }
+  public void readTeachers() throws Exception
   {
     /* file variable is created with the data from the text file */
-    File file = new File("Teachers.txt");
+    File file = new File("C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\txt\\Teachers.txt");
 
     Scanner in = new Scanner(file);
-    TeacherList teacherList = new TeacherList();
+
     while (in.hasNext())
     {
 
@@ -23,10 +34,9 @@ public class TeacherReader
       String teacherId= splittingline[1];
 
       Teacher teacher= new Teacher(teacherName, teacherId);
-      teacherList.addTeacher(teacher);
+      listOfTeachers.addTeacher(teacher);
 
     }
-
   }
 
 }

@@ -7,14 +7,24 @@ import model.*;
 
 public class StudentReader
 {
+  private StudentList listOfStudents;
 
-  public static void main(String[] args) throws Exception
+  public StudentReader()
+  {
+    this.listOfStudents = new StudentList();
+  }
+  public StudentList getListOfStudents()
+  {
+    return listOfStudents;
+  }
+
+  public void readStudents() throws Exception
   {
     /* file variable is created with the data from the text file */
-    File file = new File("C:\\Users\\luisd\\Downloads\\Students.txt");
+    File file = new File("C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\txt\\Students.txt");
 
     Scanner in = new Scanner(file);
-    StudentList listOfStudents= new StudentList();
+
     while (in.hasNext())
     {
 

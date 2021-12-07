@@ -7,14 +7,24 @@ import model.*;
 
 public class RoomReader
 {
+  private RoomList roomList;
 
-  public static void main(String[] args) throws Exception
+  public RoomReader()
+  {
+    this.roomList = new RoomList();
+  }
+  public RoomList getRoomList()
+  {
+    return roomList;
+  }
+
+  public void readRooms() throws Exception
   {
     /* file variable is created with the data from the text file */
-    File file = new File("C:\\Users\\luisd\\Downloads\\Rooms.txt");
+    File file = new File("C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\txt\\Rooms.txt");
 
     Scanner in = new Scanner(file);
-    RoomList roomList= new RoomList();
+
     while (in.hasNext())
     {
 
@@ -22,14 +32,13 @@ public class RoomReader
       String[] splittingline = line.split(",");
       String roomNumber = splittingline[0].trim();
       int roomSize = Integer.parseInt(splittingline[1].trim());
-      String roomNumber2= splittingline[3].trim();
+      String roomNumber2 = null;
+      if(splittingline.length > 2)
+        roomNumber2= splittingline[2].trim();
       Room room;
 
-      if(roomNumber2!=null){
-
+      if(roomNumber2!=null)
         room= new Room(roomNumber, roomSize, roomNumber2);
-
-      }
       else
         room= new Room(roomNumber, roomSize);
 

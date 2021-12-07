@@ -7,34 +7,47 @@ import model.*;
 
 public class CourseReader
 {
+  private CourseList listOfCourses;
 
-  public static void main(String[] args) throws Exception
+  public CourseReader()
+  {
+    this.listOfCourses = new CourseList();
+  }
+  public CourseList getListOfCourses()
+  {
+    return listOfCourses;
+  }
+
+  public void readCourses() throws Exception
   {
     /* file variable is created with the data from the text file */
-    File file = new File("C:\\Users\\luisd\\Downloads\\Courses.txt");
+    File file = new File("C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\txt\\Courses.txt");
 
     Scanner in = new Scanner(file);
-    CourseList listOfCourses= new CourseList();
+    TeacherList teacherList;
+    StudentList studentList;
+
+    StudentReader studentReader = new StudentReader();
+    studentReader.readStudents();
+    studentList = studentReader.getListOfStudents();
+
+    TeacherReader teacherReader = new TeacherReader();
+    teacherReader.readTeachers();
+    teacherList = teacherReader.getTeacherList();
+
     while (in.hasNext())
     {
 
       String line = in.nextLine();
       String[] splittingline = line.split(",");
+
       int semester = Integer.parseInt(splittingline[0].trim());
       String course = splittingline[2].trim();
       String classletter = splittingline[1].trim();
       String teacherid= splittingline[3].trim();
       int ectsvalue= Integer.parseInt(splittingline[4].trim());
-      System.out.println("Course:" +  course);
-      System.out.println("Semester:" +  semester);
-      System.out.println("Class:" +  classletter);
-      System.out.println("Teacher:" +  teacherid);
-      System.out.println("ECTS:" +  ectsvalue);
-      String courseId= course+semester+classletter;
-      TeacherList teacherList = new TeacherList();
-      StudentList studentList= new StudentList();
-
-
+      String courseId = course+semester+classletter;
+      String classId = semester+classletter;
 
       int ok=1;
       Teacher teacher = teacherList.getTeacherByID(teacherid);
@@ -47,7 +60,7 @@ public class CourseReader
       if(ok==1)
       {
         Course course1 = new Course(courseId, ectsvalue);
-        course1.setStudentList(studentList);
+        course1.setStudentList(studentList.getStudentsByClassID(classId));
         course1.addTeacher(teacher);
         listOfCourses.addCourse(course1);
       }
