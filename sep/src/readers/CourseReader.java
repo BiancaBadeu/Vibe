@@ -14,7 +14,7 @@ public class CourseReader
     File file = new File("C:\\Users\\luisd\\Downloads\\Courses.txt");
 
     Scanner in = new Scanner(file);
-    ArrayList<Course> listOfCourses= new ArrayList<Course>();
+    CourseList listOfCourses= new CourseList();
     while (in.hasNext())
     {
 
@@ -38,10 +38,10 @@ public class CourseReader
 
       int ok=1;
       Teacher teacher = teacherList.getTeacherByID(teacherid);
-      for(int i=0;i<listOfCourses.size();i++)
-        if(courseId.equals(listOfCourses.get(i).getCourseID()))
+      for(int i=0;i<listOfCourses.getAllCoursesAsArrayList().size();i++)
+        if(courseId.equals(listOfCourses.getAllCoursesAsArrayList().get(i).getCourseID()))
         {
-          listOfCourses.get(i).addTeacher(teacher);
+          listOfCourses.getAllCoursesAsArrayList().get(i).addTeacher(teacher);
           ok=0;
         }
       if(ok==1)
@@ -49,7 +49,7 @@ public class CourseReader
         Course course1 = new Course(courseId, ectsvalue);
         course1.setStudentList(studentList);
         course1.addTeacher(teacher);
-        listOfCourses.add(course1);
+        listOfCourses.addCourse(course1);
       }
     }
 

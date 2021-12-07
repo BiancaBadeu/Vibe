@@ -14,7 +14,7 @@ public class StudentReader
     File file = new File("C:\\Users\\luisd\\Downloads\\Students.txt");
 
     Scanner in = new Scanner(file);
-
+    StudentList listOfStudents= new StudentList();
     while (in.hasNext())
     {
 
@@ -28,8 +28,7 @@ public class StudentReader
       String classId= semester+classletter;
 
       Student student= new Student(studentName, studentId, classId);
-      ArrayList<Student> listOfStudents= new ArrayList<>();
-      listOfStudents.add(student);
+      listOfStudents.addStudent(student);
 
 
     }

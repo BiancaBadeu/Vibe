@@ -14,7 +14,7 @@ public class RoomReader
     File file = new File("C:\\Users\\luisd\\Downloads\\Rooms.txt");
 
     Scanner in = new Scanner(file);
-    ArrayList<Room> roomLists= new ArrayList<>();
+    RoomList roomList= new RoomList();
     while (in.hasNext())
     {
 
@@ -33,7 +33,7 @@ public class RoomReader
       else
         room= new Room(roomNumber, roomSize);
 
-      roomLists.add(room);
+      roomList.addRoom(room);
     }
 
   }
