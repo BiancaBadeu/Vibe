@@ -6,55 +6,54 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" prefHeight="70.0" prefWidth="600.0" text="Preview Booking">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Format">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Format:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Date">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Date:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Time">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Time:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Capacity">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Capacity:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Joined">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Joined:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Room">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Room:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Course">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Course:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Session">
+      <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="75.0" text="Session:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="108.0" prefWidth="600.0" spacing="100">
          <children>
             <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" text="Finish">
                <font>

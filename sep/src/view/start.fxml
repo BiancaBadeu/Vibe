@@ -20,14 +20,26 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="97.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Go to the booking system" />
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="View time table" />
+            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Go to the booking system">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="View time table">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Manage students and teachers" />
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Manage sessions" />
+            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Manage students and teachers">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Manage sessions">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>

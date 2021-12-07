@@ -11,9 +11,10 @@
    <children>
       <Label alignment="CENTER" prefHeight="48.0" prefWidth="600.0" text="Remove a teacher">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Label>
+      <Label alignment="CENTER" prefHeight="18.0" prefWidth="227.0" text="Please input a valid teacherID!" textFill="RED" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label alignment="CENTER" prefHeight="100.0" prefWidth="80.0" text="Teacher ID: ">
@@ -24,12 +25,17 @@
             <TextField alignment="CENTER" prefHeight="34.0" prefWidth="150.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox spacing="100" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Remove" />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Go back" />
+            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Remove">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Go back">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
-      <Label prefHeight="14.0" prefWidth="458.0" text="Please input a valid teacherID!" textFill="RED" />
    </children>
 </VBox>

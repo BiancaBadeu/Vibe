@@ -10,12 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" prefHeight="69.0" prefWidth="600.0" text="Book a room:">
+      <Label alignment="CENTER" prefHeight="69.0" prefWidth="600.0" text="Book a room">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Label>
       <HBox prefHeight="54.0" prefWidth="600.0">
@@ -44,11 +43,11 @@
             <TextField alignment="CENTER" prefHeight="26.0" prefWidth="62.0" />
          </children>
       </HBox>
-      <HBox prefHeight="30.0" prefWidth="600.0">
+      <HBox prefHeight="38.0" prefWidth="600.0">
          <children>
-            <Label prefHeight="40.0" prefWidth="600.0" text="Optional:">
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="92.0" text="Optional:">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
          </children>
@@ -70,11 +69,10 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <CheckBox mnemonicParsing="false" text="Yes  " />
-            <CheckBox mnemonicParsing="false" text="No  " />
+            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="61.0" text="Yes  " />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="53.0" prefWidth="167.0" text="Show available rooms">
                <font>

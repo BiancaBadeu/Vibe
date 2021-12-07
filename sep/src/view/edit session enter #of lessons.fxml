@@ -17,7 +17,10 @@
       </Label>
       <VBox alignment="TOP_CENTER" prefHeight="259.0" prefWidth="363.0">
          <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="240.0" text="Enter new number of lessons for this session" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="326.0" text="Enter new number of lessons for this session">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <TextField prefHeight="25.0" prefWidth="335.0">
                <VBox.margin>
                   <Insets left="100.0" right="100.0" />
@@ -30,7 +33,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Cancel">
@@ -38,7 +41,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Button>
                </children>

@@ -20,8 +20,14 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="YES" />
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="NO, go back" />
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="YES">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="NO, go back">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>
