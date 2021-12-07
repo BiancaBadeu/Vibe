@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" minWidth="600.0" prefHeight="33.0" prefWidth="600.0" text="Timetable">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Label>
+      <HBox alignment="TOP_RIGHT" prefHeight="32.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select view" />
+            <ChoiceBox prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="349.0" prefWidth="600.0">
+         <children>
+            <VBox>
+               <children>
+                  <DatePicker />
+               </children>
+            </VBox>
+            <VBox prefHeight="345.0" prefWidth="493.0">
+               <children>
+                  <TableView prefHeight="272.0" prefWidth="460.0">
+                    <columns>
+                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Time" />
+                      <TableColumn minWidth="75.0" prefWidth="-1.0" text="Mon " />
+                      <TableColumn minWidth="75.0" prefWidth="-1.0" text="Tue " />
+                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Wed " />
+                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Thu " />
+                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Fri " />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
