@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label prefHeight="127.0" prefWidth="283.0" text="Manage session">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="359.0" prefWidth="600.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="317.0" prefWidth="539.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="131.0" prefWidth="365.0" spacing="50">
+                     <children>
+                        <Button mnemonicParsing="false" prefWidth="95.0" text="Add">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefWidth="95.0" text="Remove">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="151.0" prefWidth="365.0" spacing="50">
+                     <children>
+                        <Button mnemonicParsing="false" prefWidth="95.0" text="Edit">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefWidth="95.0" text="Cancel">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="309.0" prefWidth="412.0">
+               <children>
+                  <HBox prefHeight="286.0" prefWidth="412.0">
+                     <children>
+                        <TableView prefHeight="200.0" prefWidth="200.0" />
+                        <ScrollBar orientation="VERTICAL" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
