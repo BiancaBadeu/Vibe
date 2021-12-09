@@ -39,7 +39,9 @@ public class TeacherList
     for(int i=0;i<teachers.size();i++)
     {
       if(id.equals(teachers.get(i).getId()))
+      {
         return teachers.get(i);
+      }
     }
     return null;
   }
@@ -56,6 +58,6 @@ public class TeacherList
 
   public String toString()
   {
-    return "List: " + teachers;
+    return "Teacher list: " + teachers;
   }
 }

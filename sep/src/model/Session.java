@@ -169,7 +169,7 @@ public class Session
 
   public String toString()
   {
-    return "Number: " + number + ", course: " + course + ", number of lessons in session: " + numberOfLessonsInSession
+    return "\nNumber: " + number + ", course: " + course + ", number of lessons in session: " + numberOfLessonsInSession
         + ", room: " + room + ", number of lessons for course: " + numberOfLessonsForCourse + ", number of lessons remaining: "
         + getNumberOfLessonsRemaining + ", start: " + dateAndStartTime.toString() + ", end: " + dateAndEndTime.toString();
   }

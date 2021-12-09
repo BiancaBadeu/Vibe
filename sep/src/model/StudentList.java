@@ -71,6 +71,6 @@ public class StudentList
 
   public String toString()
   {
-    return "List: " + studentList;
+    return "Student list: " + studentList;
   }
 }

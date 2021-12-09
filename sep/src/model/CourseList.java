@@ -58,7 +58,7 @@ public class CourseList
 
   public String toString()
   {
-    return "List: " + courseList;
+    return "Course list: " + courseList;
   }
 
 }

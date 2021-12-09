@@ -30,11 +30,12 @@ public class TeacherReader
 
       String line = in.nextLine();
       String[] splittingline = line.split(",");
-      String teacherName= splittingline[0];
-      String teacherId= splittingline[1];
+      String teacherName= splittingline[0].trim();
+      String teacherId= splittingline[1].trim();
 
       Teacher teacher= new Teacher(teacherName, teacherId);
       listOfTeachers.addTeacher(teacher);
+
 
     }
   }

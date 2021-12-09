@@ -11,9 +11,6 @@ public class Course
   {
     this.courseID = courseID;
     this.ects = ects;
-    String classID = "";
-    classID += this.courseID.charAt(0);
-    classID += this.courseID.charAt(1);
     this.students = new StudentList();
     this.teachers = new TeacherList();
   }
@@ -55,7 +52,7 @@ public class Course
 
   public String toString()
   {
-    return "model.Course: " + courseID + ", model.Student list: " + students + ", model.Teacher list: " + teachers + ", ECTS: " + ects;
+    return "\nCourse: " + courseID +  ", ECTS: " + ects + "\n" + students + "\n" + teachers;
   }
 
   public boolean equals(Object obj)

@@ -42,11 +42,11 @@ public class CourseReader
       String[] splittingline = line.split(",");
 
       int semester = Integer.parseInt(splittingline[0].trim());
-      String course = splittingline[2].trim();
       String classletter = splittingline[1].trim();
+      String course = splittingline[2].trim();
       String teacherid= splittingline[3].trim();
       int ectsvalue= Integer.parseInt(splittingline[4].trim());
-      String courseId = course+semester+classletter;
+      String courseId = semester+classletter+course;
       String classId = semester+classletter;
 
       int ok=1;

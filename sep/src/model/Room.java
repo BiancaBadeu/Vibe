@@ -44,9 +44,9 @@ public class Room
   public String toString()
   {
     if(unitedWith == null)
-      return "ID: " + this.id + ", capacity: " + this.capacity + ", is booked: " + this.booked;
+      return "\nID: " + this.id + ", capacity: " + this.capacity + ", is booked: " + this.booked;
     else
-      return "ID: " + this.id + ", capacity: " + this.capacity + ", can be united with: " + this.unitedWith + ", is booked: " + this.booked;
+      return "\nID: " + this.id + ", capacity: " + this.capacity + ", can be united with: " + this.unitedWith + ", is booked: " + this.booked;
   }
 
   public boolean equals(Object obj)

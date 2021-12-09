@@ -28,7 +28,7 @@ public class Student
 
   public String toString()
   {
-    return "Name: " + name + ", student ID: " + studentID + ", class: " + classID;
+    return "\nName: " + name + ", student ID: " + studentID + ", class: " + classID;
   }
 
   public boolean equals(Object obj)

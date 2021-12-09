@@ -124,6 +124,6 @@ public class SessionList
 
   public String toString()
   {
-    return "List: " + sessionList;
+    return "Session list: " + sessionList;
   }
 }

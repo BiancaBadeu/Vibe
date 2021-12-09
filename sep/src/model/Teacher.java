@@ -22,7 +22,7 @@ public class Teacher
 
   public String toString()
   {
-      return "Name: " + this.name + ", model.Teacher ID: " + this.id;
+      return "\nName: " + this.name + ", Teacher ID: " + this.id;
   }
 
   public boolean equals(Object obj)

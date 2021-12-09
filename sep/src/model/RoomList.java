@@ -99,7 +99,7 @@ public class RoomList
 
    public String toString()
    {
-      return "model.Room list: " + roomList;
+      return "Room list: " + roomList;
    }
 
 

@@ -1,8 +1,10 @@
 package model;
 
+import readers.Reader;
+
 import java.util.ArrayList;
 
-public class Manager
+public class Manager implements Model
 {
   private TeacherList teacherList;
   private CourseList courseList;
@@ -10,13 +12,24 @@ public class Manager
   private SessionList sessionList;
   private RoomList roomList;
 
-  public Manager()
+  public Manager() throws Exception
   {
     this.teacherList = new TeacherList();
     this.studentList = new StudentList();
     this.courseList = new CourseList();
     this.roomList = new RoomList();
     this.sessionList = new SessionList();
+    inputFiles();
+  }
+
+  public void inputFiles() throws Exception
+  {
+    Reader reader = new Reader();
+    reader.readFiles();
+    this.teacherList = reader.getTeacherList();
+    this.studentList = reader.getStudentList();
+    this.courseList = reader.getCourseList();
+    this.roomList = reader.getRoomList();
   }
 
   public TeacherList getAllTeachers()
