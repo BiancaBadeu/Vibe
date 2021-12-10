@@ -34,7 +34,6 @@ public class ViewHandler
   private SelectSessionController selectSessionController;
   private StartController startController;
   private TimetableController timetableController;
-  private ViewBookingsByController viewBookingsByController;
   private ViewFilteredBookingsController viewFilteredBookingsController;
 
   public ViewHandler(Model model)
@@ -116,9 +115,6 @@ public class ViewHandler
         break;
       case "Timetable":
         root = loadTimetableView("Timetable.fxml");
-        break;
-      case "ViewBookingsBy":
-        root = loadViewBookingsByView("ViewBookingBy.fxml");
         break;
       case "VieFilteredBookings":
         root = loadViewFilteredBookingsView("ViewFilteredBookings.fxml");
@@ -628,29 +624,6 @@ public class ViewHandler
       timetableController.reset();
     }
     return timetableController.getRoot();
-  }
-  private Region loadViewBookingsByView(String fxmlFile)
-  {
-    if(viewBookingsByController == null)
-    {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlFile));
-        Region root = loader.load();
-        viewBookingsByController = loader.getController();
-        viewBookingsByController.init(this, model, root);
-      }
-      catch (Exception e)
-      {
-        e.printStackTrace();
-      }
-    }
-    else
-    {
-      viewBookingsByController.reset();
-    }
-    return viewBookingsByController.getRoot();
   }
   private Region loadViewFilteredBookingsView(String fxmlFile)
   {
