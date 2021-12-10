@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -23,6 +25,22 @@
          <children>
             <TableView prefHeight="242.0" prefWidth="578.0" />
             <ScrollBar orientation="VERTICAL" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="5.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="72.0" text="Filter by:  ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="removeDrop" prefHeight="26.0" prefWidth="134.0" />
+            <TextField fx:id="removeFilterBy" prefHeight="30.0" prefWidth="106.0" />
+            <Button fx:id="removeFilter" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Filter">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
