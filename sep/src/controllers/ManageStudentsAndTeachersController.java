@@ -1,21 +1,23 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.Region;
 import view.ViewHandler;
+import model.Model;
 
-import javax.swing.plaf.synth.Region;
+
 
 public class ManageStudentsAndTeachersController
 {
   private Region root;
-  private model.Model model;
+  private Model model;
   private ViewHandler viewHandler;
 
   public ManageStudentsAndTeachersController()
   {
   }
 
-  public void init(ViewHandler viewHandler, model.Model model, Region root)
+  public void init(ViewHandler viewHandler, Model model, Region root)
   {
     this.model = model;
     this.viewHandler = viewHandler;

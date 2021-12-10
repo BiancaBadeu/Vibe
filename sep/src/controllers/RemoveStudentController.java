@@ -18,55 +18,58 @@ public class RemoveStudentController
   private view.ViewHandler viewHandler;
   private Region root;
   private model.Model model;
-  @FXML private TextField idField;
+  @FXML TextField idField;
   @FXML private Label errorLabel;
 
 
   public RemoveStudentController(){}
 
-    public void init(ViewHandler viewHandler, model.Model model, Region root )
-    {
-      this.viewHandler = viewHandler;
-      this.model = model;
-      this.root = root;
-    }
+  public void init(ViewHandler viewHandler, model.Model model, Region root )
+  {
+    this.viewHandler = viewHandler;
+    this.model = model;
+    this.root = root;
+  }
 
-    @FXML private void keyTyped()
-    {
-      try
-      {
-        model.validateRemoveStudent(idField.getText());
-        errorLabel.setText("");
-      }
-      catch (Exception e)
-      {
-        errorLabel.setText(e.getMessage());
-      }
-    }
+  @FXML private void keyTyped()
+  {
+  }
 
-    @FXML void removeButtonPressed()
+  @FXML void removeButtonPressed()
+  {
+    int id = Integer.parseInt(idField.getText());
+    try
     {
-      int id = Integer.parseInt(idField.getText());
-      model.removeStudentByID(id);
+      model.validateRemoveStudent(idField.getText());
+      errorLabel.setText("");
     }
-
-    @FXML void goBackButtonPressed()
+    catch (Exception e)
     {
-      viewHandler.openView("ManageStudentsAndTeachers");
+      errorLabel.setText(e.getMessage());
     }
+    if(errorLabel.getText().equals(""))
+      if(booleanconfirmation())
+        model.removeStudentByID(id);
+    reset();
+  }
 
-    private boolean booleanconfirmation()
-    {
-      int id = Integer.parseInt(idField.getText());
-      Student student = model.getAllStudents().getStudentByID(id);
+  @FXML void goBackButtonPressed()
+  {
+    viewHandler.openView("ManageStudentsAndTeachers");
+  }
 
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-      alert.setTitle("Confirmation");
-      alert.setHeaderText(
-          "Removing student: "+ student);
-      Optional<ButtonType> result = alert.showAndWait();
-      return (result.isPresent()) && (result.get() == ButtonType.OK);
-    }
+  private boolean booleanconfirmation()
+  {
+    int id = Integer.parseInt(idField.getText());
+    Student student = model.getAllStudents().getStudentByID(id);
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText(
+        "Removing student: "+ student);
+    Optional<ButtonType> result = alert.showAndWait();
+    return (result.isPresent()) && (result.get() == ButtonType.OK);
+  }
 
   public void reset()
   {
