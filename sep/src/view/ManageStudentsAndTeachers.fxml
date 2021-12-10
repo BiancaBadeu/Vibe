@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageStudentsAndTeachersController">
    <children>
       <Label alignment="CENTER" prefHeight="111.0" prefWidth="616.0" text="Manage students and teachers">
          <font>
@@ -15,11 +15,11 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add student">
+            <Button fx:id="addStudentButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add student" onAction="#addStudentButtonPressed">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Remove student">
+            <Button fx:id="removeStudentButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Remove student" onAction="#removeStudentButtonPressed">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -27,11 +27,11 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="90.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add teacher">
+            <Button fx:id="addTeacherButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add teacher" onAction="#addTeacherButtonPressed">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Remove teacher">
+            <Button fx:id="removeTeacherButton"   mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Remove teacher" onAction="#removeTeacherButtonPressed">
                <font>
                   <Font size="14.0" />
                </font></Button>
