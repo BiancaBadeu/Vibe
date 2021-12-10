@@ -37,6 +37,8 @@ public class Manager implements Model
     return teacherList;
   }
 
+  public ArrayList<Teacher> getAllTeachersAsArrayList(){return teacherList.getAllTeachersAsArrayList();}
+
   public void addTeacher(Teacher teacher)
   {
     teacherList.addTeacher(teacher);
@@ -82,6 +84,9 @@ public class Manager implements Model
   {
     return courseList.getAllCourses();
   }
+  public ArrayList<Course> getAllCoursesAsArrayList(){
+    return courseList.getAllCoursesAsArrayList();
+  }
   public void addCourse(Course course)
   {
     courseList.addCourse(course);
@@ -103,6 +108,8 @@ public class Manager implements Model
   {
     return studentList.getAllStudents();
   }
+  public void validateRemoveStudent(String idField){studentList.validateRemoveStudent(idField);}
+  public void validateAddStudent(String nameField, String idField, String classField){studentList.validateAddStudent(nameField, idField, classField);}
   public void addStudent(Student student)
   {
     studentList.addStudent(student);
@@ -123,6 +130,10 @@ public class Manager implements Model
   public SessionList getAllSessions()
   {
     return sessionList.getAllSessionsAsList();
+  }
+  public ArrayList<Session> getAllSessionsAsArrayList()
+  {
+    return sessionList.getAllSessions();
   }
   public void addSession(Session session)
   {

@@ -33,6 +33,10 @@ public class TeacherList
     }
     return teacherList;
   }
+  public ArrayList<Teacher> getAllTeachersAsArrayList()
+  {
+    return teachers;
+  }
 
   public Teacher getTeacherByID(String id)
   {
@@ -58,6 +62,6 @@ public class TeacherList
 
   public String toString()
   {
-    return "Teacher list: " + teachers;
+    return "TeacherList: " + teachers;
   }
 }

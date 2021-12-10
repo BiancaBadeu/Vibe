@@ -69,6 +69,57 @@ public class StudentList
     return studentsByName;
   }
 
+  public void validateAddStudent(String nameField, String idField, String classField)
+  {
+    String error="One of the fields you introduced was not valid. Please introduce a valid student.";
+    for(int i=0;i<nameField.length(); i++)
+    {
+      if(!((nameField.charAt(i)>='A' && nameField.charAt(i)<='Z' )||
+          (nameField.charAt(i)>='a' && nameField.charAt(i)<='z') || nameField.charAt(i)==' '))
+        throw new IllegalArgumentException(error);
+    }
+
+    if(!(idField.length()==6))
+      throw new IllegalArgumentException(error);
+    if(!(idField.charAt(0)>'0' && idField.charAt(0)<='9'))
+      throw new IllegalArgumentException(error);
+    for (int i=1; i<idField.length();i++)
+    {
+      if(!(idField.charAt(i)>='0' && idField.charAt(i)<='9'))
+        throw new IllegalArgumentException(error);
+    }
+
+    if(classField.length()<2 || classField.length()>3)
+    {
+      throw new IllegalArgumentException(error);
+    }
+
+    if(!(classField.charAt(0)>='1' && classField.charAt(0)<='7'))
+      throw new IllegalArgumentException(error);
+    for(int i=1;i<classField.length();i++)
+    {
+      if(!(classField.charAt(i)>='A' && classField.charAt(i)<='Z'))
+      {
+        throw new IllegalArgumentException(error);
+      }
+    }
+
+  }
+
+  public void validateRemoveStudent(String idField)
+  {
+    String error = "Please input a valid student ID!";
+    if(!(idField.length()==6))
+      throw new IllegalArgumentException(error);
+    if(!(idField.charAt(0)>'0' && idField.charAt(0)<='9'))
+      throw new IllegalArgumentException(error);
+    for (int i=1; i<idField.length();i++)
+    {
+      if(!(idField.charAt(i)>='0' && idField.charAt(i)<='9'))
+        throw new IllegalArgumentException(error);
+    }
+  }
+
   public String toString()
   {
     return "Student list: " + studentList;
