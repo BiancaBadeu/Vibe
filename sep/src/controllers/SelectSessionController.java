@@ -35,6 +35,7 @@ public class SelectSessionController
     numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
     TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
     getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+    SessionTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
     SessionTable.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
