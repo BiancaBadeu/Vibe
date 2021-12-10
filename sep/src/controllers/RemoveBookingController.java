@@ -56,6 +56,8 @@ public class RemoveBookingController
     TableColumn endTime = new TableColumn("End time");
     endTime.setCellValueFactory(new PropertyValueFactory<>("dateAndEndTime"));
 
+    bookTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
 
     bookTableView.getColumns().setAll(sessionNumberCol, course, numberOfLessons, room, numberOfLessonsForCourse, getNumberOfLessonsRemaining, startTime, endTime);
 
