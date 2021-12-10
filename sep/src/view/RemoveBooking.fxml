@@ -23,7 +23,7 @@
          </font></Label>
       <HBox alignment="TOP_RIGHT" prefHeight="260.0" prefWidth="600.0">
          <children>
-            <TableView prefHeight="242.0" prefWidth="578.0" />
+            <TableView prefHeight="242.0" prefWidth="578.0" fx:id="tableView"/>
             <ScrollBar orientation="VERTICAL" />
          </children>
       </HBox>
