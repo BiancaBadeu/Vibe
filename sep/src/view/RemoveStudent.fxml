@@ -14,7 +14,7 @@
             <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <Label fx:id="errorLabel" alignment="CENTER" prefHeight="18.0" prefWidth="243.0" text="Please input a valid student ID!" textFill="RED" />
+      <Label fx:id="errorLabel" alignment="CENTER" prefHeight="18.0" prefWidth="243.0" text="" textFill="RED" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label alignment="CENTER" prefHeight="100.0" prefWidth="80.0" text="Student ID: ">
@@ -22,7 +22,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="#idField" onKeyTyped="#keyTyped" alignment="CENTER" prefHeight="34.0" prefWidth="150.0" />
+            <TextField fx:id="idField" onKeyTyped="#keyTyped" alignment="CENTER" prefHeight="34.0" prefWidth="150.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">

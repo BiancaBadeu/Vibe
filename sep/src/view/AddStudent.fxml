@@ -14,7 +14,7 @@
             <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <Label fx:id="errorLabel" alignment="CENTER" prefHeight="30.0" prefWidth="500.0" text="One of the fields you introduced was not valid. Please introduce a valid student." textFill="RED" />
+      <Label fx:id="errorLabel" alignment="CENTER" prefHeight="30.0" prefWidth="500.0" text="" textFill="RED" />
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
          <children>
             <Label alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="150.0" text="Enter name:" />
