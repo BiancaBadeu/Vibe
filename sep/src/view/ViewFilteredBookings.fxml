@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="1050.0" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewFilteredBookingsController">
    <children>
       <Label alignment="CENTER" prefHeight="35.0" prefWidth="602.0" text="Your bookings">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <HBox alignment="TOP_RIGHT" prefHeight="243.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="346.0" prefWidth="1050.0">
          <children>
-            <TableView prefHeight="243.0" prefWidth="574.0" />
+            <TableView fx:id="tableMyBookings" prefHeight="238.0" prefWidth="895.0" />
             <ScrollBar orientation="VERTICAL" />
          </children>
       </HBox>
