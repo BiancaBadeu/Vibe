@@ -49,12 +49,18 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="160.0" spacing="20">
                <children>
+                  <TextField fx:id="newLessons">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Error not valid data " textFill="RED" />
                   <Button mnemonicParsing="false" prefWidth="95.0" text="Edit" fx:id="edit" onAction="#pressToEdit">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="60.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" prefWidth="95.0" text="Cancel" fx:id="cancel" onAction="#pressToCancel">
