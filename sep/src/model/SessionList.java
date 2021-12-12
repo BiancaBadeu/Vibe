@@ -154,6 +154,21 @@ public class SessionList
         throw new IllegalArgumentException(error);
     }
   }
+  
+  public void validateEditSession(String lessonField)
+  {
+    String error="Error not valid data";
+
+      if(lessonField.length()>3)
+      throw new IllegalArgumentException(error);
+    if(!(lessonField.charAt(0)>'0' && lessonField.charAt(0)<='9'))
+      throw new IllegalArgumentException(error);
+    for (int i=1; i<lessonField.length();i++)
+    {
+      if(!(lessonField.charAt(i)>='0' && lessonField.charAt(i)<='9'))
+        throw new IllegalArgumentException(error);
+    }
+  }
 
   public String toString()
   {
