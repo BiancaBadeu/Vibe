@@ -24,7 +24,6 @@ public class AddSessionController
 
   public AddSessionController()
   {
-    //called by
   }
   public void init(view.ViewHandler viewHandler, model.Model model, Region root){
     this.viewHandler= viewHandler;
