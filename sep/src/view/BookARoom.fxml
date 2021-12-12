@@ -30,7 +30,7 @@
       </HBox>
       <HBox prefHeight="45.0" prefWidth="600.0">
          <children>
-            <Label alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="197.0" text="Choose a time: ">
+            <Label alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="197.0" text="Choose a start time: ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -55,7 +55,7 @@
       </HBox>
       <HBox prefHeight="43.0" prefWidth="600.0">
          <children>
-            <Label alignment="TOP_RIGHT" prefHeight="51.0" prefWidth="150.0" text="Choose capacity: ">
+            <Label alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="202.0" text="Choose minimum capacity: ">
                <font>
                   <Font size="14.0" />
                </font>

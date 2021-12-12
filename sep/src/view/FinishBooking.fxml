@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FinishBookingController">
    <children>
       <Label alignment="CENTER" prefHeight="70.0" prefWidth="600.0" text="Preview Booking">
          <font>
@@ -21,7 +21,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" prefHeight="26.0" prefWidth="115.0" />
+            <TextField fx:id="format" editable="false" prefHeight="26.0" prefWidth="115.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
@@ -31,13 +31,13 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" />
+            <TextField fx:id="date" editable="false" />
             <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Time:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" prefHeight="26.0" prefWidth="110.0" />
+            <TextField fx:id="time" editable="false" prefHeight="26.0" prefWidth="110.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
@@ -47,19 +47,19 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" prefHeight="26.0" prefWidth="57.0" />
+            <TextField fx:id="capacity" editable="false" prefHeight="26.0" prefWidth="57.0" />
             <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Joined:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" prefHeight="26.0" prefWidth="68.0" />
+            <TextField fx:id="united" editable="false" prefHeight="26.0" prefWidth="68.0" />
             <Label alignment="CENTER" prefHeight="40.0" prefWidth="75.0" text="Room:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="room" editable="false" prefHeight="26.0" prefWidth="96.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
@@ -69,23 +69,23 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" />
+            <TextField fx:id="course" editable="false" />
             <Label alignment="CENTER" prefHeight="40.0" prefWidth="97.0" text="Session:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField editable="false" />
+            <TextField fx:id="session" editable="false" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" text="Finish">
+            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" text="Finish" onAction="#finishPressed">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="105.0" text="Go back">
+            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="105.0" text="Go back" onAction="#backPressed">
                <font>
                   <Font size="14.0" />
                </font>

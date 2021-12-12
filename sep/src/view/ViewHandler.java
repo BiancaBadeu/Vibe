@@ -20,7 +20,6 @@ public class ViewHandler
   private BookingSystemController bookingSystemController;
   private CheckAddStudentController checkAddStudentController;
   private EditSessionController editSessionController;
-  private EditSessionEnterNumberOfLessonsController editSessionEnterNumberOfLessonsController;
   private FinishBookingController finishBookingController;
   private ListOfAllCoursesController listOfAllCoursesController;
   private ManageSessionsController manageSessionsController;
@@ -72,18 +71,14 @@ public class ViewHandler
       case "EditSession":
         root = loadEditSessionView("EditSession.fxml");
         break;
-      case "EditSessionEnterNumberOfLessons":
-        root = loadEditSessionEnterNumberOfLessonsView(
-            "EditSessionEnterNumberOfLessons");
-        break;
       case "FinishBooking":
         root = loadFinishBookingView("FinishBooking.fxml");
         break;
       case "ListOfAllCourses":
         root = loadListOfAllCoursesView("ListOfAllCourses.fxml");
         break;
-      case "ManageSession":
-        root = loadManageSessionView("ManageSession.fxml");
+      case "ManageSessions":
+        root = loadManageSessionView("ManageSessions.fxml");
         break;
       case "ManageStudentsAndTeachers":
         root = loadManageStudentsAndTeachersView(
@@ -302,29 +297,6 @@ public class ViewHandler
       editSessionController.reset();
     }
     return editSessionController.getRoot();
-  }
-  private Region loadEditSessionEnterNumberOfLessonsView(String fxmlFile)
-  {
-    if(editSessionEnterNumberOfLessonsController == null)
-    {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlFile));
-        Region root = loader.load();
-        editSessionEnterNumberOfLessonsController = loader.getController();
-        editSessionEnterNumberOfLessonsController.init(this, model, root);
-      }
-      catch (Exception e)
-      {
-        e.printStackTrace();
-      }
-    }
-    else
-    {
-      editSessionEnterNumberOfLessonsController.reset();
-    }
-    return editSessionEnterNumberOfLessonsController.getRoot();
   }
   private Region loadFinishBookingView(String fxmlFile)
   {

@@ -15,19 +15,29 @@
       </Label>
       <HBox alignment="BOTTOM_CENTER" prefHeight="90.0" prefWidth="600.0" spacing="50">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" text="Book a room" onAction="#bookARoomPressed">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#bookARoomPressed" prefHeight="60.0" prefWidth="160.0" text="Book a room">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" text="View your bookings" onAction="#viewYourBookingsPressed">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewYourBookingsPressed" prefHeight="60.0" prefWidth="160.0" text="View your bookings">
                <font>
                   <Font size="14.0" />
                </font></Button>
          </children>
       </HBox>
-      <Button alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" text="Remove a booking" onAction="#removeABookingPressed">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#removeABookingPressed" prefHeight="60.0" prefWidth="160.0" text="Remove a booking">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backPressed" prefHeight="60.0" prefWidth="160.0" text="Go back">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </VBox>

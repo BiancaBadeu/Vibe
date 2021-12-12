@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="712.0" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
    <children>
       <Label alignment="CENTER" prefHeight="24.0" prefWidth="600.0" text="Hi!">
          <font>
@@ -20,27 +20,16 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="97.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Go to the booking system" onAction="#goToTheBookingSystemPressed">
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="View time table" onAction="#viewTimetablePressed">
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
+            <Button mnemonicParsing="false" onAction="#goToTheBookingSystemPressed" prefHeight="60.0" prefWidth="190.0" text="Go to the booking system" />
+            <Button mnemonicParsing="false" onAction="#viewTimetablePressed" prefHeight="60.0" prefWidth="190.0" text="View time table" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Manage students and teachers" onAction="#manageStudentsAndTeachersPressed">
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="190.0" text="Manage sessions" onAction="#manageSessionsPressed">
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
+            <Button mnemonicParsing="false" onAction="#manageStudentsAndTeachersPressed" prefHeight="60.0" prefWidth="190.0" text="Manage students and teachers" />
+            <Button mnemonicParsing="false" onAction="#manageSessionsPressed" prefHeight="60.0" prefWidth="190.0" text="Manage sessions" />
          </children>
       </HBox>
+      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="228.0" text="Input files from head of departament" onAction="#filesPressed"/>
    </children>
 </VBox>

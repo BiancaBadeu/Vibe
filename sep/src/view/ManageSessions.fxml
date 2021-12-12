@@ -21,12 +21,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="131.0" prefWidth="365.0" spacing="50">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="95.0" text="Add" onAction="#toAdd">
+                        <Button mnemonicParsing="false" onAction="#toAdd" prefWidth="95.0" text="Add">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="95.0" text="Remove" onAction="#toRemove">
+                        <Button mnemonicParsing="false" onAction="#toRemove" prefWidth="95.0" text="Remove">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -35,12 +35,12 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="151.0" prefWidth="365.0" spacing="50">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="95.0" text="Edit" onAction="#toEdit">
+                        <Button mnemonicParsing="false" onAction="#toEdit" prefWidth="95.0" text="Edit">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="95.0" text="Cancel" onAction="#toCancel">
+                        <Button mnemonicParsing="false" onAction="#toCancel" prefWidth="95.0" text="Cancel">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -53,7 +53,7 @@
                <children>
                   <HBox prefHeight="286.0" prefWidth="412.0">
                      <children>
-                        <TableView prefHeight="200.0" prefWidth="200.0" />
+                        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" />
                         <ScrollBar orientation="VERTICAL" />
                      </children>
                   </HBox>

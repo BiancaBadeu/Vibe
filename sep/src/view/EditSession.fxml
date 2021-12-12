@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -38,7 +39,7 @@
                <children>
                   <HBox prefHeight="235.0" prefWidth="399.0">
                      <children>
-                        <TableView prefHeight="227.0" prefWidth="395.0" />
+                        <TableView fx:id="tableView" prefHeight="227.0" prefWidth="395.0" />
                         <ScrollBar orientation="VERTICAL" />
                      </children>
                   </HBox>
@@ -55,7 +56,7 @@
                      </VBox.margin>
                   </TextField>
                   <Label text="Error not valid data " textFill="RED" />
-                  <Button mnemonicParsing="false" prefWidth="95.0" text="Edit" fx:id="edit" onAction="#pressToEdit">
+                  <Button fx:id="edit" mnemonicParsing="false" onAction="#pressToEdit" prefWidth="95.0" text="Edit">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -63,7 +64,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="95.0" text="Cancel" fx:id="cancel" onAction="#pressToCancel">
+                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#pressToCancel" prefWidth="95.0" text="Cancel">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -42,7 +42,7 @@
                   <Label text="Error one of the fields has not valid data " textFill="RED" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add" fx:id="addSession" onAction="#pressToAdd">
+                        <Button fx:id="addSession" mnemonicParsing="false" onAction="#pressToAdd" prefHeight="60.0" prefWidth="130.0" text="Add">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -50,7 +50,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Cancel" fx:id="cancel" onAction="#pressToCancel">
+                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#pressToCancel" prefHeight="60.0" prefWidth="130.0" text="Cancel">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -66,7 +66,7 @@
                <children>
                   <HBox prefHeight="288.0" prefWidth="247.0">
                      <children>
-                        <TableView prefHeight="296.0" prefWidth="234.0" />
+                        <TableView fx:id="tableView" prefHeight="296.0" prefWidth="234.0" />
                         <ScrollBar orientation="VERTICAL" />
                      </children>
                   </HBox>
