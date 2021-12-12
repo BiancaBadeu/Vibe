@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.DropdownButton?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListOfAllCoursesController">
    <children>
       <Label text="Courses">
          <font>
@@ -27,20 +26,20 @@
          <children>
             <VBox alignment="CENTER" prefHeight="256.0" prefWidth="286.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="200.0" text="Add student to course">
+                  <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="200.0" text="Add student to course" onAction="#addStudentPressed">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
                </children>
             </VBox>
-            <TableView prefHeight="256.0" prefWidth="401.0" />
+            <TableView fx:id="courseTable" prefHeight="256.0" prefWidth="401.0" />
             <ScrollBar orientation="VERTICAL" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10">
          <children>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="112.0" text="Done!">
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="112.0" text="Done!" onAction="#donePressed">
                <font>
                   <Font size="14.0" />
                </font>
@@ -50,20 +49,9 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0">
-               <graphic>
-                  <DropdownButton prefHeight="18.0" prefWidth="25.0">
-                     <items>
-                        <MenuItem text="-" />
-                        <MenuItem text="Course Name" />
-                        <MenuItem text="Semester" />
-                        <MenuItem mnemonicParsing="false" text="Class" />
-                     </items>
-                  </DropdownButton>
-               </graphic>
-            </Button>
-            <TextField prefHeight="30.0" prefWidth="106.0" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Filter">
+            <ChoiceBox fx:id="choiceCourse" prefHeight="26.0" prefWidth="98.0" />
+            <TextField fx:id="courseFilter" prefHeight="30.0" prefWidth="106.0" />
+            <Button fx:id="filterCourse" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" text="Filter" onAction="#filterPressed">
                <font>
                   <Font size="14.0" />
                </font>
