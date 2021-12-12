@@ -49,7 +49,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="160.0" spacing="20">
                <children>
-                  <Button mnemonicParsing="false" prefWidth="95.0" text="Edit">
+                  <Button mnemonicParsing="false" prefWidth="95.0" text="Edit" fx:id="edit" onAction="#pressToEdit">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -57,7 +57,7 @@
                         <Insets top="60.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="95.0" text="Cancel">
+                  <Button mnemonicParsing="false" prefWidth="95.0" text="Cancel" fx:id="cancel" onAction="#pressToCancel">
                      <font>
                         <Font size="18.0" />
                      </font>
