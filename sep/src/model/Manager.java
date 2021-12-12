@@ -110,6 +110,8 @@ public class Manager implements Model
   }
   public void validateRemoveStudent(String idField){studentList.validateRemoveStudent(idField);}
   public void validateAddStudent(String nameField, String idField, String classField){studentList.validateAddStudent(nameField, idField, classField);}
+  public void validateAddTeacher(String nameField, String idField){teacherList.validateAddTeacher(nameField, idField);}
+  public void validateRemoveTeacher(String idField){teacherList.validateRemoveTeacher(idField);}
   public void addStudent(Student student)
   {
     studentList.addStudent(student);

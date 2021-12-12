@@ -24,6 +24,8 @@ public interface Model
   StudentList getAllStudents();
   void validateRemoveStudent(String idField);
   void validateAddStudent(String nameField, String idField, String classField);
+  void validateAddTeacher(String nameField, String idField);
+  void validateRemoveTeacher(String idField);
   void addStudent(Student student);
   void removeStudentByID(int id);
   StudentList getAllStudentsInClassID(String classID);

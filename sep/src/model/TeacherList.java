@@ -15,6 +15,9 @@ public class TeacherList
   {
     teachers.add(teacher);
   }
+  public ArrayList<Teacher> getAllTeachersAsArrayList(){
+    return teachers;
+  }
   public void removeTeacherByID(String id)
   {
     for(int i=0;i<teachers.size();i++)
@@ -33,19 +36,13 @@ public class TeacherList
     }
     return teacherList;
   }
-  public ArrayList<Teacher> getAllTeachersAsArrayList()
-  {
-    return teachers;
-  }
 
   public Teacher getTeacherByID(String id)
   {
     for(int i=0;i<teachers.size();i++)
     {
       if(id.equals(teachers.get(i).getId()))
-      {
         return teachers.get(i);
-      }
     }
     return null;
   }
@@ -60,8 +57,37 @@ public class TeacherList
     return teachersByName;
   }
 
+  public void validateAddTeacher(String nameField, String idField)
+  {
+    String error = "One of the fields you introduced was not valid. Please introduce a valid teacher.";
+    for (int i = 0; i <nameField.length(); i++)
+    {
+      if (!((nameField.charAt(i) >= 'A' && nameField.charAt(i) <= 'Z') || (
+          nameField.charAt(i) >= 'a' && nameField.charAt(i) <= 'z')
+          || nameField.charAt(i) == ' '))
+        throw new IllegalArgumentException(error);
+    }
+
+    for (int i = 0; i < idField.length(); i++)
+    {
+      if (!(idField.charAt(i) >= 'A' && idField.charAt(i) <= 'Z'))
+        throw new IllegalArgumentException(error);
+    }
+  }
+
+  public void validateRemoveTeacher(String idField)
+  {
+    String error = "Please input a valid teacherID!";
+
+    for (int i = 0; i < idField.length(); i++)
+    {
+      if (!(idField.charAt(i) >= 'A' && idField.charAt(i) <= 'Z'))
+        throw new IllegalArgumentException(error);
+    }
+
+  }
   public String toString()
   {
-    return "TeacherList: " + teachers;
+    return "List: " + teachers;
   }
 }
