@@ -21,6 +21,13 @@ public class Room
     this.unitedWith = null;
     this.booked = false;
   }
+  public Room(String id, int capacity, String unitedWith, boolean booked)
+  {
+    this.id = id;
+    this.capacity = capacity;
+    this.unitedWith = unitedWith;
+    this.booked = booked;
+  }
 
   public String getId()
   {
@@ -44,9 +51,9 @@ public class Room
   public String toString()
   {
     if(unitedWith == null)
-      return "\nID: " + this.id + ", capacity: " + this.capacity + ", is booked: " + this.booked;
+      return "ID: " + this.id + ", capacity: " + this.capacity + ", is booked: " + this.booked;
     else
-      return "\nID: " + this.id + ", capacity: " + this.capacity + ", can be united with: " + this.unitedWith + ", is booked: " + this.booked;
+      return "ID: " + this.id + ", capacity: " + this.capacity + ", can be united with: " + this.unitedWith + ", is booked: " + this.booked;
   }
 
   public boolean equals(Object obj)

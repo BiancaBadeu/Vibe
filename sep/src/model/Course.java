@@ -19,13 +19,11 @@ public class Course
   {
     this.students = students;
   }
-  public void addStudent(Student student){
-    this.students.addStudent(student);
-  }
   public void addTeacher(Teacher teacher)
   {
     this.teachers.addTeacher(teacher);
   }
+  public void addStudent(Student student){this.students.addStudent(student);}
 
   public String getCourseID()
   {

@@ -20,7 +20,6 @@ public class StudentList
   {
     studentList.add(student);
   }
-
   public void removeStudentByID(int id)
   {
     for(int i=0;i<studentList.size();i++)
@@ -29,12 +28,17 @@ public class StudentList
         studentList.remove(studentList.get(i));
     }
   }
+
   public StudentList getAllStudents()
   {
     StudentList students = new StudentList();
     for(int i=0;i<studentList.size();i++)
       students.addStudent(studentList.get(i));
     return students;
+  }
+  public ArrayList<Student> getAllStudentsAsArrayList()
+  {
+    return studentList;
   }
 
   public StudentList getStudentsByClassID(String classID)
@@ -74,9 +78,9 @@ public class StudentList
     String error="One of the fields you introduced was not valid. Please introduce a valid student.";
     for(int i=0;i<nameField.length(); i++)
     {
-      if(!((nameField.charAt(i)>='A' && nameField.charAt(i)<='Z' ) ||
-      (nameField.charAt(i)>='a' && nameField.charAt(i)<='z') || nameField.charAt(i)==' '))
-      throw new IllegalArgumentException(error);
+      if(!((nameField.charAt(i)>='A' && nameField.charAt(i)<='Z' )||
+          (nameField.charAt(i)>='a' && nameField.charAt(i)<='z') || nameField.charAt(i)==' '))
+        throw new IllegalArgumentException(error);
     }
 
     if(!(idField.length()==6))
@@ -106,7 +110,6 @@ public class StudentList
 
   }
 
-
   public void validateRemoveStudent(String idField)
   {
     String error = "Please input a valid student ID!";
@@ -123,6 +126,6 @@ public class StudentList
 
   public String toString()
   {
-    return "List: " + studentList;
+    return "" + studentList;
   }
 }

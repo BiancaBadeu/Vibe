@@ -15,9 +15,6 @@ public class TeacherList
   {
     teachers.add(teacher);
   }
-  public ArrayList<Teacher> getAllTeachersAsArrayList(){
-    return teachers;
-  }
   public void removeTeacherByID(String id)
   {
     for(int i=0;i<teachers.size();i++)
@@ -36,13 +33,19 @@ public class TeacherList
     }
     return teacherList;
   }
+  public ArrayList<Teacher> getAllTeachersAsArrayList()
+  {
+    return teachers;
+  }
 
   public Teacher getTeacherByID(String id)
   {
     for(int i=0;i<teachers.size();i++)
     {
       if(id.equals(teachers.get(i).getId()))
+      {
         return teachers.get(i);
+      }
     }
     return null;
   }
@@ -86,8 +89,9 @@ public class TeacherList
     }
 
   }
+
   public String toString()
   {
-    return "List: " + teachers;
+    return "" + teachers;
   }
 }

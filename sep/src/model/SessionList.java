@@ -130,7 +130,7 @@ public class SessionList
     for(int i=0;i<(courseField.length()-1); i++)
     {
       if(!(courseField.charAt(i)>='A' && courseField.charAt(i)<='Z'))
-      throw new IllegalArgumentException(error);
+        throw new IllegalArgumentException(error);
     }
     if(!(courseField.charAt(3)>'0' && courseField.charAt(3)<='9'))
       throw new IllegalArgumentException(error);
@@ -154,12 +154,12 @@ public class SessionList
         throw new IllegalArgumentException(error);
     }
   }
-  
+
   public void validateEditSession(String lessonField)
   {
     String error="Error not valid data";
 
-      if(lessonField.length()>3)
+    if(lessonField.length()>3)
       throw new IllegalArgumentException(error);
     if(!(lessonField.charAt(0)>'0' && lessonField.charAt(0)<='9'))
       throw new IllegalArgumentException(error);

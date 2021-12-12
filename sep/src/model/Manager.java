@@ -19,10 +19,22 @@ public class Manager implements Model
     this.courseList = new CourseList();
     this.roomList = new RoomList();
     this.sessionList = new SessionList();
-    inputFiles();
+    readFiles();
   }
 
+  //files
   public void inputFiles() throws Exception
+  {
+    Reader reader = new Reader();
+    reader.readFilesFromHOD();
+    reader.writeFiles();
+    this.teacherList = reader.getTeacherList();
+    this.studentList = reader.getStudentList();
+    this.courseList = reader.getCourseList();
+    this.roomList = reader.getRoomList();
+    this.sessionList = reader.getSessionList();
+  }
+  public void readFiles() throws Exception
   {
     Reader reader = new Reader();
     reader.readFiles();
@@ -30,20 +42,19 @@ public class Manager implements Model
     this.studentList = reader.getStudentList();
     this.courseList = reader.getCourseList();
     this.roomList = reader.getRoomList();
+    this.sessionList = reader.getSessionList();
   }
 
+  //teacher
   public TeacherList getAllTeachers()
   {
     return teacherList;
   }
-
   public ArrayList<Teacher> getAllTeachersAsArrayList(){return teacherList.getAllTeachersAsArrayList();}
-
   public void addTeacher(Teacher teacher)
   {
     teacherList.addTeacher(teacher);
   }
-
   public void removeTeacherFromSystemByID(String id)
   {
     teacherList.removeTeacherByID(id);
@@ -53,16 +64,6 @@ public class Manager implements Model
       courses.get(i).removeTeacherByIDFromCourse(id);
     }
   }
-  public void removeStudentFromSystemByID(int id)
-  {
-    studentList.removeStudentByID(id);
-    ArrayList<Course> courses= courseList.getAllCoursesAsArrayList();
-    for(int i=0;i<courses.size();i++)
-    {
-      courses.get(i).removeStudentByIDFromCourse(id);
-    }
-  }
-
   public Teacher getTeacherByID(String id)
   {
     return teacherList.getTeacherByID(id);
@@ -79,7 +80,7 @@ public class Manager implements Model
   {
     course.removeTeacherByIDFromCourse(id);
   }
-
+  //course
   public CourseList getAllCourses()
   {
     return courseList.getAllCourses();
@@ -99,22 +100,30 @@ public class Manager implements Model
   {
     sessionList.calculateNumberOfLessonsForCourse(course);
   }
-
-  public void removeStudentFromCourseByID(int id, Course course)
-  {
-    course.removeStudentByIDFromCourse(id);
-  }
+  //student
   public StudentList getAllStudents()
   {
     return studentList.getAllStudents();
   }
-  public void validateRemoveStudent(String idField){studentList.validateRemoveStudent(idField);}
-  public void validateAddStudent(String nameField, String idField, String classField){studentList.validateAddStudent(nameField, idField, classField);}
-  public void validateAddTeacher(String nameField, String idField){teacherList.validateAddTeacher(nameField, idField);}
-  public void validateRemoveTeacher(String idField){teacherList.validateRemoveTeacher(idField);}
+  public ArrayList<Student> getAllStudentsAsArrayList(){
+    return studentList.getAllStudentsAsArrayList();
+  }
   public void addStudent(Student student)
   {
     studentList.addStudent(student);
+  }
+  public void removeStudentFromCourseByID(int id, Course course)
+  {
+    course.removeStudentByIDFromCourse(id);
+  }
+  public void removeStudentFromSystemByID(int id)
+  {
+    studentList.removeStudentByID(id);
+    ArrayList<Course> courses= courseList.getAllCoursesAsArrayList();
+    for(int i=0;i<courses.size();i++)
+    {
+      courses.get(i).removeStudentByIDFromCourse(id);
+    }
   }
   public void removeStudentByID(int id)
   {
@@ -128,7 +137,7 @@ public class Manager implements Model
   {
     return studentList.getStudentsByName(name);
   }
-
+  //session
   public SessionList getAllSessions()
   {
     return sessionList.getAllSessionsAsList();
@@ -153,11 +162,12 @@ public class Manager implements Model
   {
     return sessionList.getUnbookedSessions();
   }
-
+  //room
   public RoomList getAllRooms()
   {
     return roomList.getAllRooms();
   }
+  public ArrayList<Room> getAllRoomsAsArrayList(){return roomList.getAllRoomsAsArrayList();}
   public void addRoom(Room room)
   {
     roomList.addRoom(room);
@@ -178,12 +188,10 @@ public class Manager implements Model
   {
     return roomList.getUnitableRooms();
   }
-
   public ArrayList<Room> getRoomsAvailableInPeriod(DateTime startTime, DateTime endTime)
   {
      return sessionList.getRoomsAvailableInPeriod(startTime, endTime, roomList);
   }
-
   public ArrayList<Room> getRoomsAvailableInPeriodBySize(int capacity, DateTime startTime, DateTime endTime)
   {
      return sessionList.getRoomsAvailableInPeriodBySize(capacity, startTime, endTime, roomList);
@@ -196,7 +204,6 @@ public class Manager implements Model
   {
     return sessionList.getUnitableRoomsInPeriod(startTime, endTime, roomList);
   }
-
   public ArrayList<Room> getAllBookedRooms()
   {
     return roomList.getAllBookedRooms();
@@ -205,6 +212,13 @@ public class Manager implements Model
   {
     return roomList.getAllUnbookedRooms();
   }
+  //GUI
+  public void validateRemoveStudent(String idField){studentList.validateRemoveStudent(idField);}
+  public void validateAddStudent(String nameField, String idField, String classField){studentList.validateAddStudent(nameField, idField, classField);}
+  public void validateAddTeacher(String nameField, String idField){teacherList.validateAddTeacher(nameField, idField);}
+  public void validateRemoveTeacher(String idField){teacherList.validateRemoveTeacher(idField);}
+  public void validateAddSession(String courseField, String sessionField, String lessonField){sessionList.validateAddSession(courseField, sessionField, lessonField);}
+  public void validateEditSession(String lessonField){sessionList.validateEditSession(lessonField);}
 
   public String toString()
   {

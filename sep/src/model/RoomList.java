@@ -19,6 +19,10 @@ public class RoomList
 
       return rooms;
    }
+   public ArrayList<Room> getAllRoomsAsArrayList()
+   {
+      return roomList;
+   }
 
    public void addRoom(Room room)
    {

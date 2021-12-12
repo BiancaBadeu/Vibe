@@ -33,6 +33,28 @@ public class Session
     this.dateAndStartTime = null;
     this.dateAndEndTime = null;
   }
+  public Session(int number, Course course, int numberOfLessonsInSession, DateTime dateAndStartTime, DateTime dateAndEndTime)
+  {
+    this.number = number;
+    this.course = course;
+    this.numberOfLessonsInSession = numberOfLessonsInSession;
+    this.room = null;
+    this.numberOfLessonsForCourse = calculateNumberOfLessonsForCourse(course);
+    this.getNumberOfLessonsRemaining = numberOfLessonsForCourse - numberOfLessonsInSession;
+    this.dateAndStartTime = dateAndStartTime;
+    this.dateAndEndTime = dateAndEndTime;
+  }
+  public Session(int number, Course course, int numberOfLessonsInSession, Room room, DateTime dateAndStartTime, DateTime dateAndEndTime)
+  {
+    this.number = number;
+    this.course = course;
+    this.numberOfLessonsInSession = numberOfLessonsInSession;
+    this.room = room;
+    this.numberOfLessonsForCourse = calculateNumberOfLessonsForCourse(course);
+    this.getNumberOfLessonsRemaining = numberOfLessonsForCourse - numberOfLessonsInSession;
+    this.dateAndStartTime = dateAndStartTime;
+    this.dateAndEndTime = dateAndEndTime;
+  }
 
   public int calculateNumberOfLessonsForCourse(Course course)
   {
@@ -46,7 +68,7 @@ public class Session
     return numberOfLessons;
   }
 
-  public void calculateEndTimeForSession(int numberOfLessonsInSession)
+  public DateTime calculateEndTimeForSession(int numberOfLessonsInSession)
   {
     int min = numberOfLessonsInSession * 45;
     int hour = 0;
@@ -82,6 +104,7 @@ public class Session
     }
     DateTime dateAndEndTime = new DateTime(day, month, year, newHour, newMin);
     this.dateAndEndTime = dateAndEndTime;
+    return dateAndEndTime;
   }
 
   public boolean isLeapYear(int year)
@@ -169,7 +192,7 @@ public class Session
 
   public String toString()
   {
-    return "\nNumber: " + number + ", course: " + course + ", number of lessons in session: " + numberOfLessonsInSession
+    return "Number: " + number + ", course: " + course + ", number of lessons in session: " + numberOfLessonsInSession
         + ", room: " + room + ", number of lessons for course: " + numberOfLessonsForCourse + ", number of lessons remaining: "
         + getNumberOfLessonsRemaining + ", start: " + dateAndStartTime.toString() + ", end: " + dateAndEndTime.toString();
   }
