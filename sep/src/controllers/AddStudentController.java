@@ -13,6 +13,7 @@ public class AddStudentController
   private Region root;
   private model.Model model;
   private view.ViewHandler viewHandler;
+  static Student student;
   @FXML private TextField nameField;
   @FXML private TextField idField;
   @FXML private TextField classField;
@@ -30,12 +31,12 @@ public class AddStudentController
   }
 
 
-  @FXML void addButtonPressed()
+  @FXML public void addButtonPressed()
   {
     int id = Integer.parseInt(idField.getText());
     String name = nameField.getText();
     String class1 = classField.getText();
-    Student student = new Student(name, id, class1);
+    student = new Student(name, id, class1);
     try
     {
       model.validateAddStudent(nameField.getText(), idField.getText(),
@@ -46,12 +47,11 @@ public class AddStudentController
     {
       errorLabel.setText(e.getMessage());
     }
-
-    model.addStudent(student);
+    viewHandler.openView("CheckAddStudent");
     reset();
   }
 
-  @FXML void cancelButtonPressed()
+  @FXML public void cancelButtonPressed()
   {
     viewHandler.closeView();
   }

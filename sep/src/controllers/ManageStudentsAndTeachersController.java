@@ -42,6 +42,11 @@ public class ManageStudentsAndTeachersController
     viewHandler.openView("RemoveTeacher");
   }
 
+  @FXML public void goBackButtonPressed()
+  {
+    viewHandler.openView("Start");
+  }
+
   public void reset()
   {
   }
