@@ -51,7 +51,7 @@ public class Reader
     writeTeachers();
     writeCourses();
     writeRooms();
-    //writeSessions();
+    writeSessions();
   }
 
   public void readFiles() throws Exception
