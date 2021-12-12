@@ -39,9 +39,10 @@
                         <TextField prefHeight="30.0" prefWidth="150.0" />
                      </children>
                   </HBox>
+                  <Label text="Error one of the fields has not valid data " textFill="RED" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add">
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add" fx:id="addSession" onAction="#pressToAdd">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -49,7 +50,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Cancel">
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Cancel" fx:id="cancel" onAction="#pressToCancel">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
