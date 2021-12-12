@@ -36,6 +36,8 @@ public interface Model
   void removeSession(Session session);
   ArrayList<Session> getBookedSessions();
   ArrayList<Session> getUnbookedSessions();
+  void validateAddSession(String courseField, String sessionField, String lessonField)
+  void validateEditSession(String lessonField)
   RoomList getAllRooms();
   void addRoom(Room room);
   Room getRoomByID(String id);
