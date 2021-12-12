@@ -29,18 +29,13 @@ public class AddStudentController
     this.viewHandler = viewHandler;
   }
 
-  @FXML private void keyTyped()
-  {
-
-  }
-
 
   @FXML void addButtonPressed()
   {
-    System.out.println(model.getAllStudents());
     int id = Integer.parseInt(idField.getText());
     String name = nameField.getText();
     String class1 = classField.getText();
+    Student student = new Student(name, id, class1);
     try
     {
       model.validateAddStudent(nameField.getText(), idField.getText(),
@@ -51,16 +46,14 @@ public class AddStudentController
     {
       errorLabel.setText(e.getMessage());
     }
-    Student student = new Student(name, id, class1);
+
     model.addStudent(student);
-    System.out.println(model.getAllStudents());
     reset();
-    viewHandler.openView("CheckAddStudent");
   }
 
   @FXML void cancelButtonPressed()
   {
-    viewHandler.openView("ManageStudentsAndTeachers");
+    viewHandler.closeView();
   }
 
   public void reset()

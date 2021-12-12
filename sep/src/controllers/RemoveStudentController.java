@@ -1,15 +1,15 @@
 package controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.Region;
-import model.*;
-import view.ViewHandler;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+    import javafx.fxml.FXML;
+    import javafx.scene.control.Alert;
+    import javafx.scene.control.ButtonType;
+    import javafx.scene.layout.Region;
+    import model.*;
+    import view.ViewHandler;
+    import javafx.scene.control.TextField;
+    import javafx.scene.control.Label;
 
-import java.util.Optional;
+    import java.util.Optional;
 
 public class RemoveStudentController
 {
@@ -18,7 +18,7 @@ public class RemoveStudentController
   private view.ViewHandler viewHandler;
   private Region root;
   private model.Model model;
-  @FXML TextField idField;
+  @FXML private TextField idField;
   @FXML private Label errorLabel;
 
 
@@ -29,10 +29,6 @@ public class RemoveStudentController
     this.viewHandler = viewHandler;
     this.model = model;
     this.root = root;
-  }
-
-  @FXML private void keyTyped()
-  {
   }
 
   @FXML void removeButtonPressed()
@@ -81,4 +77,3 @@ public class RemoveStudentController
     return root;
   }
 }
-

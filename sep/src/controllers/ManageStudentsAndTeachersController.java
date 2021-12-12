@@ -3,13 +3,11 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import view.ViewHandler;
-import model.Model;
-
-
+import model.*;
 
 public class ManageStudentsAndTeachersController
 {
-  private Region root;
+  private javafx.scene.layout.Region root;
   private Model model;
   private ViewHandler viewHandler;
 
