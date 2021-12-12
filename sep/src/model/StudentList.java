@@ -74,9 +74,9 @@ public class StudentList
     String error="One of the fields you introduced was not valid. Please introduce a valid student.";
     for(int i=0;i<nameField.length(); i++)
     {
-      if(!((nameField.charAt(i)>='A' && nameField.charAt(i)<='Z' )||
-          (nameField.charAt(i)>='a' && nameField.charAt(i)<='z') || nameField.charAt(i)==' '))
-        throw new IllegalArgumentException(error);
+      if(!((nameField.charAt(i)>='A' && nameField.charAt(i)<='Z' ) ||
+      (nameField.charAt(i)>='a' && nameField.charAt(i)<='z') || nameField.charAt(i)==' '))
+      throw new IllegalArgumentException(error);
     }
 
     if(!(idField.length()==6))
@@ -96,7 +96,7 @@ public class StudentList
 
     if(!(classField.charAt(0)>='1' && classField.charAt(0)<='7'))
       throw new IllegalArgumentException(error);
-    for(int i=1;i<=classField.length();i++)
+    for(int i=1;i<classField.length();i++)
     {
       if(!(classField.charAt(i)>='A' && classField.charAt(i)<='Z'))
       {
@@ -105,6 +105,7 @@ public class StudentList
     }
 
   }
+
 
   public void validateRemoveStudent(String idField)
   {
