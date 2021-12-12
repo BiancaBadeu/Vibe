@@ -19,20 +19,20 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="538.0" />
+      <TextField fx:id="studentField" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="538.0" />
       <Label prefHeight="34.0" prefWidth="562.0" text="The student will also be added automatically to the courses: ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="538.0" />
+      <TextField fx:id="coursesField" editable="false" maxWidth="-Infinity" prefHeight="32.0" prefWidth="538.0" />
       <HBox alignment="CENTER" prefHeight="75.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="YES">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#yesButtonPressed" prefHeight="50.0" prefWidth="160.0" text="YES">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="NO, go back">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#goBackButtonPressed" prefHeight="50.0" prefWidth="160.0" text="NO, go back">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="600.0">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="Change courses">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeCoursesButtonPressed" prefHeight="50.0" prefWidth="160.0" text="Change courses">
                <font>
                   <Font size="14.0" />
                </font></Button>

@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RemoveTeacherController">
    <children>
       <Label alignment="CENTER" prefHeight="48.0" prefWidth="600.0" text="Remove a teacher">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="18.0" prefWidth="227.0" text="Please input a valid teacherID!" textFill="RED" />
+      <Label fx:id="errorLabel" alignment="CENTER" prefHeight="18.0" prefWidth="227.0" text="" textFill="RED" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label alignment="CENTER" prefHeight="100.0" prefWidth="80.0" text="Teacher ID: ">
@@ -22,16 +22,16 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" prefHeight="34.0" prefWidth="150.0" />
+            <TextField fx:id="idField" alignment="CENTER" prefHeight="34.0" prefWidth="150.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Remove">
+            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Remove" onAction="#removeTeacherButtonPressed">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Go back">
+            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Go back" onAction="#goBackButtonPressed">
                <font>
                   <Font size="14.0" />
                </font></Button>

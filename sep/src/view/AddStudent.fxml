@@ -18,17 +18,17 @@
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
          <children>
             <Label alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="150.0" text="Enter name:" />
-            <TextField fx:id="nameField" onKeyTyped="#keyTyped" prefHeight="30.0" prefWidth="200.0" />
+            <TextField fx:id="nameField"  prefHeight="30.0" prefWidth="200.0" />
          </children></HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
          <children>
             <Label alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="150.0" text="Enter studentID:" />
-            <TextField fx:id="idField" onKeyTyped="#keyTyped" prefHeight="30.0" prefWidth="200.0" />
+            <TextField fx:id="idField" prefHeight="30.0" prefWidth="200.0" />
          </children></HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
          <children>
             <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="150.0" text="Enter class:" />
-            <TextField fx:id="classField" onKeyTyped="#keyTyped" prefHeight="30.0" prefWidth="200.0" />
+            <TextField fx:id="classField"  prefHeight="30.0" prefWidth="200.0" />
          </children></HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>

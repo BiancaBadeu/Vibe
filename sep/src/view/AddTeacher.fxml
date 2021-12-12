@@ -7,33 +7,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddTeacherController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="600.0" text="Add a teacher">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="18.0" prefWidth="480.0" text=" One of the fields you introduced was not valid. Please introduce a valid teacher." textFill="RED" />
+      <Label fx:id="errorLabel" alignment="CENTER" prefHeight="18.0" prefWidth="480.0" text="" textFill="RED" />
       <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="600.0" spacing="5">
          <children>
             <Label alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="150.0" text="Enter name:" />
-            <TextField prefHeight="30.0" prefWidth="200.0" />
+            <TextField fx:id="nameField" prefHeight="30.0" prefWidth="200.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="600.0" spacing="5">
          <children>
             <Label alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="150.0" text="Enter teacherID:" />
-            <TextField alignment="CENTER" prefHeight="30.0" prefWidth="200.0" />
+            <TextField fx:id="idField" prefHeight="30.0" prefWidth="200.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Add">
+            <Button mnemonicParsing="false" onAction="#addTeacherButtonPressed" prefHeight="60.0" prefWidth="130.0" text="Add">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Cancel">
+            <Button mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="60.0" prefWidth="130.0" text="Cancel">
                <font>
                   <Font size="20.0" />
                </font></Button>
