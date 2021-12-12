@@ -121,6 +121,39 @@ public class SessionList
     }
     return unitableRooms;
   }
+  public void validateAddSession(String courseField, String sessionField, String lessonField)
+  {
+    String error="Error one of the fields has not valid data";
+
+    if(courseField.length()>4 && !(courseField.equals("Elective Course")))
+      throw new IllegalArgumentException(error);
+    for(int i=0;i<(courseField.length()-1); i++)
+    {
+      if(!(courseField.charAt(i)>='A' && courseField.charAt(i)<='Z'))
+      throw new IllegalArgumentException(error);
+    }
+    if(!(courseField.charAt(3)>'0' && courseField.charAt(3)<='9'))
+      throw new IllegalArgumentException(error);
+    if(sessionField.length()>3)
+      throw new IllegalArgumentException(error);
+    if(!(sessionField.charAt(0)>'0' && sessionField.charAt(0)<='9'))
+      throw new IllegalArgumentException(error);
+    for (int i=1; i<sessionField.length();i++)
+    {
+      if(!(lessonField.charAt(i)>='0' && lessonField.charAt(i)<='9'))
+        throw new IllegalArgumentException(error);
+    }
+
+    if(lessonField.length()>3)
+      throw new IllegalArgumentException(error);
+    if(!(lessonField.charAt(0)>'0' && lessonField.charAt(0)<='9'))
+      throw new IllegalArgumentException(error);
+    for (int i=1; i<lessonField.length();i++)
+    {
+      if(!(lessonField.charAt(i)>='0' && lessonField.charAt(i)<='9'))
+        throw new IllegalArgumentException(error);
+    }
+  }
 
   public String toString()
   {
