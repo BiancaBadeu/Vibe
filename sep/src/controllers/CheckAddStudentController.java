@@ -1,9 +1,9 @@
 package controllers;
 
-import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import model.Model;
 import view.ViewHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import java.awt.*;
 
@@ -14,9 +14,7 @@ public class CheckAddStudentController
   private ViewHandler viewHandler;
   @FXML private TextField studentField;
   @FXML private TextField coursesField;
-  public CheckAddStudentController()
-  {
-  }
+  public CheckAddStudentController() {}
 
   public void init(ViewHandler viewHandler, Model model, Region root)
   {
@@ -31,13 +29,12 @@ public class CheckAddStudentController
       {
         String CID =""+
             model.getAllCoursesAsArrayList().get(i).getCourseID().charAt(0)
-                + model.getAllCoursesAsArrayList().get(i).getCourseID()
-                .charAt(1);
+            + model.getAllCoursesAsArrayList().get(i).getCourseID()
+            .charAt(1);
         if (CID.equals(AddStudentController.student.getClassID()))
           courses+= model.getAllCoursesAsArrayList().get(i).getCourseID() + ", ";
       }
     }
-
     coursesField.setText(courses);
   }
 

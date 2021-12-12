@@ -1,13 +1,18 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Course;
 import model.Model;
+import model.Student;
 import view.ViewHandler;
+
+import java.util.Optional;
 
 public class ListOfAllCoursesController
 {
@@ -43,6 +48,24 @@ public class ListOfAllCoursesController
       e.printStackTrace();
     }
   }
+  private boolean booleanconfirmation()
+  {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText(
+        "The student has been added to the selected course.");
+    Optional<ButtonType> result = alert.showAndWait();
+    return (result.isPresent()) && (result.get() == ButtonType.OK);
+  }
+  private boolean booleanconfirmationfalse()
+  {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText(
+        "The student was already in the selected course.");
+    Optional<ButtonType> result = alert.showAndWait();
+    return (result.isPresent()) && (result.get() == ButtonType.OK);
+  }
 
   @FXML public void addStudentPressed()
   {
@@ -51,7 +74,12 @@ public class ListOfAllCoursesController
     {
       Course course = model.getAllCoursesAsArrayList().get(index);
       if(!(course.getStudentList().getAllStudentsAsArrayList().contains(AddStudentController.student)))
+      {
         course.addStudent(AddStudentController.student);
+        booleanconfirmation();
+      }
+      else
+        booleanconfirmationfalse();
     }
   }
 

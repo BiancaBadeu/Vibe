@@ -28,6 +28,8 @@ public class SelectCourseController
   private Model model;
   private ViewHandler viewHandler;
 
+  static Course course;
+
   public SelectCourseController(){}
 
   public void init(ViewHandler viewHandler, Model model, Region root)
@@ -61,10 +63,11 @@ public class SelectCourseController
   @FXML public void courseContinuePressed()
   {
     int index = courseTable.getSelectionModel().getFocusedIndex();
-    Course course = model.getAllCoursesAsArrayList().get(index);
-
-
-    viewHandler.openView("SelectSession");
+    if(index > -1)
+    {
+      course = model.getAllCoursesAsArrayList().get(index);
+      viewHandler.openView("SelectSession");
+    }
   }
 
   @FXML public void courseGoBackPressed()

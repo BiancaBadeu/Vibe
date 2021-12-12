@@ -35,6 +35,11 @@ public class BookingSystemController
     viewHandler.openView("RemoveBooking");
   }
 
+  @FXML public void backPressed()
+  {
+    viewHandler.openView("Start");
+  }
+
   public void reset(){}
   public Region getRoot()
   {

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.*;
 import view.ViewHandler;
@@ -13,31 +14,50 @@ import java.util.Optional;
 public class EditSessionController
 {
 
-  @FXML private TableView<Session> tableView;
-  @FXML private ChoiceBox<Course> choiceBox;
-  @FXML private TextField newLessons;
-  @FXML private Label errorLabel;
+  @FXML  TableView tableView;
+  @FXML  ChoiceBox<Course> choiceBox;
+  @FXML  TextField newLessons;
+  @FXML  Label errorLabel;
   private Region root;
   private model.Model model;
   private view.ViewHandler viewHandler;
 
+  static Session session;
+
   ObservableList<Course> displayChoiceBox = (ObservableList<Course>) FXCollections.observableArrayList(
       new CourseList().getAllCoursesAsArrayList());
-  ObservableList<Session> observableList = FXCollections.observableArrayList(
-      new SessionList().getAllSessions());
 
-  public EditSessionController()
-  {
+  public EditSessionController() {}
 
-  }
-
-  public void init(view.ViewHandler viewHandler, model.Model model, Region root,
-      TableView<Session> tableView)
+  public void init(ViewHandler viewHandler, Model model, Region root)
   {
     this.viewHandler = viewHandler;
     this.model = model;
     this.root = root;
-    tableView.setItems(observableList);
+
+    TableColumn numbers = new TableColumn("Number");
+    numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn numbersOfLessons = new TableColumn("No. of lessons");
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessons"));
+    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
+    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
+    TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
+    getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+
+    tableView.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+    try
+    {
+      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      {
+        if(model.getAllSessionsAsArrayList().get(i).getCourse().equals(SelectCourseController.course))
+          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+
     choiceBox.setItems(displayChoiceBox);
     choiceBox.setValue(null);
   }
@@ -50,6 +70,11 @@ public class EditSessionController
 
   @FXML private void pressToEdit()
   {
+    int index = tableView.getSelectionModel().getFocusedIndex();
+    if(index > -1)
+    {
+      session= model.getAllSessionsAsArrayList().get(index);
+    }
     try{
       model.validateEditSession(newLessons.getText());
       errorLabel.setText("");
@@ -59,32 +84,25 @@ public class EditSessionController
       errorLabel.setText(e.getMessage());
     }
     int lessonNumbers = Integer.parseInt(newLessons.getText());
-    Session selected = tableView.getSelectionModel().getSelectedItem();
-    Session editedSession = new Session(selected.getNumber(),
-        selected.getCourse(), lessonNumbers);
-    tableView.getItems().remove(selected);
+    Session editedSession = new Session(session.getNumber(),
+        session.getCourse(), lessonNumbers);
+    tableView.getItems().remove(session);
     tableView.getItems().add(editedSession);
-    new SessionList().removeSession(selected);
+    new SessionList().removeSession(session);
     new SessionList().addSession(editedSession);
   }
 
   @FXML private void pressToCancel()
   {
-    viewHandler.openView("manageSession");
+    viewHandler.openView("ManageSessions");
   }
 
   private boolean confirmation()
   {
-    int index = tableView.getSelectionModel().getSelectedIndex();
-    Session selected = tableView.getSelectionModel().getSelectedItem();
-    if (index < 0 || index >= tableView.getItems().size())
-    {
-      return false;
-    }
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Confirmation");
     alert.setHeaderText(
-        "Edit number of lesson for session" + selected.getNumber() + ", of the course " + selected.getCourse() + "?");
+        "Edit number of lesson for session" + session.getNumber() + ", of the course " + session.getCourse() + "?");
     Optional<ButtonType> result = alert.showAndWait();
     return (result.isPresent()) && (result.get() == ButtonType.OK);
   }

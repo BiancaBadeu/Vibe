@@ -17,6 +17,8 @@ public class SelectSessionController
   private Model model;
   private ViewHandler viewHandler;
 
+  static Session session;
+
   public SelectSessionController(){}
 
   public void init(ViewHandler viewHandler, Model model, Region root)
@@ -35,7 +37,6 @@ public class SelectSessionController
     numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
     TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
     getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
-    SessionTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
     SessionTable.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
@@ -43,7 +44,8 @@ public class SelectSessionController
     {
       for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
       {
-        SessionTable.getItems().add(model.getAllSessionsAsArrayList().get(i));
+        if(model.getAllSessionsAsArrayList().get(i).getCourse().equals(SelectCourseController.course))
+          SessionTable.getItems().add(model.getAllSessionsAsArrayList().get(i));
       }
     }
     catch (Exception e)
@@ -54,10 +56,12 @@ public class SelectSessionController
 
   @FXML public void sessionContinuePressed()
   {
-    //int index = SessionTable.getSelectionModel().getFocusedIndex();
-    //Session session = model.getAllSessionsAsArrayList().get(index);
-
-    viewHandler.openView("BookARoom");
+    int index = SessionTable.getSelectionModel().getFocusedIndex();
+    if(index > -1)
+    {
+      session = model.getAllSessionsAsArrayList().get(index);
+      viewHandler.openView("BookARoom");
+    }
   }
 
   @FXML public void sessionGoBackPressed()

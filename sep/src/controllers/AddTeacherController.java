@@ -63,7 +63,7 @@ public class AddTeacherController
 
   @FXML void cancelButtonPressed()
   {
-    viewHandler.closeView();
+    viewHandler.openView("ManageStudentsAndTeachers");
   }
 
   public void reset()

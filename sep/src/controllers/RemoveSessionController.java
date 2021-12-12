@@ -3,72 +3,100 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.*;
+import view.ViewHandler;
+
+import java.util.Optional;
 
 public class RemoveSessionController
 {
-  @FXML private TableView<Session> tableView;
-  @FXML private ChoiceBox<Course> choiceBox;
+  @FXML  TableView tableView;
+  @FXML  ChoiceBox choiceBox;
   private Region root;
-  private model.Model model;
+  private Model model;
   private view.ViewHandler viewHandler;
 
-  ObservableList<Course> displayChoiceBox = (ObservableList<Course>) FXCollections
-      .observableArrayList(new CourseList().getAllCoursesAsArrayList());
-  ObservableList<Session> observableList= FXCollections.observableArrayList(
-      new SessionList().getAllSessions());
-  public RemoveSessionController()
+  static Session session;
+  public String[] getCourses()
   {
-
+    String[] courses = new String[200];
+    for(int i=0;i<model.getAllCoursesAsArrayList().size();i++)
+    {
+      courses[i] = model.getAllCoursesAsArrayList().get(i).getCourseID();
+    }
+    return courses;
   }
-  public void init(view.ViewHandler viewHandler, model.Model model, Region root, TableView<Session> tableView){
+
+  //ObservableList<String> displayChoiceBox = FXCollections.observableArrayList(getCourses());
+
+
+  public RemoveSessionController() {}
+  public void init(ViewHandler viewHandler, Model model, Region root){
     this.viewHandler= viewHandler;
     this.model= model;
     this.root= root;
-    tableView.setItems(observableList);
-    choiceBox.setItems(displayChoiceBox);
-    choiceBox.setValue(null);
+
+
+    TableColumn numbers = new TableColumn("Number");
+    numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn numbersOfLessons = new TableColumn("No. of lessons");
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessons"));
+    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
+    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
+    TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
+    getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+
+    tableView.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+    try
+    {
+      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      {
+        if(model.getAllSessionsAsArrayList().get(i).getCourse().equals(SelectCourseController.course))
+          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    //choiceBox.setItems(displayChoiceBox);
+    //choiceBox.setValue(model.getAllCoursesAsArrayList().get(0));
   }
+
+  @FXML private void pressToRemove()
+  {
+    int index = tableView.getSelectionModel().getFocusedIndex();
+    if(index > -1)
+    {
+      session= model.getAllSessionsAsArrayList().get(index);
+      if(confirmation())
+        model.getAllSessions().removeSession(session);
+    }
+
+    tableView.getItems().remove(session);
+  }
+  @FXML private void pressToCancel()
+  {
+    viewHandler.openView("ManageSessions");
+  }
+
+  private boolean confirmation()
+  {
+    Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText("Removing session {" + session.getNumber() + ": "+ session.getCourse() + "}");
+    Optional<ButtonType> result = alert.showAndWait();
+    return (result.isPresent())&&(result.get()==ButtonType.OK);
+  }
+
+  public void reset() {}
 
   public Region getRoot()
   {
     return root;
   }
 
-  @FXML private void pressToRemove()
-  {
-    int sessionId = Integer.parseInt(sessionNumber.getText());
-    int lessons = Integer.parseInt(lessonNumber.getText());
-    String courseId = courseName.getText();
-    Course course = new CourseList().getCourseByID(courseId);
-
-    Session selected = tableView.getSelectionModel().getSelectedItem();
-    new SessionList().removeSession(selected);
-    tableView.getItems().remove(selected);
-  }
-  @FXML private void pressToCancel()
-  {
-    viewHandler.openView("manageSession");
-  }
-
-  private boolean confirmation()
-  {
-    int index = tableView.getSelectionModel().getSelectedIndex();
-    Session selected= tableView.getSelectionModel().getSelectedItem();
-    if (index < 0 || index >= tableView.getItems().size())
-    {
-      return false;
-    }
-    Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setTitle("Confirmation");
-    alert.setHeaderText("Removing session {" + selected.getCourseProperty().get() + ": "+ selectedItem.getGradeProperty().get() + "}");
-    Optional<ButtonType> result = alert.showAndWait();
-    return (result.isPresent())&&(result.get()==ButtonType.OK);
-  }
 }
-
-   

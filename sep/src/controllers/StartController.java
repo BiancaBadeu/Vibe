@@ -1,8 +1,13 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
+import model.Student;
 import view.ViewHandler;
+
+import java.util.Optional;
 
 public class StartController
 {
@@ -37,6 +42,22 @@ public class StartController
     @FXML public void manageSessionsPressed()
     {
         viewHandler.openView("ManageSessions");
+    }
+
+    @FXML public void filesPressed() throws Exception
+    {
+        if (booleanconfirmation())
+            model.inputFiles();
+    }
+
+    private boolean booleanconfirmation()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(
+            "Are you sure you want to overwrite the existing files with the ones from the head of departament. All your progress will be lost!");
+        Optional<ButtonType> result = alert.showAndWait();
+        return (result.isPresent()) && (result.get() == ButtonType.OK);
     }
 
     public void reset()

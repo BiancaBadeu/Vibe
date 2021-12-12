@@ -4,19 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.*;
 import view.*;
 
 public class AddSessionController
 {
-  @FXML private TableView<Session> tableView;
-  @FXML private TextField courseName;
-  @FXML private TextField sessionNumber;
-  @FXML private TextField lessonNumber;
-  @FXML private Label errorLabel;
+  @FXML TableView tableView;
+  @FXML  TextField courseName;
+  @FXML  TextField sessionNumber;
+  @FXML  TextField lessonNumber;
+  @FXML  Label errorLabel;
   private Region root;
   private model.Model model;
   private view.ViewHandler viewHandler;
@@ -29,7 +31,29 @@ public class AddSessionController
     this.viewHandler= viewHandler;
     this.model= model;
     this.root= root;
-    tableView.setItems(observableList);
+
+    TableColumn numbers = new TableColumn("Number");
+    numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn numbersOfLessons = new TableColumn("No. of lessons");
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessons"));
+    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
+    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
+    TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
+    getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+
+    tableView.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+    try
+    {
+      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      {
+        if(model.getAllSessionsAsArrayList().get(i).getCourse().equals(SelectCourseController.course))
+          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
   }
   ObservableList<Session> observableList= FXCollections.observableArrayList(
       new SessionList().getAllSessions());
@@ -58,14 +82,13 @@ public class AddSessionController
     int lessons = Integer.parseInt(lessonNumber.getText());
     String courseId = courseName.getText();
     Course course = new CourseList().getCourseByID(courseId);
-    //String toInsert = courseId + "Session"+ sessionId+ lessons;
+    String toInsert = courseId + "Session"+ sessionId+ lessons;
     Session session= new Session(sessionId, course, lessons);
     new SessionList().addSession(session);
     tableView.getItems().add(session);
   }
   @FXML private void pressToCancel()
   {
-    viewHandler.openView("manageSession");
+    viewHandler.openView("ManageSessions");
   }
 }
-

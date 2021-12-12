@@ -5,7 +5,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import model.DateTime;
 import model.Model;
+import model.Room;
+import model.Session;
 import view.ViewHandler;
 
 public class SelectRoomController
@@ -15,6 +18,13 @@ public class SelectRoomController
   private Region root;
   private Model model;
   private ViewHandler viewHandler;
+
+  static Room room;
+
+  private int capacity = BookARoomController.caP;
+  private DateTime startTime = BookARoomController.startTime;
+  private Session session = SelectSessionController.session;
+  private DateTime endTime = session.calculateEndTimeForSession(session.getNumberOfLessonsInSession());
 
   public SelectRoomController(){}
 
@@ -35,9 +45,9 @@ public class SelectRoomController
     roomTable.getColumns().setAll(roomId, capacitY, uniteWitH);
     try
     {
-      //for (int i = 0; i < model.getRoomsAvailableInPeriodBySizeBiggerThan().size(); i++)
+      for (int i = 0; i < model.getRoomsAvailableInPeriodBySizeBiggerThan(capacity, startTime, endTime).size(); i++)
       {
-       // roomTable.getItems().add(model.getAllCoursesAsArrayList().get(i));
+       roomTable.getItems().add(model.getRoomsAvailableInPeriodBySizeBiggerThan(capacity, startTime, endTime).get(i));
       }
     }
     catch (Exception e)
@@ -48,7 +58,13 @@ public class SelectRoomController
 
   @FXML public void roomContinuePressed()
   {
-    viewHandler.openView("FinishBooking");
+    int index = roomTable.getSelectionModel().getFocusedIndex();
+    if(index > -1)
+    {
+      room = model.getRoomsAvailableInPeriodBySizeBiggerThan(capacity, startTime, endTime).get(index);
+      viewHandler.openView("BookARoom");
+    }
+
   }
 
   @FXML public void roomGoBackPressed()

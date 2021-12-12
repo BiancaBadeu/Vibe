@@ -13,9 +13,9 @@ import view.ViewHandler;
 
 public class ViewFilteredBookingsController
 {
-   private Region root;
-   private Model model;
-   private ViewHandler viewHandler;
+  private Region root;
+  private Model model;
+  private ViewHandler viewHandler;
   @FXML TableView tableMyBookings;
   @FXML ChoiceBox filterChoiceFilteredBox;
 
@@ -77,4 +77,3 @@ public class ViewFilteredBookingsController
     return root;
   }
 }
-

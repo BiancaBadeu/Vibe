@@ -44,7 +44,7 @@ public class RemoveTeacherController
     }
     if(errorLabel.getText().equals(""))
       if(booleanconfirmation())
-        model.removeTeacherFromSystemByID(idField.getText());
+          model.removeTeacherFromSystemByID(idField.getText());
     reset();
     System.out.println(model.getAllTeachers());
   }

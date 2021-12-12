@@ -1,9 +1,9 @@
 package controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.layout.Region;
-import view.ViewHandler;
-import model.*;
+    import javafx.fxml.FXML;
+    import javafx.scene.layout.Region;
+    import view.ViewHandler;
+    import model.*;
 
 public class ManageStudentsAndTeachersController
 {

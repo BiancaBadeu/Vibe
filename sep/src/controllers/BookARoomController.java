@@ -13,7 +13,7 @@ import view.ViewHandler;
 
 public class BookARoomController
 {
-  @FXML private TextField day;
+  @FXML TextField day;
   @FXML TextField month;
   @FXML TextField year;
   @FXML TextField hour;
@@ -26,6 +26,17 @@ public class BookARoomController
   private Region root;
   private Model model;
   private ViewHandler viewHandler;
+
+  static String format;
+  static int daY;
+  static int montH;
+  static int yeaR;
+  static int houR;
+  static int miN;
+  static int caP;
+  static boolean unI;
+  static DateTime startTime;
+  static DateTime endTime;
 
   public BookARoomController(){}
 
@@ -48,18 +59,43 @@ public class BookARoomController
     h = Integer.parseInt(hour.getText());
     min = Integer.parseInt(minute.getText());
 
-    DateTime startTime = new DateTime(d, m, y, h, min);
+    startTime = new DateTime(d, m, y, h, min);
+    SelectSessionController.session.setDateAndStartTime(startTime);
+    endTime = SelectSessionController.session.calculateEndTimeForSession(SelectSessionController.session.getNumberOfLessonsInSession());
 
+    daY = d;
+    montH = m;
+    yeaR = y;
+    houR = h;
+    miN = min;
+    String value = (String) capacity.getValue();
+    if(!(value.equals("-")))
+      caP = Integer.parseInt(value);
+    else
+      caP = 0;
+    if(unitable.isSelected())
+      unI = true;
+    else
+      unI = false;
+  }
+  public static String getFormat()
+  {
+    return format;
   }
 
 
   @FXML public void showAvailableRoomsPressed()
   {
+    setInfo();
+    this.format = "campus";
+    System.out.println(getFormat());
     viewHandler.openView("SelectRoom");
   }
 
   @FXML public void bookOnlineSessionPressed()
   {
+    setInfo();
+    this.format = "online";
     viewHandler.openView("FinishBooking");
   }
 
@@ -70,6 +106,9 @@ public class BookARoomController
   public void reset()
   {
       capacity.setValue("-");
+      day.setText("");
+      month.setText("");
+      year.setText("");
       hour.setText("");
       minute.setText("");
   }
