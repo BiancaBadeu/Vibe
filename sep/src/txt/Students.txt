@@ -6,5 +6,5 @@
 1,Y,667554,Franck Thomson
 1,Y,667555,Gregor Gori
 1,Z,667556,Helly Hansen
-1,Z,667578,667345,Ion Brick
+1,Z,667578,Ion Brick
 1,Z,667590,Julia Schwartz 
