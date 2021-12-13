@@ -35,7 +35,7 @@ public class AddSessionController
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
     TableColumn numbersOfLessons = new TableColumn("No. of lessons");
-    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessons"));
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
     TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
     numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
     TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
@@ -55,8 +55,6 @@ public class AddSessionController
       e.printStackTrace();
     }
   }
-  ObservableList<Session> observableList= FXCollections.observableArrayList(
-      new SessionList().getAllSessions());
 
   public void reset()
   {
@@ -68,7 +66,7 @@ public class AddSessionController
   {
     return root;
   }
-  @FXML private void pressToAdd()
+  @FXML private void pressToAdd() throws Exception
   {
     try{
       model.validateAddSession(courseName.getText(), sessionNumber.getText(), lessonNumber.getText());
@@ -77,15 +75,20 @@ public class AddSessionController
     catch (Exception e)
     {
       errorLabel.setText(e.getMessage());
+      e.printStackTrace();
     }
-    int sessionId = Integer.parseInt(sessionNumber.getText());
-    int lessons = Integer.parseInt(lessonNumber.getText());
-    String courseId = courseName.getText();
-    Course course = new CourseList().getCourseByID(courseId);
-    String toInsert = courseId + "Session"+ sessionId+ lessons;
-    Session session= new Session(sessionId, course, lessons);
-    new SessionList().addSession(session);
-    tableView.getItems().add(session);
+    finally
+    {
+      int sessionId = Integer.parseInt(sessionNumber.getText());
+      int lessons = Integer.parseInt(lessonNumber.getText());
+      String courseId = courseName.getText();
+      Course course = model.getCourseByID(courseId);
+      Session session= new Session(sessionId, course, lessons);
+      model.addSession(session);
+      model.writeFile("session");
+      tableView.getItems().add(session);
+    }
+
   }
   @FXML private void pressToCancel()
   {
