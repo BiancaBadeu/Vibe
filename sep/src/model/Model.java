@@ -7,7 +7,8 @@ public interface Model
 {
   //files
   void inputFiles() throws Exception;
-
+  void writeFiles() throws Exception;
+  void writeFile(String txt) throws Exception;
   //teacher
   TeacherList getAllTeachers();
   ArrayList<Teacher> getAllTeachersAsArrayList();

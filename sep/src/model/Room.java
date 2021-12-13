@@ -64,6 +64,8 @@ public class Room
     if(unitedWith == null)
       if(other.unitedWith != null)
         return false;
+      else if(other.unitedWith == null)
+        return id.equals(other.id) && capacity == other.capacity && this.booked == other.booked;
     return id.equals(other.id) && capacity == other.capacity && unitedWith.equals(other.unitedWith) && this.booked == other.booked;
   }
 }
