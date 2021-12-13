@@ -48,6 +48,7 @@ public class StartController
     {
         if (booleanconfirmation())
             model.inputFiles();
+        model.inputFiles();
     }
 
     private boolean booleanconfirmation()
@@ -55,7 +56,7 @@ public class StartController
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(
-            "Are you sure you want to overwrite the existing files with the ones from the head of departament. All your progress will be lost!");
+            "Are you sure you want to overwrite the existing files with the ones from the head of department. All your progress will be lost!");
         Optional<ButtonType> result = alert.showAndWait();
         return (result.isPresent()) && (result.get() == ButtonType.OK);
     }

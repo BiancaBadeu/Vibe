@@ -85,6 +85,7 @@ public class AddSessionController
       Course course = model.getCourseByID(courseId);
       Session session= new Session(sessionId, course, lessons);
       model.addSession(session);
+      System.out.println(model.getAllSessionsAsArrayList());
       model.writeFile("session");
       tableView.getItems().add(session);
     }
