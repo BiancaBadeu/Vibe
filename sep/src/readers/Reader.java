@@ -8,9 +8,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Locale;
 import java.util.Scanner;
+import model.*;
 
 public class Reader
 {
+  private Model model;
   private CourseList courseList;
   private StudentList studentList;
   private TeacherList teacherList;
@@ -18,8 +20,7 @@ public class Reader
   private SessionList sessionList;
 
   public Reader()
-  {
-    this.roomList = new RoomList();
+  { this.roomList = new RoomList();
     this.studentList = new StudentList();
     this.courseList = new CourseList();
     this.teacherList = new TeacherList();
@@ -47,6 +48,7 @@ public class Reader
 
   public void writeFiles() throws Exception
   {
+    readFiles();
     writeStudents();
     writeTeachers();
     writeCourses();
@@ -213,25 +215,25 @@ public class Reader
       String fileName = "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\sessionList.txt";
       File file = new File(fileName);
       outSe = new PrintWriter(file);
-      for (int i = 0; i < sessionList.getAllSessions().size(); i++)
+      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
       {
-        outSe.print(sessionList.getAllSessions().get(i).getNumber());
+        outSe.print(model.getAllSessionsAsArrayList().get(i).getNumber());
         outSe.print("; ");
-        outSe.print(sessionList.getAllSessions().get(i).getCourse().getCourseID());
+        outSe.print(model.getAllSessionsAsArrayList().get(i).getCourse().getCourseID());
         outSe.print("; ");
-        outSe.print(sessionList.getAllSessions().get(i).getNumberOfLessonsInSession());
+        outSe.print(model.getAllSessionsAsArrayList().get(i).getNumberOfLessonsInSession());
         outSe.print("; ");
-        if(sessionList.getAllSessions().get(i).getRoom() == null)
+        if(model.getAllSessionsAsArrayList().get(i).getRoom() == null)
         {
           outSe.print("null");
           outSe.print("; ");
         }
         else
         {
-          outSe.print(sessionList.getAllSessions().get(i).getRoom().getId());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getRoom().getId());
           outSe.print("; ");
         }
-        if(sessionList.getAllSessions().get(i).getDateAndStartTime() == null)
+        if(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime() == null)
         {
           outSe.print("null");
           outSe.print("; ");
@@ -246,18 +248,18 @@ public class Reader
         }
         else
         {
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getDay());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getDay());
           outSe.print("; ");
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getMonth());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getMonth());
           outSe.print("; ");
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getYear());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getYear());
           outSe.print("; ");
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getHour());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getHour());
           outSe.print("; ");
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getMinute());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getMinute());
           outSe.print("; ");
         }
-        if(sessionList.getAllSessions().get(i).getDateAndEndTime() == null)
+        if(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime() == null)
         {
           outSe.print("null");
           outSe.print("; ");
@@ -271,15 +273,15 @@ public class Reader
         }
         else
         {
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getDay());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getDay());
           outSe.print("; ");
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getMonth());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getMonth());
           outSe.print("; ");
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getYear());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getYear());
           outSe.print("; ");
-          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getHour());
+          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getHour());
           outSe.print("; ");
-          outSe.println(sessionList.getAllSessions().get(i).getDateAndEndTime().getMinute());
+          outSe.println(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getMinute());
         }
         outSe.flush();
       }
@@ -414,18 +416,7 @@ public class Reader
       String courseID = splittingline[1].trim();
       int numberOfLessons = Integer.parseInt(splittingline[2].trim());
       String roomId = splittingline[3].trim();
-      int d = Integer.parseInt(splittingline[4].trim());
-      int m = Integer.parseInt(splittingline[5].trim());
-      int y = Integer.parseInt(splittingline[6].trim());
-      int h = Integer.parseInt(splittingline[7].trim());
-      int min = Integer.parseInt(splittingline[8].trim());
-      DateTime startTime = new DateTime(d, m, y, h, min);
-      d = Integer.parseInt(splittingline[4].trim());
-      m = Integer.parseInt(splittingline[5].trim());
-      y = Integer.parseInt(splittingline[6].trim());
-      h = Integer.parseInt(splittingline[7].trim());
-      min = Integer.parseInt(splittingline[8].trim());
-      DateTime endTime = new DateTime(d, m, y, h, min);
+
 
       Course course = courseList.getCourseByID(courseID);
       Session session;
@@ -434,11 +425,37 @@ public class Reader
         if (splittingline[4].trim().equals("null"))
           session = new Session(sessionNum, course, numberOfLessons);
         else
+        {
+          int d = Integer.parseInt(splittingline[4].trim());
+          int m = Integer.parseInt(splittingline[5].trim());
+          int y = Integer.parseInt(splittingline[6].trim());
+          int h = Integer.parseInt(splittingline[7].trim());
+          int min = Integer.parseInt(splittingline[8].trim());
+          DateTime startTime = new DateTime(d, m, y, h, min);
+          d = Integer.parseInt(splittingline[4].trim());
+          m = Integer.parseInt(splittingline[5].trim());
+          y = Integer.parseInt(splittingline[6].trim());
+          h = Integer.parseInt(splittingline[7].trim());
+          min = Integer.parseInt(splittingline[8].trim());
+          DateTime endTime = new DateTime(d, m, y, h, min);
           session = new Session(sessionNum, course, numberOfLessons, startTime, endTime);
+        }
       }
       else
       {
         Room room = roomList.getRoomByID(roomId);
+        int d = Integer.parseInt(splittingline[4].trim());
+        int m = Integer.parseInt(splittingline[5].trim());
+        int y = Integer.parseInt(splittingline[6].trim());
+        int h = Integer.parseInt(splittingline[7].trim());
+        int min = Integer.parseInt(splittingline[8].trim());
+        DateTime startTime = new DateTime(d, m, y, h, min);
+        d = Integer.parseInt(splittingline[4].trim());
+        m = Integer.parseInt(splittingline[5].trim());
+        y = Integer.parseInt(splittingline[6].trim());
+        h = Integer.parseInt(splittingline[7].trim());
+        min = Integer.parseInt(splittingline[8].trim());
+        DateTime endTime = new DateTime(d, m, y, h, min);
         session = new Session(sessionNum, course, numberOfLessons, room, startTime, endTime);
       }
       sessionList.addSession(session);
