@@ -58,11 +58,10 @@ public class Reader
 
   public void readFiles() throws Exception
   {
+
+    readCourses();
     readStudents();
     readTeachers();
-    readCourses();
-    readRooms();
-    readSessions();
   }
 
   //writers
@@ -71,7 +70,7 @@ public class Reader
     PrintWriter outS = null;
     try
     {
-      String fileName = "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\studentList.txt";
+      String fileName = "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt";
       File file = new File(fileName);
       outS = new PrintWriter(file);
       for (int i = 0; i < studentList.getAllStudentsAsArrayList().size(); i++)
@@ -99,7 +98,7 @@ public class Reader
     PrintWriter outT = null;
     try
     {
-      String fileName = "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\teacherList.txt";
+      String fileName = "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\teacherList.txt";
       File file = new File(fileName);
       outT = new PrintWriter(file);
       for (int i = 0; i < teacherList.getAllTeachersAsArrayList().size(); i++)
@@ -125,7 +124,7 @@ public class Reader
     PrintWriter outC = null;
     try
     {
-      String fileName = "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\courseList.txt";
+      String fileName = "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\courseList.txt";
       File file = new File(fileName);
       outC = new PrintWriter(file);
       for (int i = 0; i < courseList.getAllCoursesAsArrayList().size(); i++)
@@ -183,7 +182,7 @@ public class Reader
     PrintWriter outR = null;
     try
     {
-      String fileName = "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\roomList.txt";
+      String fileName = "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\roomList.txt";
       File file = new File(fileName);
       outR = new PrintWriter(file);
       for (int i = 0; i < roomList.getAllRoomsAsArrayList().size(); i++)
@@ -212,7 +211,7 @@ public class Reader
     PrintWriter outSe = null;
     try
     {
-      String fileName = "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\sessionList.txt";
+      String fileName = "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\sessionList.txt";
       File file = new File(fileName);
       outSe = new PrintWriter(file);
       for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
@@ -300,13 +299,13 @@ public class Reader
   public void readStudents() throws Exception
   {
     File file = new File(
-        "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\studentList.txt");
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
     Scanner in = new Scanner(file);
-
+    in.nextLine();
     while (in.hasNext())
     {
       String line = in.nextLine();
-      String[] splittingline = line.split(";");
+      String[] splittingline = line.split(",");
       String studentName = splittingline[0].trim();
       int studentId = Integer.parseInt(splittingline[1].trim());
       String classId = splittingline[2].trim();
@@ -318,13 +317,14 @@ public class Reader
   public void readTeachers() throws Exception
   {
     File file = new File(
-        "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\teacherList.txt");
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\teacherList.txt");
     Scanner in = new Scanner(file);
 
+    in.nextLine();
     while (in.hasNext())
     {
       String line = in.nextLine();
-      String[] splittingline = line.split(";");
+      String[] splittingline = line.split(",");
       String teacherName = splittingline[0].trim();
       String teacherId = splittingline[1].trim();
 
@@ -335,14 +335,14 @@ public class Reader
   public void readCourses() throws Exception
   {
     File file = new File(
-        "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\courseList.txt");
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\courseList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
     {
       int ok=0;
       String line = in.nextLine();
-      String[] splittingline = line.split(";");
+      String[] splittingline = line.split(",");
       String courseID = splittingline[0].trim();
       int ects = Integer.parseInt(splittingline[1].trim());
       //teacherList
@@ -382,7 +382,7 @@ public class Reader
   public void readRooms() throws Exception
   {
     File file = new File(
-        "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\roomList.txt");
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\roomList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
@@ -405,7 +405,7 @@ public class Reader
   public void readSessions() throws Exception
   {
     File file = new File(
-        "C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\ourTxt\\sessionList.txt");
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\txt\\Courses.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
