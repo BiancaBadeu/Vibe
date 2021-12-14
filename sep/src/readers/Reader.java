@@ -8,23 +8,24 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Locale;
 import java.util.Scanner;
-import model.*;
+import model.Model;
+import model.Manager;
 
 public class Reader
 {
-  private Model model;
+  private TeacherList teacherList;
   private CourseList courseList;
   private StudentList studentList;
-  private TeacherList teacherList;
-  private RoomList roomList;
   private SessionList sessionList;
+  private RoomList roomList;
 
-  public Reader()
-  { this.roomList = new RoomList();
-    this.studentList = new StudentList();
-    this.courseList = new CourseList();
-    this.teacherList = new TeacherList();
-    this.sessionList = new SessionList();
+  public Reader(StudentList studentList, TeacherList teacherList, CourseList courseList,RoomList roomList, SessionList sessionList)
+  {
+    this.roomList = roomList;
+    this.studentList = studentList;
+    this.courseList = courseList;
+    this.teacherList = teacherList;
+    this.sessionList = sessionList;
   }
 
   public void readFilesFromHOD() throws Exception
@@ -48,7 +49,6 @@ public class Reader
 
   public void writeFiles() throws Exception
   {
-    readFiles();
     writeStudents();
     writeTeachers();
     writeCourses();
@@ -58,10 +58,11 @@ public class Reader
 
   public void readFiles() throws Exception
   {
-
-    readCourses();
     readStudents();
     readTeachers();
+    readCourses();
+    readRooms();
+    readSessions();
   }
 
   //writers
@@ -73,17 +74,19 @@ public class Reader
       String fileName = "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt";
       File file = new File(fileName);
       outS = new PrintWriter(file);
+      System.out.println(studentList.getAllStudentsAsArrayList());
       for (int i = 0; i < studentList.getAllStudentsAsArrayList().size(); i++)
       {
+        System.out.println(studentList.getAllStudentsAsArrayList().get(i));
         outS.print(studentList.getAllStudentsAsArrayList().get(i).getName());
-        outS.print("; ");
+        outS.print(", ");
         outS.print(studentList.getAllStudentsAsArrayList().get(i).getStudentID());
-        outS.print("; ");
+        outS.print(", ");
         outS.println(studentList.getAllStudentsAsArrayList().get(i).getClassID());
         outS.flush();
       }
     }
-    catch (FileNotFoundException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
@@ -104,12 +107,12 @@ public class Reader
       for (int i = 0; i < teacherList.getAllTeachersAsArrayList().size(); i++)
       {
         outT.print( teacherList.getAllTeachersAsArrayList().get(i).getName());
-        outT.print("; ");
+        outT.print(", ");
         outT.println( teacherList.getAllTeachersAsArrayList().get(i).getId());
         outT.flush();
       }
     }
-    catch (FileNotFoundException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
@@ -130,9 +133,9 @@ public class Reader
       for (int i = 0; i < courseList.getAllCoursesAsArrayList().size(); i++)
       {
         outC.print(courseList.getAllCoursesAsArrayList().get(i).getCourseID());
-        outC.print("; ");
+        outC.print(", ");
         outC.print(courseList.getAllCoursesAsArrayList().get(i).getEcts());
-        outC.print("; ");
+        outC.print(", ");
         String classID = "";
         String courseID = courseList.getAllCoursesAsArrayList().get(i).getCourseID();
         classID +=courseID.charAt(0);
@@ -146,28 +149,28 @@ public class Reader
           if(courseList.getAllCoursesAsArrayList().get(i).getStudentList().getAllStudentsAsArrayList().get(j) != null)
           {
             outC.print(courseList.getAllCoursesAsArrayList().get(i).getStudentList().getAllStudentsAsArrayList().get(j).getStudentID());
-            outC.print("; ");
+            outC.print(", ");
           }
         }
         outC.println("");
 
         outC.print(courseList.getAllCoursesAsArrayList().get(i).getCourseID());
-        outC.print("; ");
+        outC.print(", ");
         outC.print(courseList.getAllCoursesAsArrayList().get(i).getEcts());
-        outC.print("; ");
+        outC.print(", ");
         for(int j=0;j<courseList.getAllCoursesAsArrayList().get(i).getTeacherList().getAllTeachersAsArrayList().size();j++)
         {
           if(courseList.getAllCoursesAsArrayList().get(i).getTeacherList().getAllTeachersAsArrayList().get(j) != null)
           {
             outC.print(courseList.getAllCoursesAsArrayList().get(i).getTeacherList().getAllTeachersAsArrayList().get(j).getId());
-            outC.print("; ");
+            outC.print(", ");
           }
         }
         outC.println("");
         outC.flush();
       }
     }
-    catch (FileNotFoundException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
@@ -188,16 +191,16 @@ public class Reader
       for (int i = 0; i < roomList.getAllRoomsAsArrayList().size(); i++)
       {
         outR.print(roomList.getAllRoomsAsArrayList().get(i).getId());
-        outR.print("; ");
+        outR.print(", ");
         outR.print(roomList.getAllRoomsAsArrayList().get(i).getCapacity());
-        outR.print("; ");
+        outR.print(", ");
         outR.print(roomList.getAllRoomsAsArrayList().get(i).getUnitedWith());
-        outR.print("; ");
+        outR.print(", ");
         outR.println(roomList.getAllRoomsAsArrayList().get(i).getIsBooked());
         outR.flush();
       }
     }
-    catch (FileNotFoundException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
@@ -214,78 +217,69 @@ public class Reader
       String fileName = "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\sessionList.txt";
       File file = new File(fileName);
       outSe = new PrintWriter(file);
-      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      for (int i = 0; i < sessionList.getAllSessions().size(); i++)
       {
-        outSe.print(model.getAllSessionsAsArrayList().get(i).getNumber());
-        outSe.print("; ");
-        outSe.print(model.getAllSessionsAsArrayList().get(i).getCourse().getCourseID());
-        outSe.print("; ");
-        outSe.print(model.getAllSessionsAsArrayList().get(i).getNumberOfLessonsInSession());
-        outSe.print("; ");
-        if(model.getAllSessionsAsArrayList().get(i).getRoom() == null)
+        outSe.print(sessionList.getAllSessions().get(i).getNumber());
+        outSe.print(", ");
+        outSe.print(sessionList.getAllSessions().get(i).getCourse().getCourseID());
+        outSe.print(", ");
+        outSe.print(sessionList.getAllSessions().get(i).getNumberOfLessonsInSession());
+        outSe.print(", ");
+        if(sessionList.getAllSessions().get(i).getRoom() == null)
         {
-          outSe.print("null");
-          outSe.print("; ");
+          outSe.print("null,");
         }
         else
         {
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getRoom().getId());
-          outSe.print("; ");
+          outSe.print(sessionList.getAllSessions().get(i).getRoom().getId());
+          outSe.print(", ");
         }
-        if(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime() == null)
+        if(sessionList.getAllSessions().get(i).getDateAndStartTime() == null)
         {
-          outSe.print("null");
-          outSe.print("; ");
-          outSe.print("null");
-          outSe.print("; ");
-          outSe.print("null");
-          outSe.print("; ");
-          outSe.print("null");
-          outSe.print("; ");
-          outSe.print("null");
-          outSe.print("; ");
+          outSe.print("null,");
+          outSe.print("null,");
+          outSe.print("null,");
+          outSe.print("null,");
+          outSe.print("null,");
         }
         else
         {
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getDay());
-          outSe.print("; ");
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getMonth());
-          outSe.print("; ");
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getYear());
-          outSe.print("; ");
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getHour());
-          outSe.print("; ");
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndStartTime().getMinute());
-          outSe.print("; ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getDay());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getMonth());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getYear());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getHour());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndStartTime().getMinute());
+          outSe.print(", ");
         }
-        if(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime() == null)
+        if(sessionList.getAllSessions().get(i).getDateAndEndTime() == null)
         {
-          outSe.print("null");
-          outSe.print("; ");
-          outSe.print("null");
-          outSe.print("; ");
-          outSe.print("null");
-          outSe.print("; ");
-          outSe.print("null");
-          outSe.print("; ");
+          outSe.print("null,");
+          outSe.print("null,");
+          outSe.print("null,");
+          outSe.print("null,");
           outSe.print("null");
         }
         else
         {
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getDay());
-          outSe.print("; ");
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getMonth());
-          outSe.print("; ");
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getYear());
-          outSe.print("; ");
-          outSe.print(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getHour());
-          outSe.print("; ");
-          outSe.println(model.getAllSessionsAsArrayList().get(i).getDateAndEndTime().getMinute());
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getDay());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getMonth());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getYear());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getHour());
+          outSe.print(", ");
+          outSe.print(sessionList.getAllSessions().get(i).getDateAndEndTime().getMinute());
         }
+        outSe.println("");
         outSe.flush();
       }
     }
-    catch (FileNotFoundException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
@@ -301,7 +295,7 @@ public class Reader
     File file = new File(
         "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
     Scanner in = new Scanner(file);
-    in.nextLine();
+    //in.nextLine();
     while (in.hasNext())
     {
       String line = in.nextLine();
@@ -320,7 +314,7 @@ public class Reader
         "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\teacherList.txt");
     Scanner in = new Scanner(file);
 
-    in.nextLine();
+    //in.nextLine();
     while (in.hasNext())
     {
       String line = in.nextLine();
@@ -388,7 +382,7 @@ public class Reader
     while (in.hasNext())
     {
       String line = in.nextLine();
-      String[] splittingline = line.split(";");
+      String[] splittingline = line.split(",");
       String roomId = splittingline[0].trim();
       int capacity = Integer.parseInt(splittingline[1].trim());
       String unitedWith = splittingline[2].trim();
@@ -405,13 +399,13 @@ public class Reader
   public void readSessions() throws Exception
   {
     File file = new File(
-        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\txt\\Courses.txt");
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\sessionList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
     {
       String line = in.nextLine();
-      String[] splittingline = line.split(";");
+      String[] splittingline = line.split(",");
       int sessionNum = Integer.parseInt(splittingline[0].trim());
       String courseID = splittingline[1].trim();
       int numberOfLessons = Integer.parseInt(splittingline[2].trim());

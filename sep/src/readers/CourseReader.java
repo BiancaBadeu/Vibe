@@ -21,7 +21,7 @@ public class CourseReader
   public void readCourses() throws Exception
   {
     /* file variable is created with the data from the text file */
-    File file = new File("C:\\Elly\\VIA\\Elly Y\\SEP\\SEP1\\sep\\src\\txt\\Courses.txt");
+    File file = new File("C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\txt\\Courses.txt");
 
     Scanner in = new Scanner(file);
     TeacherList teacherList;
