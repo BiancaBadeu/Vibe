@@ -23,66 +23,61 @@ public class Manager implements Model
   }
 
   //files
-  public void inputFiles() throws Exception
-  {
-    Reader reader = new Reader();
-    reader.readFilesFromHOD();
-    this.teacherList = reader.getTeacherList();
-    this.studentList = reader.getStudentList();
-    this.courseList = reader.getCourseList();
-    this.roomList = reader.getRoomList();
-    this.sessionList = reader.getSessionList();
-    reader.writeFiles();
-  }
-  public void writeFiles() throws Exception
-  {
-    Reader reader = new Reader();
-    reader.readFiles();
-    reader.writeFiles();
-    this.teacherList = reader.getTeacherList();
-    this.studentList = reader.getStudentList();
-    this.courseList = reader.getCourseList();
-    this.roomList = reader.getRoomList();
-    this.sessionList = reader.getSessionList();
-  }
-  public void writeFile(String txt) throws Exception
-  {
-    Reader reader = new Reader();
-    switch (txt)
-    {
-      case "session":
-        reader.writeSessions();
-        break;
-      case "course":
-        reader.writeCourses();
-        break;
-      case "student":
-        reader.writeStudents();
-        break;
-      case "teachers":
-        reader.writeTeachers();
-        break;
-      case "room":
-        reader.writeRooms();
-        break;
-      default:
-        reader.writeFiles();
-    }
-    this.teacherList = reader.getTeacherList();
-    this.studentList = reader.getStudentList();
-    this.courseList = reader.getCourseList();
-    this.roomList = reader.getRoomList();
-    this.sessionList = reader.getSessionList();
-  }
+
   public void readFiles() throws Exception
   {
     Reader reader = new Reader();
     reader.readFiles();
-    this.teacherList = reader.getTeacherList();
     this.studentList = reader.getStudentList();
+    this.teacherList = reader.getTeacherList();
     this.courseList = reader.getCourseList();
     this.roomList = reader.getRoomList();
     this.sessionList = reader.getSessionList();
+  }
+
+  public void writeFiles() throws Exception{
+    Reader reader= new Reader();
+    reader.writeFiles();
+
+  }
+  public void writeFile(String txt) throws Exception{
+
+    Reader reader= new Reader();
+    switch (txt){
+
+      case "session":
+        reader.writeSessions();
+        break;
+
+
+      case "course":
+        reader.writeCourses();
+        break;
+
+      case "student" :
+        reader.writeStudents();
+        break;
+
+      case "teachers" :
+        reader.writeTeachers();
+        break;
+
+      case "room":
+        reader.writeRooms();
+        break;
+
+      default:
+        reader.writeFiles();
+
+    }
+
+  }
+  public void inputFiles() throws Exception
+  {
+    Reader reader = new Reader();
+    reader.readFilesFromHOD();
+    reader.writeFiles();
+
   }
 
   //teacher
@@ -98,11 +93,6 @@ public class Manager implements Model
   public void removeTeacherFromSystemByID(String id)
   {
     teacherList.removeTeacherByID(id);
-    ArrayList<Course> courses= courseList.getAllCoursesAsArrayList();
-    for(int i=0;i<courses.size();i++)
-    {
-      courses.get(i).removeTeacherByIDFromCourse(id);
-    }
   }
   public Teacher getTeacherByID(String id)
   {
@@ -189,7 +179,6 @@ public class Manager implements Model
   public void addSession(Session session)
   {
     sessionList.addSession(session);
-
   }
   public void removeSession(Session session)
   {
