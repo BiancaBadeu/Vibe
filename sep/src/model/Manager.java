@@ -26,7 +26,7 @@ public class Manager implements Model
 
   public void readFiles() throws Exception
   {
-    Reader reader = new Reader();
+    Reader reader = new Reader(studentList, teacherList, courseList, roomList, sessionList);
     reader.readFiles();
     this.studentList = reader.getStudentList();
     this.teacherList = reader.getTeacherList();
@@ -34,50 +34,21 @@ public class Manager implements Model
     this.roomList = reader.getRoomList();
     this.sessionList = reader.getSessionList();
   }
-
   public void writeFiles() throws Exception{
-    Reader reader= new Reader();
+    Reader reader = new Reader(studentList, teacherList, courseList, roomList, sessionList);
     reader.writeFiles();
-
-  }
-  public void writeFile(String txt) throws Exception{
-
-    Reader reader= new Reader();
-    switch (txt){
-
-      case "session":
-        reader.writeSessions();
-        break;
-
-
-      case "course":
-        reader.writeCourses();
-        break;
-
-      case "student" :
-        reader.writeStudents();
-        break;
-
-      case "teachers" :
-        reader.writeTeachers();
-        break;
-
-      case "room":
-        reader.writeRooms();
-        break;
-
-      default:
-        reader.writeFiles();
-
-    }
-
   }
   public void inputFiles() throws Exception
   {
-    Reader reader = new Reader();
+    Reader reader = new Reader(studentList, teacherList, courseList, roomList, sessionList);
     reader.readFilesFromHOD();
+    this.studentList = reader.getStudentList();
+    this.teacherList = reader.getTeacherList();
+    this.courseList = reader.getCourseList();
+    this.roomList = reader.getRoomList();
+    this.sessionList = reader.getSessionList();
+    System.out.println(studentList);
     reader.writeFiles();
-
   }
 
   //teacher

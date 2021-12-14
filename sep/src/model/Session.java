@@ -11,6 +11,7 @@ public class Session
   private DateTime dateAndStartTime;
   private DateTime dateAndEndTime;
 
+
   public Session(int number, Course course)
   {
     this.number = number;
@@ -58,19 +59,13 @@ public class Session
 
   public int calculateNumberOfLessonsForCourse(Course course)
   {
-    int numberOfLessons = 0;
-    /* 1 ects = 27.5 h
-     1 lesson = 45 min
-     10 ects = 275 h = 275*60 min = 16.500
-     lessons = 275*60 / 45 = 366.(6)7
-     */
-
-    return numberOfLessons;
+    int s = (int) Math.floor(7.2 * course.getEcts());
+    return s;
   }
 
   public DateTime calculateEndTimeForSession(int numberOfLessonsInSession)
   {
-    int min = numberOfLessonsInSession * 45 + numberOfLessonsInSession * 5; //lesson + break
+    int min = numberOfLessonsInSession * 45;
     int hour = 0;
     int day = dateAndStartTime.getDay();
     int month = dateAndStartTime.getMonth();
@@ -78,7 +73,7 @@ public class Session
     while(min>59)
     {
       hour++;
-      min-=60;
+      min/=60;
     }
     int newMin = dateAndStartTime.getMinute() + min;
     int newHour = dateAndStartTime.getHour() + hour;
@@ -194,7 +189,7 @@ public class Session
   {
     return "Number: " + number + ", course: " + course + ", number of lessons in session: " + numberOfLessonsInSession
         + ", room: " + room + ", number of lessons for course: " + numberOfLessonsForCourse + ", number of lessons remaining: "
-        + getNumberOfLessonsRemaining + ", start: " + dateAndStartTime + ", end: " + dateAndEndTime;
+        + getNumberOfLessonsRemaining + ", start: " + dateAndStartTime.toString() + ", end: " + dateAndEndTime.toString();
   }
 
   public boolean equals(Object obj)
@@ -208,30 +203,30 @@ public class Session
       return false;
     else if((dateAndEndTime == null && other.dateAndEndTime != null) || (dateAndEndTime != null && other.dateAndEndTime == null))
       return false;
-    else if(room == null && other.room == null)
-      if(dateAndEndTime == null && other.dateAndEndTime == null)
-        if(dateAndStartTime == null && dateAndStartTime == null)
-          return this.number == other.number && this.course.equals(other.course) &&
-              this.numberOfLessonsInSession == other.numberOfLessonsInSession &&
-              this.numberOfLessonsForCourse == other.numberOfLessonsForCourse &&
-              this.getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining;
-        else
-          return this.number == other.number && this.course.equals(other.course) &&
-              this.numberOfLessonsInSession == other.numberOfLessonsInSession &&
-              this.numberOfLessonsForCourse == other.numberOfLessonsForCourse &&
-              this.getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining &&
-              this.dateAndStartTime.equals(other.dateAndStartTime);
-        else
-          return this.number == other.number && this.course.equals(other.course) &&
-              this.numberOfLessonsInSession == other.numberOfLessonsInSession &&
-              this.numberOfLessonsForCourse == other.numberOfLessonsForCourse &&
-              this.getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining &&
-              this.dateAndStartTime.equals(other.dateAndStartTime) && this.dateAndEndTime.equals(other.dateAndEndTime);
-    else
-      return this.number == other.number && this.course.equals(other.course) &&
-          this.numberOfLessonsInSession == other.numberOfLessonsInSession && this.room.equals(other.room) &&
-          this.numberOfLessonsForCourse == other.numberOfLessonsForCourse &&
-          this.getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining &&
-          this.dateAndStartTime.equals(other.dateAndStartTime) && this.dateAndEndTime.equals(other.dateAndEndTime);
+    if(room == null)
+      if(dateAndStartTime == null)
+        if(dateAndEndTime == null)
+        {
+          return number == other.number && course.equals(other.course) && numberOfLessonsInSession == other.numberOfLessonsInSession
+          && numberOfLessonsForCourse == other.numberOfLessonsForCourse && getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining;
+        }
+      else
+      {
+        return number == other.number && course.equals(other.course) && numberOfLessonsInSession == other.numberOfLessonsInSession
+            && numberOfLessonsForCourse == other.numberOfLessonsForCourse && getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining
+            && dateAndEndTime.equals(other.dateAndEndTime);
+      }
+      else
+        {
+          return number == other.number && course.equals(other.course) && numberOfLessonsInSession == other.numberOfLessonsInSession
+              && numberOfLessonsForCourse == other.numberOfLessonsForCourse && getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining
+              && dateAndEndTime.equals(other.dateAndEndTime) && dateAndStartTime.equals(other.dateAndStartTime);
+        }
+      else
+    {
+      return number == other.number && course.equals(other.course) && numberOfLessonsInSession == other.numberOfLessonsInSession
+          && numberOfLessonsForCourse == other.numberOfLessonsForCourse && getNumberOfLessonsRemaining == other.getNumberOfLessonsRemaining
+          && dateAndEndTime.equals(other.dateAndEndTime) && dateAndStartTime.equals(other.dateAndStartTime);
+    }
   }
 }
