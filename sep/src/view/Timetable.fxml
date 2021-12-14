@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -21,7 +20,7 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0" spacing="10">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select view" />
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="classFilter" prefWidth="150.0" />
          </children>
       </HBox>
       <HBox prefHeight="349.0" prefWidth="600.0">
@@ -38,16 +37,7 @@
             </VBox>
             <VBox prefHeight="345.0" prefWidth="493.0">
                <children>
-                  <TableView prefHeight="272.0" prefWidth="460.0">
-                    <columns>
-                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Time" />
-                      <TableColumn minWidth="75.0" prefWidth="-1.0" text="Mon " />
-                      <TableColumn minWidth="75.0" prefWidth="-1.0" text="Tue " />
-                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Wed " />
-                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Thu " />
-                        <TableColumn minWidth="75.0" prefWidth="-1.0" text="Fri " />
-                    </columns>
-                  </TableView>
+                  <TableView fx:id="timetable" prefHeight="272.0" prefWidth="460.0" />
                </children>
             </VBox>
          </children>

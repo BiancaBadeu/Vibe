@@ -111,7 +111,7 @@ public class ViewHandler
       case "Timetable":
         root = loadTimetableView("Timetable.fxml");
         break;
-      case "VieFilteredBookings":
+      case "ViewFilteredBookings":
         root = loadViewFilteredBookingsView("ViewFilteredBookings.fxml");
         break;
       default:

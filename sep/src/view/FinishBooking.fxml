@@ -59,7 +59,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="room" editable="false" prefHeight="26.0" prefWidth="159.0" />
+            <TextField fx:id="room" editable="false" prefHeight="26.0" prefWidth="96.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
@@ -80,12 +80,12 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" onAction="#finishPressed" prefHeight="57.0" prefWidth="110.0" text="Finish">
+            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" text="Finish" onAction="#finishPressed">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#backPressed" prefHeight="57.0" prefWidth="105.0" text="Go back">
+            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="105.0" text="Go back" onAction="#backPressed">
                <font>
                   <Font size="14.0" />
                </font>

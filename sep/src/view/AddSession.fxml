@@ -24,19 +24,19 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="152.0" text="Enter the course:" />
-                        <TextField fx:id="courseName" prefHeight="30.0" prefWidth="150.0" />
+                        <TextField prefHeight="30.0" prefWidth="150.0" fx:id="courseName"/>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="152.0" text="Enter session number:" />
-                        <TextField fx:id="sessionNumber" prefHeight="30.0" prefWidth="150.0" />
+                        <TextField prefHeight="30.0" prefWidth="150.0" fx:id="sessionNumber"/>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="152.0" text="Enter number of lessons:" />
-                        <TextField fx:id="lessonNumber" prefHeight="30.0" prefWidth="150.0" />
+                        <TextField prefHeight="30.0" prefWidth="150.0" fx:id="lessonNumber"/>
                      </children>
                   </HBox>
                   <Label fx:id="errorLabel" text="Error one of the fields has not valid data " textFill="RED" />
