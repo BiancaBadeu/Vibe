@@ -9,7 +9,11 @@ import view.ViewHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class RemoveStudentController
 {
@@ -21,10 +25,11 @@ public class RemoveStudentController
   @FXML private TextField idField;
   @FXML private Label errorLabel;
 
+  public RemoveStudentController()
+  {
+  }
 
-  public RemoveStudentController(){}
-
-  public void init(ViewHandler viewHandler, model.Model model, Region root )
+  public void init(ViewHandler viewHandler, model.Model model, Region root)
   {
     this.viewHandler = viewHandler;
     this.model = model;
@@ -34,6 +39,12 @@ public class RemoveStudentController
   @FXML void removeButtonPressed()
   {
     int id = Integer.parseInt(idField.getText());
+
+    Scanner in = new Scanner(
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
+
+    StudentList listOfStudents = new StudentList();
+
     try
     {
       model.validateRemoveStudent(idField.getText());
@@ -43,10 +54,35 @@ public class RemoveStudentController
     {
       errorLabel.setText(e.getMessage());
     }
-    if(errorLabel.getText().equals(""))
-      if(booleanconfirmation())
+    if (errorLabel.getText().equals(""))
+    {
+      if (booleanconfirmation())
+      {
         model.removeStudentByID(id);
-    reset();
+
+        try
+        {
+          PrintWriter myWriter = new PrintWriter(
+              "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
+
+          for (int i = 0;
+               i < model.getAllStudentsAsArrayList().size(); i++)
+          {
+
+            myWriter.print(model.getAllStudentsAsArrayList().get(i));
+
+          }
+          myWriter.close();
+        }
+        catch (IOException e)
+        {
+          e.printStackTrace();
+        }
+      }
+
+      reset();
+
+    }
   }
 
   @FXML void goBackButtonPressed()
@@ -61,8 +97,7 @@ public class RemoveStudentController
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Confirmation");
-    alert.setHeaderText(
-        "Removing student: "+ student);
+    alert.setHeaderText("Removing student: " + student);
     Optional<ButtonType> result = alert.showAndWait();
     return (result.isPresent()) && (result.get() == ButtonType.OK);
   }
