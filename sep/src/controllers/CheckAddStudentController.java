@@ -1,11 +1,14 @@
 package controllers;
 
 import javafx.scene.layout.Region;
-import model.Model;
+import model.*;
+import readers.Reader;
 import view.ViewHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import java.awt.*;
+import java.io.*;
+import java.util.Scanner;
 
 public class CheckAddStudentController
 {
@@ -32,13 +35,13 @@ public class CheckAddStudentController
             + model.getAllCoursesAsArrayList().get(i).getCourseID()
             .charAt(1);
         if (CID.equals(AddStudentController.student.getClassID()))
-          courses+= model.getAllCoursesAsArrayList().get(i).getCourseID() + ", ";
+          courses+= model.getAllCoursesAsArrayList().get(i).getCourseID() + "; ";
       }
     }
     coursesField.setText(courses);
   }
 
-  @FXML public void yesButtonPressed()
+  @FXML public void yesButtonPressed() throws Exception
   {
     model.addStudent(AddStudentController.student);
     for (int i = 0; i < model.getAllCoursesAsArrayList().size(); i++)
@@ -53,6 +56,57 @@ public class CheckAddStudentController
           model.getAllCoursesAsArrayList().get(i).addStudent(AddStudentController.student);
       }
     }
+
+    File file = new File("C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
+
+    Scanner in = new Scanner(file);
+    StudentList listOfStudents= new StudentList();
+
+    in.nextLine();
+
+    while (in.hasNext())
+    {
+
+
+      String line = in.nextLine();
+
+
+
+      String[] splittingline = line.split(",");
+      String nameStudent = splittingline[0].trim();
+      int studentIDN = Integer.parseInt(splittingline[1].trim());
+      String studentClass=splittingline[2].trim();
+
+      Student student = new Student(nameStudent, studentIDN, studentClass);
+      listOfStudents.addStudent(student);
+    }
+
+
+
+
+    String[] splittingline2 = studentField.getText().split(",");
+    String studentName2= splittingline2[0].trim();
+    int studentId2=Integer.parseInt(splittingline2[1].trim());
+    String classLetter2=splittingline2[2];
+
+    Student student23= new Student(studentName2, studentId2, classLetter2);
+    listOfStudents.addStudent(student23);
+
+    try {
+      PrintWriter myWriter = new PrintWriter("C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
+
+
+      for (int i=0; i<model.getAllStudentsAsArrayList().size(); i++){
+
+        myWriter.print(model.getAllStudentsAsArrayList().get(i));
+
+      }
+      myWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+
     viewHandler.openView("ManageStudentsAndTeachers");
   }
 
@@ -76,4 +130,6 @@ public class CheckAddStudentController
   {
     return root;
   }
+
+
 }
