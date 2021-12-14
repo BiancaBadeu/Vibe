@@ -27,7 +27,7 @@ public class BookingSystemController
 
   @FXML public void viewYourBookingsPressed()
   {
-    viewHandler.openView("ViewBookingsBy");
+    viewHandler.openView("ViewFilteredBookings");
   }
 
   @FXML public void removeABookingPressed()

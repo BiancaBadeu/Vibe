@@ -25,6 +25,10 @@ public class RemoveBookingController
 
   public RemoveBookingController(){
   }
+  @FXML public void goBackButtonRB()
+  {
+    viewHandler.openView("BookingSystem");
+  }
 
   public Region getRoot(){
     return root;

@@ -12,6 +12,12 @@ import javafx.scene.layout.Region;
 import model.*;
 import view.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.Scanner;
+
 public class AddSessionController
 {
   @FXML TableView tableView;
@@ -32,6 +38,8 @@ public class AddSessionController
     this.model= model;
     this.root= root;
 
+
+
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
     TableColumn numbersOfLessons = new TableColumn("No. of lessons");
@@ -46,7 +54,6 @@ public class AddSessionController
     {
       for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
       {
-        if(model.getAllSessionsAsArrayList().get(i).getCourse().equals(SelectCourseController.course))
           tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
       }
     }
@@ -68,29 +75,14 @@ public class AddSessionController
   }
   @FXML private void pressToAdd() throws Exception
   {
-    try{
-      model.validateAddSession(courseName.getText(), sessionNumber.getText(), lessonNumber.getText());
-      errorLabel.setText("");
-    }
-    catch (Exception e)
-    {
-      errorLabel.setText(e.getMessage());
-      e.printStackTrace();
-    }
-    finally
-    {
-      int sessionId = Integer.parseInt(sessionNumber.getText());
-      int lessons = Integer.parseInt(lessonNumber.getText());
-      String courseId = courseName.getText();
-      Course course = model.getCourseByID(courseId);
-      Session session= new Session(sessionId, course, lessons);
-      model.addSession(session);
-      System.out.println(model.getAllSessionsAsArrayList());
-      model.writeFile("session");
+    Course course = model.getCourseByID(courseName.getText());
+    Session session = new Session(Integer.parseInt(sessionNumber.getText()), course, Integer.parseInt(lessonNumber.getText()));
+    model.addSession(session);
+    model.writeFiles();
       tableView.getItems().add(session);
-    }
-
   }
+
+
   @FXML private void pressToCancel()
   {
     viewHandler.openView("ManageSessions");

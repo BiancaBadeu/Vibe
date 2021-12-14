@@ -1,5 +1,7 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,6 +26,8 @@ public class ManageSessionsController
 
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn course = new TableColumn("Course");
+    course.setCellValueFactory(new PropertyValueFactory<>("course"));
     TableColumn numbersOfLessons = new TableColumn("No. of lessons");
     numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
     TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
@@ -31,12 +35,12 @@ public class ManageSessionsController
     TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
     getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
 
-    tableView.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+    tableView.getColumns().setAll(numbers, course, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
     try
     {
       for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
       {
-        tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
       }
     }
     catch (Exception e)
@@ -44,30 +48,7 @@ public class ManageSessionsController
       e.printStackTrace();
     }
   }
-  public void reset()
-  {
-    TableColumn numbers = new TableColumn("Number");
-    numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
-    TableColumn numbersOfLessons = new TableColumn("No. of lessons");
-    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
-    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
-    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
-    TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
-    getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
-
-    tableView.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
-    try
-    {
-      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
-      {
-        tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
-      }
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-  }
+  public void reset(){}
 
   public Region getRoot()
   {

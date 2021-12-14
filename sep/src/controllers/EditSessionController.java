@@ -49,7 +49,6 @@ public class EditSessionController
     {
       for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
       {
-        if(model.getAllSessionsAsArrayList().get(i).getCourse().equals(SelectCourseController.course))
           tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
       }
     }

@@ -62,7 +62,7 @@ public class SelectRoomController
     if(index > -1)
     {
       room = model.getRoomsAvailableInPeriodBySizeBiggerThan(capacity, startTime, endTime).get(index);
-      viewHandler.openView("FinishBooking");
+      viewHandler.openView("BookARoom");
     }
 
   }

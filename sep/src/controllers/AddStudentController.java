@@ -1,3 +1,5 @@
+package controllers;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import model.*;
