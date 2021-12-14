@@ -9,7 +9,10 @@ import view.ViewHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class RemoveTeacherController
 {
@@ -32,7 +35,13 @@ public class RemoveTeacherController
 
   @FXML void removeTeacherButtonPressed()
   {
-    System.out.println(model.getAllTeachers());
+
+    String id= idField.getText();
+    Scanner in = new Scanner(
+        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\teacherList.txt");
+
+    TeacherList listOfTeachers = new TeacherList();
+
     try
     {
       model.validateRemoveTeacher(idField.getText());
@@ -42,11 +51,35 @@ public class RemoveTeacherController
     {
       errorLabel.setText(e.getMessage());
     }
-    if(errorLabel.getText().equals(""))
-      if(booleanconfirmation())
-          model.removeTeacherFromSystemByID(idField.getText());
-    reset();
-    System.out.println(model.getAllTeachers());
+    if (errorLabel.getText().equals(""))
+    {
+      if (booleanconfirmation())
+      {
+        model.removeTeacherFromSystemByID(id);
+
+        try
+        {
+          PrintWriter myWriter = new PrintWriter(
+              "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\teacherList.txt");
+
+          for (int i = 0;
+               i < model.getAllTeachersAsArrayList().size(); i++)
+          {
+
+            myWriter.print(model.getAllTeachersAsArrayList().get(i));
+
+          }
+          myWriter.close();
+        }
+        catch (IOException e)
+        {
+          e.printStackTrace();
+        }
+      }
+
+      reset();
+
+    }
   }
 
   @FXML void goBackButtonPressed()
