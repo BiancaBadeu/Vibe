@@ -59,7 +59,7 @@ public class RemoveStudentController
       if (booleanconfirmation())
       {
         model.removeStudentFromSystemByID(id);
-
+        
         try
         {
           PrintWriter myWriter = new PrintWriter(
@@ -78,6 +78,7 @@ public class RemoveStudentController
         {
           e.printStackTrace();
         }
+        viewHandler.openView("ManageStudentsAndTeachers");
       }
 
       reset();
