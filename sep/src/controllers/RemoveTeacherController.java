@@ -75,10 +75,11 @@ public class RemoveTeacherController
         {
           e.printStackTrace();
         }
+        viewHandler.openView("ManageStudentsAndTeachers");
       }
 
       reset();
-      viewHandler.openView("ManageStudentsAndTeachers");
+      
     }
   }
 
