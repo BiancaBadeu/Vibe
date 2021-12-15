@@ -58,7 +58,7 @@ public class RemoveStudentController
     {
       if (booleanconfirmation())
       {
-        model.removeStudentByID(id);
+        model.removeStudentFromSystemByID(id);
 
         try
         {
