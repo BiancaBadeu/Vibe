@@ -32,7 +32,7 @@ public class SelectSessionController
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
 
     TableColumn numbersOfLessons = new TableColumn("No. of lessons");
-    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessons"));
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
     TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
     numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
     TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");

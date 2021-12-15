@@ -33,7 +33,7 @@ public class BookARoomController
   static int yeaR;
   static int houR;
   static int miN;
-  static int caP;
+  static String caP;
   static boolean unI;
   static DateTime startTime;
   static DateTime endTime;
@@ -68,11 +68,7 @@ public class BookARoomController
     yeaR = y;
     houR = h;
     miN = min;
-    String value = (String) capacity.getValue();
-    if(!(value.equals("-")))
-      caP = Integer.parseInt(value);
-    else
-      caP = 0;
+    caP = (String) capacity.getValue();
     if(unitable.isSelected())
       unI = true;
     else
@@ -105,12 +101,12 @@ public class BookARoomController
   }
   public void reset()
   {
-      capacity.setValue("-");
-      day.setText("");
-      month.setText("");
-      year.setText("");
-      hour.setText("");
-      minute.setText("");
+    capacity.setValue("-");
+    day.setText("");
+    month.setText("");
+    year.setText("");
+    hour.setText("");
+    minute.setText("");
   }
   public Region getRoot()
   {

@@ -141,6 +141,7 @@ public class Session
   public void setNumberOfLessonsInSession(int number)
   {
     this.numberOfLessonsInSession = number;
+    this.getNumberOfLessonsRemaining = numberOfLessonsForCourse - numberOfLessonsInSession;
     if(dateAndStartTime != null)
       calculateEndTimeForSession(numberOfLessonsInSession);
   }

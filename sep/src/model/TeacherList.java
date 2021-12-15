@@ -66,6 +66,8 @@ public class TeacherList
   public void validateAddTeacher(String nameField, String idField)
   {
     String error = "One of the fields you introduced was not valid. Please introduce a valid teacher.";
+    if(idField.length()<3 || idField.length()>4)
+      throw new IllegalArgumentException(error);
     for (int i = 0; i < nameField.length(); i++)
     {
       if (!((nameField.charAt(i) >= 'A' && nameField.charAt(i) <= 'Z') || (

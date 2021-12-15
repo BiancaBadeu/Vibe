@@ -3,16 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddSessionController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="928.0" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddSessionController">
    <children>
-      <Label alignment="CENTER" prefHeight="86.0" prefWidth="600.0" text="Add session">
+      <Label alignment="CENTER" prefHeight="86.0" prefWidth="948.0" text="Add session">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>
@@ -24,19 +23,19 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="152.0" text="Enter the course:" />
-                        <TextField prefHeight="30.0" prefWidth="150.0" fx:id="courseName"/>
+                        <TextField fx:id="courseName" prefHeight="30.0" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="152.0" text="Enter session number:" />
-                        <TextField prefHeight="30.0" prefWidth="150.0" fx:id="sessionNumber"/>
+                        <TextField fx:id="sessionNumber" prefHeight="30.0" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="5">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="152.0" text="Enter number of lessons:" />
-                        <TextField prefHeight="30.0" prefWidth="150.0" fx:id="lessonNumber"/>
+                        <TextField fx:id="lessonNumber" prefHeight="30.0" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <Label fx:id="errorLabel" text="" textFill="RED" />
@@ -62,12 +61,11 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox prefHeight="278.0" prefWidth="253.0">
+            <VBox prefHeight="260.0" prefWidth="603.0">
                <children>
-                  <HBox prefHeight="288.0" prefWidth="247.0">
+                  <HBox prefHeight="260.0" prefWidth="414.0">
                      <children>
-                        <TableView fx:id="tableView" prefHeight="296.0" prefWidth="234.0" />
-                        <ScrollBar orientation="VERTICAL" />
+                        <TableView fx:id="tableView" prefHeight="260.0" prefWidth="605.0" />
                      </children>
                   </HBox>
                </children>

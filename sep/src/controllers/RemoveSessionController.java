@@ -42,14 +42,16 @@ public class RemoveSessionController
 
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn course = new TableColumn("Course");
+    course.setCellValueFactory(new PropertyValueFactory<>("course"));
     TableColumn numbersOfLessons = new TableColumn("No. of lessons");
-    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessons"));
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
     TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
     numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
     TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
     getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
 
-    tableView.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+    tableView.getColumns().setAll(numbers, course, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
     try
     {
       for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)

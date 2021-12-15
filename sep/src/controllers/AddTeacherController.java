@@ -26,7 +26,9 @@ public class AddTeacherController
   @FXML private TextField idField;
   @FXML private Label errorLabel;
 
-  public AddTeacherController(){}
+  public AddTeacherController()
+  {
+  }
 
   public void init(ViewHandler viewHandler, model.Model model, Region root)
   {
@@ -35,54 +37,32 @@ public class AddTeacherController
     this.root = root;
   }
 
-  @FXML void addTeacherButtonPressed() throws IOException
+  @FXML void addTeacherButtonPressed() throws Exception
   {
-    File file = new File("C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\teacherList.txt");
-
-    Scanner in = new Scanner(file);
-    TeacherList listOfTeachers= new TeacherList();
-
-    in.nextLine();
-
-    while (in.hasNext())
+    String name = nameField.getText();
+    String id = idField.getText();
+    Teacher teacher = new Teacher(name, id);
+    try
     {
-
-
-      String line = in.nextLine();
-
-
-
-      String[] splittingline = line.split(",");
-      String nameTeacher = splittingline[0].trim();
-      String teacherID = splittingline[1].trim();
-
-      Teacher teacher = new Teacher(nameTeacher, teacherID);
-      listOfTeachers.addTeacher(teacher);
+      model.validateAddTeacher(name, id);
+      errorLabel.setText("");
     }
-
-
-
-
-    Teacher newTeacher= new Teacher(nameField.getText(), idField.getText());
-    listOfTeachers.addTeacher(newTeacher);
-    model.addTeacher(newTeacher);
-    try {
-      PrintWriter myWriter = new PrintWriter("C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\teacherList.txt");
-
-
-      for (int i=0; i<model.getAllTeachersAsArrayList().size(); i++){
-
-        myWriter.print(model.getAllTeachersAsArrayList().get(i));
-
+    catch (Exception e)
+    {
+      errorLabel.setText(e.getMessage());
+    }
+    if (errorLabel.getText().equals(""))
+      if (booleanconfirmation())
+      {
+        model.addTeacher(teacher);
+        model.writeFiles();
+        errorLabel.setText("");
+        viewHandler.openView("ManageStudentsAndTeachers");
       }
-      myWriter.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    reset();
 
-
-    viewHandler.openView("ManageStudentsAndTeachers");
   }
+
 
   private boolean booleanconfirmation()
   {

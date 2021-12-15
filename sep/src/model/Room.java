@@ -62,8 +62,15 @@ public class Room
       return false;
     Room other = (Room) obj;
     if(unitedWith == null)
-      if(other.unitedWith != null)
+    {
+      if (other.unitedWith != null)
         return false;
-    return id.equals(other.id) && capacity == other.capacity && unitedWith.equals(other.unitedWith) && this.booked == other.booked;
+      else
+        return id.equals(other.id) && capacity == other.capacity && this.booked == other.booked;
+    }
+    else if(other.unitedWith == null)
+      return false;
+    else return unitedWith.equals(other.unitedWith) && id.equals(other.id) && capacity == other.capacity && this.booked == other.booked;
   }
+
 }

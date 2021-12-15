@@ -36,14 +36,9 @@ public class RemoveStudentController
     this.root = root;
   }
 
-  @FXML void removeButtonPressed()
+  @FXML void removeButtonPressed() throws Exception
   {
     int id = Integer.parseInt(idField.getText());
-
-    Scanner in = new Scanner(
-        "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
-
-    StudentList listOfStudents = new StudentList();
 
     try
     {
@@ -59,31 +54,12 @@ public class RemoveStudentController
       if (booleanconfirmation())
       {
         model.removeStudentFromSystemByID(id);
-        
-        try
-        {
-          PrintWriter myWriter = new PrintWriter(
-              "C:\\Users\\luisd\\IdeaProjects\\SEP1_V2_files\\src\\ourTxt\\studentList.txt");
-
-          for (int i = 0;
-               i < model.getAllStudentsAsArrayList().size(); i++)
-          {
-
-            myWriter.print(model.getAllStudentsAsArrayList().get(i));
-
-          }
-          myWriter.close();
-        }
-        catch (IOException e)
-        {
-          e.printStackTrace();
-        }
+        model.writeFiles();
         viewHandler.openView("ManageStudentsAndTeachers");
+        errorLabel.setText("");
       }
-
-      reset();
-
     }
+    reset();
   }
 
   @FXML void goBackButtonPressed()

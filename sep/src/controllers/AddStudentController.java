@@ -32,22 +32,26 @@ public class AddStudentController
 
   @FXML void addButtonPressed()
   {
-    int id = Integer.parseInt(idField.getText());
-    String name = nameField.getText();
-    String class1 = classField.getText();
-    student = new Student(name, id, class1);
+
     try
     {
-      model.validateAddStudent(nameField.getText(), idField.getText(),
-          classField.getText());
+      model.validateAddStudent(nameField.getText(), idField.getText(), classField.getText());
       errorLabel.setText("");
     }
     catch (Exception e)
     {
       errorLabel.setText(e.getMessage());
+
+    }
+    if(errorLabel.getText().equals(""))
+    {
+      int id = Integer.parseInt(idField.getText());
+      String name = nameField.getText();
+      String class1 = classField.getText();
+      student = new Student(name, id, class1);
+      viewHandler.openView("CheckAddStudent");
     }
     reset();
-    viewHandler.openView("CheckAddStudent");
   }
 
   @FXML void cancelButtonPressed()

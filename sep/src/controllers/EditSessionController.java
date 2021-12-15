@@ -37,14 +37,17 @@ public class EditSessionController
 
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn course = new TableColumn("Course");
+    course.setCellValueFactory(new PropertyValueFactory<>("course"));
     TableColumn numbersOfLessons = new TableColumn("No. of lessons");
-    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessons"));
-    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
-    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
     TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
     getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
+    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
 
-    tableView.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+
+    tableView.getColumns().setAll(numbers, course, numbersOfLessons,getNumbersOfLessonsRemaining, numbersOfLessonsForCourse);
     try
     {
       for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
@@ -57,8 +60,8 @@ public class EditSessionController
       e.printStackTrace();
     }
 
-    choiceBox.setItems(displayChoiceBox);
-    choiceBox.setValue(null);
+    //choiceBox.setItems(displayChoiceBox);
+    //choiceBox.setValue(null);
   }
   public void reset(){}
 
@@ -67,7 +70,7 @@ public class EditSessionController
     return root;
   }
 
-  @FXML private void pressToEdit()
+  @FXML private void pressToEdit() throws Exception
   {
     int index = tableView.getSelectionModel().getFocusedIndex();
     if(index > -1)
@@ -82,13 +85,22 @@ public class EditSessionController
     {
       errorLabel.setText(e.getMessage());
     }
-    int lessonNumbers = Integer.parseInt(newLessons.getText());
-    Session editedSession = new Session(session.getNumber(),
-        session.getCourse(), lessonNumbers);
-    tableView.getItems().remove(session);
-    tableView.getItems().add(editedSession);
-    new SessionList().removeSession(session);
-    new SessionList().addSession(editedSession);
+    if(errorLabel.getText().equals(""))
+    {
+      int lessonNumbers = Integer.parseInt(newLessons.getText());
+      int indeX = tableView.getSelectionModel().getFocusedIndex();
+      if(indeX > -1)
+      {
+        session = model.getAllSessionsAsArrayList().get(indeX);
+        session.setNumberOfLessonsInSession(lessonNumbers);
+        model.writeFiles();
+        tableView.getItems().clear();
+        for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+        {
+          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+        }
+      }
+    }
   }
 
   @FXML private void pressToCancel()
