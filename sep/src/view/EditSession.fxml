@@ -55,7 +55,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="Error not valid data " textFill="RED" />
+                  <Label fx:id="errorLabel" text="" textFill="RED" />
                   <Button fx:id="edit" mnemonicParsing="false" onAction="#pressToEdit" prefWidth="95.0" text="Edit">
                      <font>
                         <Font size="18.0" />
