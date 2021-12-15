@@ -39,7 +39,7 @@
                         <TextField prefHeight="30.0" prefWidth="150.0" fx:id="lessonNumber"/>
                      </children>
                   </HBox>
-                  <Label fx:id="errorLabel" text="Error one of the fields has not valid data " textFill="RED" />
+                  <Label fx:id="errorLabel" text="" textFill="RED" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
                      <children>
                         <Button fx:id="addSession" mnemonicParsing="false" onAction="#pressToAdd" prefHeight="60.0" prefWidth="130.0" text="Add">
