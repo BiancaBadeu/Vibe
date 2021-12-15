@@ -78,7 +78,7 @@ public class RemoveTeacherController
       }
 
       reset();
-
+      viewHandler.openView("ManageStudentsAndTeachers");
     }
   }
 
