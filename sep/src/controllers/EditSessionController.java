@@ -50,9 +50,9 @@ public class EditSessionController
     tableView.getColumns().setAll(numbers, course, numbersOfLessons,getNumbersOfLessonsRemaining, numbersOfLessonsForCourse);
     try
     {
-      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      for (int i = 0; i < model.getUnbookedSessions().size(); i++)
       {
-          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+          tableView.getItems().add(model.getUnbookedSessions().get(i));
       }
     }
     catch (Exception e)
@@ -63,12 +63,35 @@ public class EditSessionController
     //choiceBox.setItems(displayChoiceBox);
     //choiceBox.setValue(null);
   }
-  public void reset(){}
-
-  public Region getRoot()
+  public void reset()
   {
-    return root;
+    tableView.getItems().clear();
+    TableColumn numbers = new TableColumn("Number");
+    numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn course = new TableColumn("Course");
+    course.setCellValueFactory(new PropertyValueFactory<>("course"));
+    TableColumn numbersOfLessons = new TableColumn("No. of lessons");
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
+    TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
+    getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
+    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
+
+
+    tableView.getColumns().setAll(numbers, course, numbersOfLessons,getNumbersOfLessonsRemaining, numbersOfLessonsForCourse);
+    try
+    {
+      for (int i = 0; i < model.getUnbookedSessions().size(); i++)
+      {
+        tableView.getItems().add(model.getUnbookedSessions().get(i));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
   }
+
 
   @FXML private void pressToEdit() throws Exception
   {
@@ -94,13 +117,9 @@ public class EditSessionController
         session = model.getAllSessionsAsArrayList().get(indeX);
         session.setNumberOfLessonsInSession(lessonNumbers);
         model.writeFiles();
-        tableView.getItems().clear();
-        for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
-        {
-          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
-        }
       }
     }
+    reset();
   }
 
   @FXML private void pressToCancel()
@@ -117,4 +136,9 @@ public class EditSessionController
     Optional<ButtonType> result = alert.showAndWait();
     return (result.isPresent()) && (result.get() == ButtonType.OK);
   }
+  public Region getRoot()
+  {
+    return root;
+  }
+
 }

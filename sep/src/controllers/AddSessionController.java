@@ -38,8 +38,6 @@ public class AddSessionController
     this.model= model;
     this.root= root;
 
-
-
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
     TableColumn course = new TableColumn("Course");
@@ -54,9 +52,9 @@ public class AddSessionController
     tableView.getColumns().setAll(numbers,course, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
     try
     {
-      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      for (int i = 0; i < model.getUnbookedSessions().size(); i++)
       {
-          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+          tableView.getItems().add(model.getUnbookedSessions().get(i));
       }
     }
     catch (Exception e)
@@ -71,6 +69,31 @@ public class AddSessionController
     sessionNumber.setText("");
     lessonNumber.setText("");
 
+    tableView.getItems().clear();
+    TableColumn numbers = new TableColumn("Number");
+    numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn course = new TableColumn("Course");
+    course.setCellValueFactory(new PropertyValueFactory<>("course"));
+    TableColumn numbersOfLessons = new TableColumn("No. of lessons");
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
+    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
+    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
+    TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
+    getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+
+    tableView.getColumns().setAll(numbers,course, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+    try
+    {
+      for (int i = 0; i < model.getUnbookedSessions().size(); i++)
+      {
+        tableView.getItems().add(model.getUnbookedSessions().get(i));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+
   }
   public Region getRoot()
   {
@@ -78,7 +101,6 @@ public class AddSessionController
   }
   @FXML private void pressToAdd() throws Exception
   {
-
     try
     {
       model.validateAddSession(courseName.getText(),sessionNumber.getText(),lessonNumber.getText());
@@ -98,10 +120,6 @@ public class AddSessionController
       model.addSession(session);
       tableView.getItems().clear();
       model.writeFiles();
-      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
-      {
-        tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
-      }
     }
     reset();
   }
