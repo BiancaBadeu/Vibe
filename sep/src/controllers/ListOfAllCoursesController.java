@@ -12,6 +12,7 @@ import view.ViewHandler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Watchable;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -68,7 +69,8 @@ public class ListOfAllCoursesController
     return (result.isPresent()) && (result.get() == ButtonType.OK);
   }
 
-    @FXML public void addStudentPressed () {
+    @FXML public void addStudentPressed ()
+    {
     int index = courseTable.getSelectionModel().getFocusedIndex();
     if (index > -1)
     {
