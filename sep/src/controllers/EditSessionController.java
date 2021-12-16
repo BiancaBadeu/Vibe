@@ -98,7 +98,7 @@ public class EditSessionController
     int index = tableView.getSelectionModel().getFocusedIndex();
     if(index > -1)
     {
-      session= model.getAllSessionsAsArrayList().get(index);
+      session= model.getUnbookedSessions().get(index);
     }
     try{
       model.validateEditSession(newLessons.getText());
@@ -111,13 +111,8 @@ public class EditSessionController
     if(errorLabel.getText().equals(""))
     {
       int lessonNumbers = Integer.parseInt(newLessons.getText());
-      int indeX = tableView.getSelectionModel().getFocusedIndex();
-      if(indeX > -1)
-      {
-        session = model.getAllSessionsAsArrayList().get(indeX);
-        session.setNumberOfLessonsInSession(lessonNumbers);
-        model.writeFiles();
-      }
+      session.setNumberOfLessonsInSession(lessonNumbers);
+      model.writeFiles();
     }
     reset();
   }
