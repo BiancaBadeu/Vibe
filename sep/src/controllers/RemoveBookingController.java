@@ -83,6 +83,7 @@ public class RemoveBookingController
 
   public void reset()
   {
+    bookTableView.getItems().clear();
     TableColumn startTime = new TableColumn("Start time");
     startTime.setCellValueFactory(new PropertyValueFactory<>("dateAndStartTime"));
     TableColumn endTime = new TableColumn("End time");
