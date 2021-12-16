@@ -21,7 +21,7 @@ public class BookARoomController
   @FXML ChoiceBox capacity;
   @FXML CheckBox unitable;
 
-  ObservableList<String> displayChoice = FXCollections.observableArrayList("30","45");
+  ObservableList<String> displayChoice = FXCollections.observableArrayList("20","30","45");
 
   private Region root;
   private Model model;
@@ -74,17 +74,12 @@ public class BookARoomController
     else
       unI = false;
   }
-  public static String getFormat()
-  {
-    return format;
-  }
 
 
   @FXML public void showAvailableRoomsPressed()
   {
     setInfo();
     this.format = "campus";
-    System.out.println(getFormat());
     viewHandler.openView("SelectRoom");
   }
 

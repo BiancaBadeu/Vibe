@@ -22,7 +22,7 @@ public class SelectRoomController
   static Room room;
 
   private String capacity = BookARoomController.caP;
-  int cap =0;
+  int cap;
   private DateTime startTime = BookARoomController.startTime;
   private Session session = SelectSessionController.session;
   private DateTime endTime = session.calculateEndTimeForSession(session.getNumberOfLessonsInSession());
@@ -45,31 +45,26 @@ public class SelectRoomController
 
     roomTable.getColumns().setAll(roomId, capacitY, uniteWitH);
     if(capacity.equals("-"))
-      try
-      {
-        for (int i = 0; i < model.getRoomsAvailableInPeriod(startTime, endTime).size(); i++)
-        {
-          roomTable.getItems().add(model.getRoomsAvailableInPeriod(startTime, endTime).get(i));
-        }
-      }
-      catch (Exception e)
-      {
-        e.printStackTrace();
-      }
+      cap=0;
     else
+      cap = Integer.parseInt(capacity);
+    try
     {
-      int cap = Integer.parseInt(capacity);
-      try
+      for (int i = 0; i < model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).size(); i++)
       {
-        for (int i = 0; i < model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).size(); i++)
+        if(BookARoomController.unI)
         {
-          roomTable.getItems().add(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i));
+          if (model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i).getUnitedWith() != null)
+            roomTable.getItems().add(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i));
         }
+        else
+          if(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i).getUnitedWith() == null)
+            roomTable.getItems().add(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i));
       }
-      catch (Exception e)
-      {
-        e.printStackTrace();
-      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
     }
   }
 
@@ -78,10 +73,27 @@ public class SelectRoomController
     int index = roomTable.getSelectionModel().getFocusedIndex();
     if(index > -1)
     {
-      if(cap == 0)
-        room = model.getRoomsAvailableInPeriod(startTime, endTime).get(index);
+      if(capacity.equals("-"))
+        cap=0;
       else
-        room = model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(index);
+        cap = Integer.parseInt(capacity);
+      for (int i = 0; i < model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).size() && index>=0; i++)
+      {
+        if(BookARoomController.unI)
+        {
+          if (model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i).getUnitedWith() != null)
+            if(index!=0)
+              index--;
+            else
+              room = model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i);
+        }
+        else
+        if(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i).getUnitedWith() == null)
+          if(index!=0)
+            index--;
+          else
+            room = model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i);
+      }
       viewHandler.openView("FinishBooking");
     }
 
@@ -93,40 +105,28 @@ public class SelectRoomController
   }
   public void reset()
   {
-    TableColumn roomId = new TableColumn("ID");
-    roomId.setCellValueFactory(new PropertyValueFactory<>("id"));
-    TableColumn capacitY= new TableColumn("Capacity");
-    capacitY.setCellValueFactory(new PropertyValueFactory<>("capacity"));
-    TableColumn uniteWitH= new TableColumn("UnitedWith");
-    uniteWitH.setCellValueFactory(new PropertyValueFactory<>("unitedWith"));
-
-    roomTable.getColumns().setAll(roomId, capacitY, uniteWitH);
+    roomTable.getItems().clear();
     if(capacity.equals("-"))
-      try
-      {
-        for (int i = 0; i < model.getRoomsAvailableInPeriod(startTime, endTime).size(); i++)
-        {
-          roomTable.getItems().add(model.getRoomsAvailableInPeriod(startTime, endTime).get(i));
-        }
-      }
-      catch (Exception e)
-      {
-        e.printStackTrace();
-      }
+      cap=0;
     else
+      cap = Integer.parseInt(capacity);
+    try
     {
-      int cap = Integer.parseInt(capacity);
-      try
+      for (int i = 0; i < model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).size(); i++)
       {
-        for (int i = 0; i < model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).size(); i++)
+        if(BookARoomController.unI)
         {
-          roomTable.getItems().add(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i));
+          if (model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i).getUnitedWith() != null)
+            roomTable.getItems().add(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i));
         }
+        else
+        if(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i).getUnitedWith() == null)
+          roomTable.getItems().add(model.getRoomsAvailableInPeriodBySizeBiggerThan(cap, startTime, endTime).get(i));
       }
-      catch (Exception e)
-      {
-        e.printStackTrace();
-      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
     }
   }
   public Region getRoot()

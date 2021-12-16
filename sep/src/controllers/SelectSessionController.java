@@ -30,7 +30,6 @@ public class SelectSessionController
 
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
-
     TableColumn numbersOfLessons = new TableColumn("No. of lessons");
     numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
     TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
@@ -42,10 +41,10 @@ public class SelectSessionController
     SessionTable.getColumns().setAll(numbers, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
     try
     {
-      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      for (int i = 0; i < model.getUnbookedSessions().size(); i++)
       {
-        if(model.getAllSessionsAsArrayList().get(i).getCourse().equals(SelectCourseController.course))
-          SessionTable.getItems().add(model.getAllSessionsAsArrayList().get(i));
+        if(model.getUnbookedSessions().get(i).getCourse().getCourseID().equals(SelectCourseController.course.getCourseID()))
+          SessionTable.getItems().add(model.getUnbookedSessions().get(i));
       }
     }
     catch (Exception e)
@@ -59,7 +58,14 @@ public class SelectSessionController
     int index = SessionTable.getSelectionModel().getFocusedIndex();
     if(index > -1)
     {
-      session = model.getAllSessionsAsArrayList().get(index);
+        for (int i = 0; i < model.getUnbookedSessions().size() && index>=0; i++)
+        {
+          if(model.getUnbookedSessions().get(i).getCourse().getCourseID().equals(SelectCourseController.course.getCourseID()))
+            if(index!=0)
+              index--;
+            else
+              session = model.getUnbookedSessions().get(i);
+        }
       viewHandler.openView("BookARoom");
     }
   }
@@ -71,9 +77,10 @@ public class SelectSessionController
   public void reset() {
 
     SessionTable.getItems().clear();
-    for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+    for (int i = 0; i < model.getUnbookedSessions().size(); i++)
     {
-      SessionTable.getItems().add(model.getAllSessionsAsArrayList().get(i));
+      if(model.getUnbookedSessions().get(i).getCourse().equals(SelectCourseController.course))
+        SessionTable.getItems().add(model.getUnbookedSessions().get(i));
     }
   }
   public Region getRoot()

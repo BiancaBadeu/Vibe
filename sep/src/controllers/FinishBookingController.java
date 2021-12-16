@@ -29,46 +29,46 @@ public class FinishBookingController
     this.model = model;
     this.root = root;
 
-    format.setText(BookARoomController.getFormat());
+    format.setText(BookARoomController.format);
     if(BookARoomController.endTime.getDay() > BookARoomController.startTime.getDay())
       date.setText(BookARoomController.daY + "/" + BookARoomController.montH + "/" + BookARoomController.yeaR + " -> "
-      + BookARoomController.endTime.getDay() + "/" + BookARoomController.endTime.getMonth() + "/"
-      + BookARoomController.endTime.getYear());
+          + BookARoomController.endTime.getDay() + "/" + BookARoomController.endTime.getMonth() + "/"
+          + BookARoomController.endTime.getYear());
     else
       date.setText(BookARoomController.daY + "/" + BookARoomController.montH + "/" + BookARoomController.yeaR);
     time.setText(BookARoomController.houR + ":" + BookARoomController.miN + " -> " + BookARoomController.endTime.getHour() + ":" + BookARoomController.endTime.getMinute());
-    if(format.getText().equals("campus"))
+    if(BookARoomController.format.equals("campus"))
     {
       if (BookARoomController.unI)
       {
+        united.setText("Yes");
         int newCap = SelectRoomController.room.getCapacity();
         model.Room newRoom = model.getRoomByID(SelectRoomController.room.getUnitedWith());
         newCap += newRoom.getCapacity();
         capacity.setText("" +newCap);
+        room.setText(SelectRoomController.room.getId() + "+" + SelectRoomController.room.getUnitedWith());
       }
       else
+      {
+        united.setText("No");
         capacity.setText("" + SelectRoomController.room.getCapacity());
+        room.setText(SelectRoomController.room.getId());
+      }
+      SelectSessionController.session.setRoom(SelectRoomController.room);
     }
     else
+    {
+      united.setText("");
       capacity.setText("");
-
-    if(BookARoomController.unI)
-    {
-      united.setText("Yes");
-      room.setText("" + "+" + "");
-    }
-    else
-    {
-      united.setText("No");
       room.setText("");
     }
-
     course.setText(SelectCourseController.course.getCourseID());
     session.setText(SelectSessionController.session.getNumber() + ", " + SelectSessionController.session.getCourse().getCourseID());
   }
 
-  @FXML public void finishPressed()
+  @FXML public void finishPressed() throws Exception
   {
+    model.writeFiles();
     viewHandler.openView("Start");
   }
   @FXML public void backPressed()
@@ -81,14 +81,42 @@ public class FinishBookingController
 
   public void reset()
   {
-    format.setText("");
-    date.setText("");
-    time.setText("");
-    capacity.setText("");
-    united.setText("");
-    room.setText("");
-    course.setText("");
-    session.setText("");
+    format.setText(BookARoomController.format);
+    if(BookARoomController.endTime.getDay() > BookARoomController.startTime.getDay())
+      date.setText(BookARoomController.daY + "/" + BookARoomController.montH + "/" + BookARoomController.yeaR + " -> "
+          + BookARoomController.endTime.getDay() + "/" + BookARoomController.endTime.getMonth() + "/"
+          + BookARoomController.endTime.getYear());
+    else
+      date.setText(BookARoomController.daY + "/" + BookARoomController.montH + "/" + BookARoomController.yeaR);
+    time.setText(BookARoomController.houR + ":" + BookARoomController.miN + " -> " + BookARoomController.endTime.getHour() + ":" + BookARoomController.endTime.getMinute());
+    if(BookARoomController.format.equals("campus"))
+    {
+      if (BookARoomController.unI)
+      {
+        united.setText("Yes");
+        int newCap = SelectRoomController.room.getCapacity();
+        model.Room newRoom = model.getRoomByID(SelectRoomController.room.getUnitedWith());
+        newCap += newRoom.getCapacity();
+        capacity.setText("" +newCap);
+        room.setText(SelectRoomController.room.getId() + "+" + SelectRoomController.room.getUnitedWith());
+      }
+      else
+      {
+        united.setText("No");
+        capacity.setText("" + SelectRoomController.room.getCapacity());
+        room.setText(SelectRoomController.room.getId());
+      }
+      SelectSessionController.session.setRoom(SelectRoomController.room);
+    }
+    else
+    {
+      united.setText("");
+      capacity.setText("");
+      room.setText("");
+    }
+    course.setText(SelectCourseController.course.getCourseID());
+    session.setText(SelectSessionController.session.getNumber() + ", " + SelectSessionController.session.getCourse().getCourseID());
+
   }
 
   public Region getRoot()

@@ -97,7 +97,7 @@ public class DateTime
 
   public String toString()
   {
-    return "" + this.day + "/" + this.month + "/" + this.year + "/" + this.hour + "/" + this.minute;
+    return "" + this.day + "/" + this.month + "/" + this.year + "\n" + this.hour + ":" + this.minute;
   }
 
   public boolean equals(Object obj)

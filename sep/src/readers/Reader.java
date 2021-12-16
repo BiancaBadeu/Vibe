@@ -71,7 +71,7 @@ public class Reader
     PrintWriter outS = null;
     try
     {
-      String fileName = "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\studentList.txt";
+      String fileName = "sep\\src\\ourTxt\\studentList.txt";
       File file = new File(fileName);
       outS = new PrintWriter(file);
       System.out.println(studentList.getAllStudentsAsArrayList());
@@ -101,7 +101,7 @@ public class Reader
     PrintWriter outT = null;
     try
     {
-      String fileName = "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\teacherList.txt";
+      String fileName = "sep\\src\\ourTxt\\teacherList.txt";
       File file = new File(fileName);
       outT = new PrintWriter(file);
       for (int i = 0; i < teacherList.getAllTeachersAsArrayList().size(); i++)
@@ -127,7 +127,7 @@ public class Reader
     PrintWriter outC = null;
     try
     {
-      String fileName = "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\courseList.txt";
+      String fileName = "sep\\src\\ourTxt\\courseList.txt";
       File file = new File(fileName);
       outC = new PrintWriter(file);
       for (int i = 0; i < courseList.getAllCoursesAsArrayList().size(); i++)
@@ -185,7 +185,7 @@ public class Reader
     PrintWriter outR = null;
     try
     {
-      String fileName = "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\roomList.txt";
+      String fileName = "sep\\src\\ourTxt\\roomList.txt";
       File file = new File(fileName);
       outR = new PrintWriter(file);
       for (int i = 0; i < roomList.getAllRoomsAsArrayList().size(); i++)
@@ -214,7 +214,7 @@ public class Reader
     PrintWriter outSe = null;
     try
     {
-      String fileName = "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\sessionList.txt";
+      String fileName = "sep\\src\\ourTxt\\sessionList.txt";
       File file = new File(fileName);
       outSe = new PrintWriter(file);
       for (int i = 0; i < sessionList.getAllSessions().size(); i++)
@@ -293,7 +293,7 @@ public class Reader
   public void readStudents() throws Exception
   {
     File file = new File(
-        "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\studentList.txt");
+        "sep\\src\\ourTxt\\studentList.txt");
     Scanner in = new Scanner(file);
     //in.nextLine();
     while (in.hasNext())
@@ -311,7 +311,7 @@ public class Reader
   public void readTeachers() throws Exception
   {
     File file = new File(
-        "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\teacherList.txt");
+        "sep\\src\\ourTxt\\teacherList.txt");
     Scanner in = new Scanner(file);
 
     //in.nextLine();
@@ -329,7 +329,7 @@ public class Reader
   public void readCourses() throws Exception
   {
     File file = new File(
-        "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\courseList.txt");
+        "sep\\src\\ourTxt\\courseList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
@@ -376,7 +376,7 @@ public class Reader
   public void readRooms() throws Exception
   {
     File file = new File(
-        "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\roomList.txt");
+        "sep\\src\\ourTxt\\roomList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
@@ -399,7 +399,7 @@ public class Reader
   public void readSessions() throws Exception
   {
     File file = new File(
-        "C:\\Users\\Bianca\\Documents\\Vibe-main\\sep\\src\\ourTxt\\sessionList.txt");
+        "sep\\src\\ourTxt\\sessionList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())

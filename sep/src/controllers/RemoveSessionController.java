@@ -54,9 +54,9 @@ public class RemoveSessionController
     tableView.getColumns().setAll(numbers, course, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
     try
     {
-      for (int i = 0; i < model.getAllSessionsAsArrayList().size(); i++)
+      for (int i = 0; i < model.getUnbookedSessions().size(); i++)
       {
-          tableView.getItems().add(model.getAllSessionsAsArrayList().get(i));
+          tableView.getItems().add(model.getUnbookedSessions().get(i));
       }
     }
     catch (Exception e)
@@ -67,17 +67,19 @@ public class RemoveSessionController
     //choiceBox.setValue(model.getAllCoursesAsArrayList().get(0));
   }
 
-  @FXML private void pressToRemove()
+  @FXML private void pressToRemove() throws Exception
   {
     int index = tableView.getSelectionModel().getFocusedIndex();
     if(index > -1)
     {
-      session= model.getAllSessionsAsArrayList().get(index);
+      session= model.getUnbookedSessions().get(index);
       if(confirmation())
-        model.getAllSessions().removeSession(session);
+      {
+        model.removeSession(session);
+        model.writeFiles();
+      }
     }
-
-    tableView.getItems().remove(session);
+    reset();
   }
   @FXML private void pressToCancel()
   {
@@ -93,7 +95,32 @@ public class RemoveSessionController
     return (result.isPresent())&&(result.get()==ButtonType.OK);
   }
 
-  public void reset() {}
+  public void reset()
+  {
+    TableColumn numbers = new TableColumn("Number");
+    numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
+    TableColumn course = new TableColumn("Course");
+    course.setCellValueFactory(new PropertyValueFactory<>("course"));
+    TableColumn numbersOfLessons = new TableColumn("No. of lessons");
+    numbersOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
+    TableColumn numbersOfLessonsForCourse = new TableColumn("No. of lessons for course");
+    numbersOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
+    TableColumn getNumbersOfLessonsRemaining = new TableColumn("No. of lessons remaining");
+    getNumbersOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
+
+    tableView.getColumns().setAll(numbers, course, numbersOfLessons, numbersOfLessonsForCourse, getNumbersOfLessonsRemaining);
+    try
+    {
+      for (int i = 0; i < model.getUnbookedSessions().size(); i++)
+      {
+        tableView.getItems().add(model.getUnbookedSessions().get(i));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   public Region getRoot()
   {

@@ -20,16 +20,16 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="97.0" prefWidth="600.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" onAction="#goToTheBookingSystemPressed" prefHeight="60.0" prefWidth="190.0" text="Go to the booking system" />
-            <Button mnemonicParsing="false" onAction="#viewTimetablePressed" prefHeight="60.0" prefWidth="190.0" text="View time table" />
+            <Button maxHeight="60.0" maxWidth="190.0" minHeight="60.0" minWidth="190.0" mnemonicParsing="false" onAction="#goToTheBookingSystemPressed" prefHeight="60.0" prefWidth="190.0" text="Go to the booking system" />
+            <Button maxHeight="60.0" maxWidth="190.0" minHeight="60.0" minWidth="190.0" mnemonicParsing="false" onAction="#viewTimetablePressed" prefHeight="60.0" prefWidth="190.0" text="View time table" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100">
          <children>
-            <Button mnemonicParsing="false" onAction="#manageStudentsAndTeachersPressed" prefHeight="60.0" prefWidth="190.0" text="Manage students and teachers" />
-            <Button mnemonicParsing="false" onAction="#manageSessionsPressed" prefHeight="60.0" prefWidth="190.0" text="Manage sessions" />
+            <Button maxHeight="60.0" maxWidth="190.0" minHeight="60.0" minWidth="190.0" mnemonicParsing="false" onAction="#manageStudentsAndTeachersPressed" prefHeight="60.0" prefWidth="190.0" text="Manage students and teachers" />
+            <Button maxHeight="60.0" maxWidth="190.0" minHeight="60.0" minWidth="190.0" mnemonicParsing="false" onAction="#manageSessionsPressed" prefHeight="60.0" prefWidth="190.0" text="Manage sessions" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="228.0" text="Input files from head of departament" onAction="#filesPressed"/>
+      <Button maxHeight="60.0" maxWidth="228.0" minHeight="60.0" minWidth="228.0" mnemonicParsing="false" onAction="#filesPressed" prefHeight="60.0" prefWidth="228.0" text="Input files from head of departament" />
    </children>
 </VBox>

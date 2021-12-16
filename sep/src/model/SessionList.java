@@ -46,6 +46,20 @@ public class SessionList
     {
       if(sessionList.get(i).getRoom() != null)
         bookedSessions.add(sessionList.get(i));
+      else if(sessionList.get(i).getDateAndStartTime() != null)
+        bookedSessions.add(sessionList.get(i));
+    }
+    return bookedSessions;
+  }
+  public SessionList getBookedSessionsAsList()
+  {
+    SessionList bookedSessions = new SessionList();
+    for(int i=0;i<sessionList.size();i++)
+    {
+      if(sessionList.get(i).getRoom() != null)
+        bookedSessions.addSession(sessionList.get(i));
+      else if(sessionList.get(i).getDateAndStartTime() != null)
+        bookedSessions.addSession(sessionList.get(i));
     }
     return bookedSessions;
   }
@@ -54,7 +68,7 @@ public class SessionList
     ArrayList<Session> unbookedSessions = new ArrayList<>();
     for(int i=0;i<sessionList.size();i++)
     {
-      if(sessionList.get(i).getRoom() == null)
+      if(sessionList.get(i).getRoom() == null && sessionList.get(i).getDateAndStartTime() == null)
         unbookedSessions.add(sessionList.get(i));
     }
     return unbookedSessions;
@@ -100,7 +114,7 @@ public class SessionList
     ArrayList<Room> roomsAvailableBySizeBiggerThan = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms);
     for(int i=0;i<roomsAvailableBySizeBiggerThan.size();i++)
     {
-      if(roomsAvailableBySizeBiggerThan.get(i).getCapacity() >= capacity)
+      if(roomsAvailableBySizeBiggerThan.get(i).getCapacity() < capacity)
         roomsAvailableBySizeBiggerThan.remove(roomsAvailableBySizeBiggerThan.get(i));
     }
     return roomsAvailableBySizeBiggerThan;

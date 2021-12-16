@@ -31,46 +31,59 @@ public class ViewFilteredBookingsController
     this.viewHandler = viewHandler;
     this.model = model;
     this.root = root;
-    filterChoiceFilteredBox.setItems(filterChoiceFilteredBoxList);
 
+    TableColumn startTime = new TableColumn("Start time");
+    startTime.setCellValueFactory(new PropertyValueFactory<>("dateAndStartTime"));
+    TableColumn endTime = new TableColumn("End time");
+    endTime.setCellValueFactory(new PropertyValueFactory<>("dateAndEndTime"));
+    TableColumn room = new TableColumn("Room");
+    room.setCellValueFactory(new PropertyValueFactory<>("room"));
     TableColumn sessionNumberCol = new TableColumn("Session");
     sessionNumberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
     TableColumn course = new TableColumn("Course");
     course.setCellValueFactory(new PropertyValueFactory<>("course"));
     TableColumn numberOfLessons = new TableColumn("No. of lessons");
     numberOfLessons.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsInSession"));
-    TableColumn room = new TableColumn("Room");
-    room.setCellValueFactory(new PropertyValueFactory<>("room"));
     TableColumn numberOfLessonsForCourse = new TableColumn("No. of lessons for course");
     numberOfLessonsForCourse.setCellValueFactory(new PropertyValueFactory<>("numberOfLessonsForCourse"));
     TableColumn getNumberOfLessonsRemaining = new TableColumn("No. of lessons remaining");
     getNumberOfLessonsRemaining.setCellValueFactory(new PropertyValueFactory<>("getNumberOfLessonsRemaining"));
-    TableColumn startTime = new TableColumn("Start time");
-    startTime.setCellValueFactory(new PropertyValueFactory<>("dateAndStartTime"));
-    TableColumn endTime = new TableColumn("End time");
-    endTime.setCellValueFactory(new PropertyValueFactory<>("dateAndEndTime"));
 
     tableMyBookings.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-    tableMyBookings.getColumns().setAll(sessionNumberCol, course, numberOfLessons, room, numberOfLessonsForCourse, getNumberOfLessonsRemaining, startTime, endTime);
+    tableMyBookings.getColumns().setAll(startTime, endTime, room, sessionNumberCol, course, numberOfLessons, numberOfLessonsForCourse, getNumberOfLessonsRemaining);
 
     try{
+      for(int i=0; i<model.getBookedSessions().size(); i++){
 
-      for(int i=0; i<model.getAllSessions().getBookedSessions().size(); i++){
-
-        tableMyBookings.getItems().add(model.getAllSessions().getBookedSessions());
+        tableMyBookings.getItems().add(model.getBookedSessions().get(i));
       }
     }
     catch (Exception e){
       e.printStackTrace();
     }
+    //filterChoiceFilteredBox.setItems(filterChoiceFilteredBoxList);
   }
 
-
+@FXML public void backPressed()
+{
+  viewHandler.openView("BookingSystem");
+}
 
   public void reset()
   {
+    tableMyBookings.getItems().clear();
+    tableMyBookings.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    try{
+      for(int i=0; i<model.getBookedSessions().size(); i++){
 
+        tableMyBookings.getItems().add(model.getBookedSessions().get(i));
+      }
+    }
+    catch (Exception e){
+      e.printStackTrace();
+    }
+    //filterChoiceFilteredBox.setItems(filterChoiceFilteredBoxList);
   }
   public Region getRoot()
   {

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SessionList>
+  <sessionList>
+    <dateAndStartTime>
+      <month>10</month>
+      <hour>12</hour>
+      <year>2022</year>
+      <day>12</day>
+      <minute>12</minute>
+    </dateAndStartTime>
+    <number>1</number>
+    <numberOfLessonsInSession>5</numberOfLessonsInSession>
+    <numberOfLessonsForCourse>72</numberOfLessonsForCourse>
+    <course>
+      <ects>10</ects>
+      <teachers>
+        <teachers>
+          <name>Steffen Vissing Andersen</name>
+          <id>SVA</id>
+        </teachers>
+        <teachers>null</teachers>
+      </teachers>
+      <students>
+        <studentList>
+          <studentID>667347</studentID>
+          <classID>1Y</classID>
+          <name>Christina Lana</name>
+        </studentList>
+        <studentList>
+          <studentID>667465</studentID>
+          <classID>1Y</classID>
+          <name>Dennis Kolin</name>
+        </studentList>
+        <studentList>
+          <studentID>667469</studentID>
+          <classID>1Y</classID>
+          <name>Eric Lynn</name>
+        </studentList>
+        <studentList>
+          <studentID>667554</studentID>
+          <classID>1Y</classID>
+          <name>Franck Thomson</name>
+        </studentList>
+        <studentList>
+          <studentID>667555</studentID>
+          <classID>1Y</classID>
+          <name>Gregor Gori</name>
+        </studentList>
+      </students>
+      <courseID>1YSDJ</courseID>
+    </course>
+    <getNumberOfLessonsRemaining>67</getNumberOfLessonsRemaining>
+    <dateAndEndTime>
+      <month>10</month>
+      <hour>12</hour>
+      <year>2022</year>
+      <day>12</day>
+      <minute>12</minute>
+    </dateAndEndTime>
+  </sessionList>
+  <sessionList>
+    <dateAndStartTime>
+      <month>12</month>
+      <hour>12</hour>
+      <year>2021</year>
+      <day>12</day>
+      <minute>12</minute>
+    </dateAndStartTime>
+    <number>1</number>
+    <numberOfLessonsInSession>1</numberOfLessonsInSession>
+    <numberOfLessonsForCourse>72</numberOfLessonsForCourse>
+    <course>
+      <ects>10</ects>
+      <teachers>
+        <teachers>
+          <name>Allan Henriksen</name>
+          <id>ALHE</id>
+        </teachers>
+        <teachers>null</teachers>
+      </teachers>
+      <students>
+        <studentList>
+          <studentID>667345</studentID>
+          <classID>1X</classID>
+          <name>Abraham Jackson</name>
+        </studentList>
+        <studentList>
+          <studentID>667346</studentID>
+          <classID>1X</classID>
+          <name>Brian Nielsen</name>
+        </studentList>
+      </students>
+      <courseID>1XSDJ</courseID>
+    </course>
+    <room>
+      <booked>false</booked>
+      <id>C03.13</id>
+      <capacity>125</capacity>
+    </room>
+    <getNumberOfLessonsRemaining>71</getNumberOfLessonsRemaining>
+    <dateAndEndTime>
+      <month>12</month>
+      <hour>12</hour>
+      <year>2021</year>
+      <day>12</day>
+      <minute>12</minute>
+    </dateAndEndTime>
+  </sessionList>
+</SessionList>

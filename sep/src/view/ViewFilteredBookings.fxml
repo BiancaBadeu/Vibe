@@ -39,7 +39,7 @@
             </Button>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Go back">
+      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Go back" onAction="#backPressed">
          <font>
             <Font size="14.0" />
          </font></Button>
