@@ -97,6 +97,7 @@ public class RemoveSessionController
 
   public void reset()
   {
+    tableView.getItems().clear();
     TableColumn numbers = new TableColumn("Number");
     numbers.setCellValueFactory(new PropertyValueFactory<>("number"));
     TableColumn course = new TableColumn("Course");
