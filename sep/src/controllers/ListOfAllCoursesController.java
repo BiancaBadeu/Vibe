@@ -75,8 +75,8 @@ public class ListOfAllCoursesController
       Course course = model.getAllCoursesAsArrayList().get(index);
       if (!(course.getStudentList().getAllStudentsAsArrayList().contains(AddStudentController.student)))
       {
-        course.addStudent(AddStudentController.student);
-        booleanconfirmation();
+        if(booleanconfirmation())
+          course.addStudent(AddStudentController.student);
       }
       else
         booleanconfirmationfalse();
