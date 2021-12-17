@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * A class representing a session
+ */
 public class Session
 {
   private int number;
@@ -11,7 +14,12 @@ public class Session
   private DateTime dateAndStartTime;
   private DateTime dateAndEndTime;
 
-
+  /**
+   * @param number session number
+   * @param course session's course
+   *
+   * A 2 argument constructor that initializes all instance variables
+   */
   public Session(int number, Course course)
   {
     this.number = number;
@@ -23,6 +31,15 @@ public class Session
     this.dateAndStartTime = null;
     this.dateAndEndTime = null;
   }
+
+  /**
+   * @param number session number
+   * @param course session's course
+   * @param numberOfLessonsInSession number of lessons for session
+   *
+   * A 3 argument constructor that initializes all instance variables and sets a number
+   * of lessons for the session
+   */
   public Session(int number, Course course, int numberOfLessonsInSession)
   {
     this.number = number;
@@ -34,6 +51,17 @@ public class Session
     this.dateAndStartTime = null;
     this.dateAndEndTime = null;
   }
+
+  /**
+   * @param number session number
+   * @param course session's course
+   * @param numberOfLessonsInSession number of lessons for the session
+   * @param dateAndStartTime date and start time of the session
+   * @param dateAndEndTime date and end time of the session
+   *
+   * A 5 argument constructor that initializes all instance variables and sets the date and start time and the end time
+   * of a session
+   */
   public Session(int number, Course course, int numberOfLessonsInSession, DateTime dateAndStartTime, DateTime dateAndEndTime)
   {
     this.number = number;
@@ -45,6 +73,17 @@ public class Session
     this.dateAndStartTime = dateAndStartTime;
     this.dateAndEndTime = dateAndEndTime;
   }
+
+  /**
+   * @param number session number
+   * @param course session's course
+   * @param numberOfLessonsInSession number of lessons for a session
+   * @param room session's room
+   * @param dateAndStartTime date and start time of the session
+   * @param dateAndEndTime date and end time of the session
+   *
+   * A 6 argument constructor that initializes all instance variables and sets a room for the session
+   */
   public Session(int number, Course course, int numberOfLessonsInSession, Room room, DateTime dateAndStartTime, DateTime dateAndEndTime)
   {
     this.number = number;
@@ -57,12 +96,21 @@ public class Session
     this.dateAndEndTime = dateAndEndTime;
   }
 
+  /**
+   * @param course courseID
+   * @return number of lessons for the course based on ects
+   */
   public int calculateNumberOfLessonsForCourse(Course course)
   {
     int s = (int) Math.floor(7.2 * course.getEcts());
     return s;
   }
 
+  /**
+   * @param numberOfLessonsInSession number of lessons for the session
+   * @return end time of a session based on the start time and number of lessons
+   * each lesson=45 minutes
+   */
   public DateTime calculateEndTimeForSession(int numberOfLessonsInSession)
   {
     int min = numberOfLessonsInSession * 45;
@@ -102,11 +150,20 @@ public class Session
     return dateAndEndTime;
   }
 
+  /**
+   * @param year year
+   * @return if a year is a leap year
+   */
   public boolean isLeapYear(int year)
   {
     return year % 4 == 0 && (year % 100 != 0 || year % 400 ==0);
   }
 
+  /**
+   * @param month month
+   * @param year year
+   * @return based on the {@link #isLeapYear(int)} determine the number of days a month has
+   */
   public int getMaxNumberOfDaysForMonth(int month, int year)
   {
     switch (month)
@@ -126,18 +183,35 @@ public class Session
     }
   }
 
+  /**
+   * @return number of lessons for the course
+   */
   public int getNumberOfLessonsForCourse()
   {
     return numberOfLessonsForCourse;
   }
+
+  /**
+   * @return number of lessons remaining
+   */
   public int getGetNumberOfLessonsRemaining()
   {
     return getNumberOfLessonsRemaining;
   }
+
+  /**
+   * @return number of lessons in a session object
+   */
   public int getNumberOfLessonsInSession()
   {
     return numberOfLessonsInSession;
   }
+
+  /**
+   * @param number number of lessons to set the session to
+   *
+   * The session number of lesson is updated to the parameter and the lessons remaining are updated
+   */
   public void setNumberOfLessonsInSession(int number)
   {
     this.numberOfLessonsInSession = number;
@@ -145,6 +219,10 @@ public class Session
     if(dateAndStartTime != null)
       calculateEndTimeForSession(numberOfLessonsInSession);
   }
+
+  /**
+   *  Adds a lesson the current number of lesson for a session and updates the remaining number of lessons
+   */
   public void addLessonToSession()
   {
     this.numberOfLessonsInSession++;
@@ -152,40 +230,71 @@ public class Session
       calculateEndTimeForSession(numberOfLessonsInSession);
   }
 
+  /**
+   * @param room room
+   *
+   * Sets a room object
+   */
   public void setRoom(Room room)
   {
     this.room = room;
   }
 
+  /**
+   * @return room object
+   */
   public Room getRoom()
   {
     return room;
   }
 
+  /**
+   * @return session number
+   */
   public int getNumber()
   {
     return number;
   }
 
+  /**
+   * @return session's course
+   */
   public Course getCourse()
   {
     return course;
   }
 
+  /**
+   * @param dateAndStartTime date and start time
+   *
+   * sets the date and the start time of a session and calculates the end time
+   */
   public void setDateAndStartTime(DateTime dateAndStartTime)
   {
     this.dateAndStartTime = dateAndStartTime;
     calculateEndTimeForSession(numberOfLessonsInSession);
   }
+
+  /**
+   * @return date and start time of a session
+   */
   public DateTime getDateAndStartTime()
   {
     return dateAndStartTime;
   }
+
+  /**
+   * @return date and end time of a session
+   */
   public DateTime getDateAndEndTime()
   {
     return dateAndEndTime;
   }
 
+  /**
+   * @return string containing all the instance variables and getter for the number of lessons remaining, number of lessons for the session and
+   * number of lessons for the course
+   */
   public String toString()
   {
     return "Number: " + number + ", course: " + course + ", number of lessons in session: " + numberOfLessonsInSession
@@ -193,6 +302,10 @@ public class Session
         + getNumberOfLessonsRemaining + ", start: " + dateAndStartTime.toString() + ", end: " + dateAndEndTime.toString();
   }
 
+  /**
+   * @param obj other Session object
+   * @return if the session object is equal to another session object
+   */
   public boolean equals(Object obj)
   {
     if(!(obj instanceof Session))

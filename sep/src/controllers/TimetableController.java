@@ -8,6 +8,9 @@ import javafx.scene.layout.Region;
 import model.Model;
 import view.ViewHandler;
 
+/**
+ * A class representing the controller for an FXML Timetable
+ */
 public class TimetableController
 {
   @FXML TableView timetable;
@@ -15,8 +18,20 @@ public class TimetableController
   private Model model;
   private ViewHandler viewHandler;
 
+  /**
+   * Empty 0 argument constructor
+   */
   public TimetableController(){}
 
+  /**
+   * @param viewHandler a ViewHandler variable for control over the GUI
+   * @param model a Model variable for the interface
+   * @param root a Region variable for location within the GUI
+   *
+   * An initializer method for the class. The parameters are initialized and the columns for the TableView are
+   * created. Through a for loop the contents of the sessionList that are booked information is obtained and placed
+   * in the columns
+   */
   public void init(ViewHandler viewHandler, Model model, Region root)
   {
     this.viewHandler = viewHandler;
@@ -56,11 +71,19 @@ public class TimetableController
     }
   }
 
+  /**
+   * An FXML method called when the Go Back button is pressed. The current window is closed and a new one opens
+   * @see StartController
+   */
   @FXML public void backPressed()
   {
     viewHandler.openView("Start");
   }
 
+  /**
+   * Reset method for the class. Booked sessions are removed from the column and through a loop the
+   * current ones are placed
+   */
   public void reset()
   {
     timetable.getItems().clear();
@@ -96,6 +119,10 @@ public class TimetableController
     }
   }
 
+  /**
+   * @return root
+   * Returns the current root
+   */
   public Region getRoot()
   {
     return root;

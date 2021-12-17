@@ -18,6 +18,9 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.Scanner;
 
+/**
+ * A class representing the controller of an FXML file called AddSession @see view.AddSession.fxml
+ */
 public class AddSessionController
 {
   @FXML TableView tableView;
@@ -29,10 +32,21 @@ public class AddSessionController
   private model.Model model;
   private view.ViewHandler viewHandler;
 
-
+  /**
+   * A 0 argument empty constructor
+   */
   public AddSessionController()
   {
   }
+
+  /**
+   * @param viewHandler a ViewHandler variable for control over the GUI
+   * @param model a Model variable for the interface
+   * @param root a Region variable for location within the GUI
+   *
+   * An initializer for the controller to create table columns for a table and add items to it. The initializer is called
+   * when the window is opened
+   */
   public void init(view.ViewHandler viewHandler, model.Model model, Region root){
     this.viewHandler= viewHandler;
     this.model= model;
@@ -63,6 +77,10 @@ public class AddSessionController
     }
   }
 
+  /**
+   * A method to reset the TextFields when used. It also clears the previous values
+   * given to the table columns and updates them ith the new ones.
+   */
   public void reset()
   {
     courseName.setText("");
@@ -95,10 +113,26 @@ public class AddSessionController
     }
 
   }
+
+  /**
+   * @return root the root
+   *
+   * A method to return the current root
+   */
   public Region getRoot()
   {
     return root;
   }
+
+  /**
+   * @throws Exception the usage of java.io.PrintWriter requires an exception to be thrown to perform operations
+   *
+   * An FXML method that when the button with the action #pressToAdd is pressed, this method calls the
+   * validateAddSession in the model. If the latter method throws an exception, the FXML method catches it
+   * and set the error label's text to the exception's message. If the error label's text is empty,
+   * a session is created based on variables obtained through GUI input, added to the system, an the txt files are updated.
+   * Disregarding the error label's text, it calls the reset method.
+   */
   @FXML private void pressToAdd() throws Exception
   {
     try
@@ -124,8 +158,11 @@ public class AddSessionController
     reset();
   }
 
-
-
+  /**
+   * An FXML method that when a button named Cancel is pressed, the window closes and the GUI
+   * is taken to a window called ManageSessions
+   * @see ManageSessionsController
+   */
   @FXML private void pressToCancel()
   {
     viewHandler.openView("ManageSessions");

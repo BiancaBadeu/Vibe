@@ -11,6 +11,9 @@ import view.ViewHandler;
 
 import java.util.Optional;
 
+/**
+ * A class representing the controller of an FXML file RemoveSession
+ */
 public class RemoveSessionController
 {
   @FXML  TableView tableView;
@@ -20,6 +23,12 @@ public class RemoveSessionController
   private view.ViewHandler viewHandler;
 
   static Session session;
+
+  /**
+   * @return courses stores the current listOfCourses as an array
+   *
+   * A String[] method that obtains the current listOfCourses and stores it in an array.
+   */
   public String[] getCourses()
   {
     String[] courses = new String[200];
@@ -32,8 +41,19 @@ public class RemoveSessionController
 
   //ObservableList<String> displayChoiceBox = FXCollections.observableArrayList(getCourses());
 
-
+  /**
+   * An empty 0 argument constructor
+   */
   public RemoveSessionController() {}
+
+  /**
+   * @param viewHandler a ViewHandler variable for control over the GUI
+   * @param model a Model variable for the interface
+   * @param root a Region variable for location within the GUI
+   * Initializer method for the class. The parameters are initialized and table columns for the TableView are
+   * created. Content is added through a loop where the details of unbooked sessions are placed on the columns
+   *
+   */
   public void init(ViewHandler viewHandler, Model model, Region root){
     this.viewHandler= viewHandler;
     this.model= model;
@@ -56,7 +76,7 @@ public class RemoveSessionController
     {
       for (int i = 0; i < model.getUnbookedSessions().size(); i++)
       {
-          tableView.getItems().add(model.getUnbookedSessions().get(i));
+        tableView.getItems().add(model.getUnbookedSessions().get(i));
       }
     }
     catch (Exception e)
@@ -67,6 +87,13 @@ public class RemoveSessionController
     //choiceBox.setValue(model.getAllCoursesAsArrayList().get(0));
   }
 
+  /**
+   * @throws Exception import java.io.PrintWriter requires an exception to be thrown in order for operations to be performed
+   *
+   * An FXML method called when a button Remove is pressed. Confirmation method is called and if positive continues
+   * {@link #confirmation()}
+   * The session hovered when the button Remove is pressed is removed from the listOfSessions and the files are updated
+   */
   @FXML private void pressToRemove() throws Exception
   {
     int index = tableView.getSelectionModel().getFocusedIndex();
@@ -81,11 +108,21 @@ public class RemoveSessionController
     }
     reset();
   }
+
+  /**
+   * An FXML method called when a button Cancel is pressed. The current window is closed and a new one opens.
+   * @see ManageSessionsController
+   */
   @FXML private void pressToCancel()
   {
     viewHandler.openView("ManageSessions");
   }
 
+  /**
+   * @return check if the Alert is still present and the ok button has been pressed
+   *
+   * A boolean method that creates an Alert. As mentioned before returns the above condition
+   */
   private boolean confirmation()
   {
     Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
@@ -95,6 +132,10 @@ public class RemoveSessionController
     return (result.isPresent())&&(result.get()==ButtonType.OK);
   }
 
+  /**
+   * Reset method for the class that clears the table columns from their previous elements and updates them
+   * with the new ones through a loop
+   */
   public void reset()
   {
     tableView.getItems().clear();
@@ -123,6 +164,10 @@ public class RemoveSessionController
     }
   }
 
+  /**
+   * @return root
+   * Returns the current root
+   */
   public Region getRoot()
   {
     return root;

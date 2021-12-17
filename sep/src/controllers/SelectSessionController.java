@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import model.*;
 import view.ViewHandler;
 
+/**
+ * A class representing a controller for an FXML SelectSession
+ */
 public class SelectSessionController
 {
   @FXML TableView SessionTable;
@@ -19,8 +22,19 @@ public class SelectSessionController
 
   static Session session;
 
+  /**
+   * Empty 0 argument constructor
+   */
   public SelectSessionController(){}
 
+  /**
+   * @param viewHandler a ViewHandler variable for control over the GUI
+   * @param model a Model variable for the interface
+   * @param root a Region variable for location within the GUI
+   *
+   * An initializer method for the class. The parameters are initialized and columns for a TableView are created.
+   * Through a loop the session details are obtained from the listOfSessions and placed in the columns
+   */
   public void init(ViewHandler viewHandler, Model model, Region root)
   {
     this.viewHandler = viewHandler;
@@ -53,6 +67,11 @@ public class SelectSessionController
     }
   }
 
+  /**
+   * An FXML method called when a button Continue is pressed. The hovered session is taken. The current window is closed
+   * and a new one opens
+   * @see BookARoomController
+   */
   @FXML public void sessionContinuePressed()
   {
     int index = SessionTable.getSelectionModel().getFocusedIndex();
@@ -70,10 +89,19 @@ public class SelectSessionController
     }
   }
 
+  /**
+   * An FXMl method called when a button Go Back is pressed. The current window is closed a new one opens
+   * @see SelectCourseController
+   */
   @FXML public void sessionGoBackPressed()
   {
     viewHandler.openView("SelectCourse");
   }
+
+  /**
+   * Reset method for the class. The contents of the table columns are reset and updated with the current ones from the
+   * list of sessions
+   */
   public void reset() {
 
     SessionTable.getItems().clear();
@@ -83,6 +111,11 @@ public class SelectSessionController
         SessionTable.getItems().add(model.getUnbookedSessions().get(i));
     }
   }
+
+  /**
+   * @return root
+   * Returns the current root
+   */
   public Region getRoot()
   {
     return root;

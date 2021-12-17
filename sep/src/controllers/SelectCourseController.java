@@ -17,6 +17,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * A class representing an FXML file SelectCourse
+ */
 public class SelectCourseController
 {
   @FXML TableView courseTable;
@@ -32,8 +35,20 @@ public class SelectCourseController
 
   static Course course;
 
+  /**
+   * An Empty 0 argument constructor
+   */
   public SelectCourseController(){}
 
+  /**
+   * @throws FileNotFoundException import java.io.PrintWriter requires an exception to be thrown in order to perform operations
+   * @param viewHandler a ViewHandler variable for control over the GUI
+   * @param model a Model variable for the interface
+   * @param root a Region variable for location within the GUI
+   *
+   * Initializer for the class. The parameters are initialized as well as the ChoiceBox items and the table columns for
+   * the TableView. The contents for the columns are obtained from a loop that gets the data of a sessionList
+   */
   public void init(ViewHandler viewHandler, Model model, Region root)
       throws FileNotFoundException
   {
@@ -63,7 +78,11 @@ public class SelectCourseController
     }
   }
 
-
+  /**
+   * An FXML method called when the button Continue is pressed. The course hovered when the button is pressed
+   * is set to be the equal of a course variable. The current window is closed and a new one opens
+   * @see SelectSessionController
+   */
   @FXML public void courseContinuePressed()
   {
     int index = courseTable.getSelectionModel().getFocusedIndex();
@@ -74,10 +93,19 @@ public class SelectCourseController
     }
   }
 
+  /**
+   * An FXML method called when the button Go Back is pressed. The current window is closed and a new one opens
+   * @see BookingSystemController
+   */
   @FXML public void courseGoBackPressed()
   {
       viewHandler.openView("BookingSystem");
   }
+
+  /**
+   * Reset method for the class. The values for the filters, table columns and ChoiceBox are reset. The columns are
+   * updated with the current listOfCourses information
+   */
   public void reset()
   {
       drop.setValue("-");
@@ -88,6 +116,11 @@ public class SelectCourseController
       courseTable.getItems().add(model.getAllCoursesAsArrayList().get(i));
     }
   }
+
+  /**
+   * @return root
+   * Returns the current root
+   */
   public Region getRoot()
   {
     return root;

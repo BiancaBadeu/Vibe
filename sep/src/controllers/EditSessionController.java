@@ -11,6 +11,9 @@ import view.ViewHandler;
 
 import java.util.Optional;
 
+/**
+ * A class representing the controller of the FXML file EditSession
+ */
 public class EditSessionController
 {
 
@@ -27,8 +30,20 @@ public class EditSessionController
   ObservableList<Course> displayChoiceBox = (ObservableList<Course>) FXCollections.observableArrayList(
       new CourseList().getAllCoursesAsArrayList());
 
+  /**
+   * Empty 0 argument constructor
+   */
   public EditSessionController() {}
 
+  /**
+   * @param viewHandler a ViewHandler variable for control over the GUI
+   * @param model a Model variable for the interface
+   * @param root a Region variable for location within the GUI
+   *
+   * Initializer method for the GUI window, the parameters mentioned are
+   * initialized and the table columns for the TableView are created and added to the Table
+   * Finally, the details of unbooked sessions are added through a loop to the columns
+   */
   public void init(ViewHandler viewHandler, Model model, Region root)
   {
     this.viewHandler = viewHandler;
@@ -52,7 +67,7 @@ public class EditSessionController
     {
       for (int i = 0; i < model.getUnbookedSessions().size(); i++)
       {
-          tableView.getItems().add(model.getUnbookedSessions().get(i));
+        tableView.getItems().add(model.getUnbookedSessions().get(i));
       }
     }
     catch (Exception e)
@@ -63,6 +78,12 @@ public class EditSessionController
     //choiceBox.setItems(displayChoiceBox);
     //choiceBox.setValue(null);
   }
+
+  /**
+   * A method that when used clears the previous items added to the columns are removed
+   * and updated through the loop of getting the unbooked session details.
+   *{@link #init(ViewHandler, Model, Region)}
+   */
   public void reset()
   {
     tableView.getItems().clear();
@@ -92,7 +113,12 @@ public class EditSessionController
     }
   }
 
-
+  /**
+   * @throws Exception import java.io.PrintWriter requires an exception to be thrown in order to perform operations
+   *
+   * An FXML method that when a button named Edit is pressed the changes made by the user input are
+   * updated in the listOfSessions within the model. Session files are also written with the updated list.
+   */
   @FXML private void pressToEdit() throws Exception
   {
     int index = tableView.getSelectionModel().getFocusedIndex();
@@ -110,18 +136,32 @@ public class EditSessionController
     }
     if(errorLabel.getText().equals(""))
     {
-      int lessonNumbers = Integer.parseInt(newLessons.getText());
-      session.setNumberOfLessonsInSession(lessonNumbers);
-      model.writeFiles();
+      if(confirmation())
+      {
+        int lessonNumbers = Integer.parseInt(newLessons.getText());
+        session.setNumberOfLessonsInSession(lessonNumbers);
+        model.writeFiles();
+      }
     }
     reset();
   }
 
+  /**
+   * An FXML method called when a button called Cancel is pressed the current window is closed, and a new one is open
+   * @see ManageSessionsController
+   */
   @FXML private void pressToCancel()
   {
     viewHandler.openView("ManageSessions");
   }
 
+  /**
+   * @return the check if the alert answer in the alert message is ok and the alert is no longer showing up.
+   *
+   * Boolean method to confirm the edit of a session. An alert is shown, if the alert is accepted, the return is true
+   * and used in the method pressToEdit().
+   * {@link #pressToEdit()}
+   */
   private boolean confirmation()
   {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -131,6 +171,12 @@ public class EditSessionController
     Optional<ButtonType> result = alert.showAndWait();
     return (result.isPresent()) && (result.get() == ButtonType.OK);
   }
+
+  /**
+   * @return root
+   *
+   * Current root is returned by the getter method
+   */
   public Region getRoot()
   {
     return root;

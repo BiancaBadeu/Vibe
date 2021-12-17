@@ -11,6 +11,10 @@ import java.util.Scanner;
 import model.Model;
 import model.Manager;
 
+/**
+ *Class Representing readers
+ *
+ */
 public class Reader
 {
   private TeacherList teacherList;
@@ -19,6 +23,16 @@ public class Reader
   private SessionList sessionList;
   private RoomList roomList;
 
+  /**
+   * A 5 argument Constructor containing the list classes variables to initialize them
+   *
+   *
+   * @param studentList a list of students
+   * @param teacherList a list of teachers
+   * @param courseList a list of courses
+   * @param roomList a list of rooms
+   * @param sessionList a list of sessions
+   */
   public Reader(StudentList studentList, TeacherList teacherList, CourseList courseList,RoomList roomList, SessionList sessionList)
   {
     this.roomList = roomList;
@@ -28,6 +42,16 @@ public class Reader
     this.sessionList = sessionList;
   }
 
+  /**
+   * @throws Exception the reader from the java.util.Scanner throws an exception when it comes to scanning files
+   *
+   * The methods within the classes readers are utilized to read the
+   * files from the head of department contained in the txt package
+   @see readers.StudentReader
+   @see readers.CourseReader
+   @see readers.TeacherReader
+   @see readers.RoomReader
+   */
   public void readFilesFromHOD() throws Exception
   {
     StudentReader studentReader = new StudentReader();
@@ -47,6 +71,13 @@ public class Reader
     roomList = roomReader.getRoomList();
   }
 
+  /**
+   * @throws Exception the usage of the import java.io.PrintWriter constitutes the use of throwing an exception
+   * in order for it to work
+   *
+   * The writer methods within the Reader Class are called to write its respective files
+   *
+   */
   public void writeFiles() throws Exception
   {
     writeStudents();
@@ -56,6 +87,12 @@ public class Reader
     writeSessions();
   }
 
+  /**
+   * @throws Exception the usage of java.util.Scanner requires to throw an exception
+   *
+   * The reader methods within the Reader class are called to perform reading operations on their respective files
+   *
+   */
   public void readFiles() throws Exception
   {
     readStudents();
@@ -65,13 +102,20 @@ public class Reader
     readSessions();
   }
 
+  /**
+   * @throws Exception the usage of the import java.io.PrintWriter constitutes the use of throwing an exception
+   * in order for it to work
+   *
+   * The method performs a writing operation in the specified text file by getting all of the students as an arrayList
+   * and writing that arrayList in the text file. The written information is also separated by ,.
+   */
   //writers
   public void writeStudents() throws Exception
   {
     PrintWriter outS = null;
     try
     {
-      String fileName = "sep\\src\\ourTxt\\studentList.txt";
+      String fileName = "src\\ourTxt\\studentList.txt";
       File file = new File(fileName);
       outS = new PrintWriter(file);
       System.out.println(studentList.getAllStudentsAsArrayList());
@@ -96,12 +140,20 @@ public class Reader
     }
   }
 
+  /**
+   * @throws Exception the usage of the import java.io.PrintWriter constitutes the use of throwing an exception
+   * in order for it to work
+   *
+   * The method performs a writing operation in the specified text file. The writing that takes place is of a teacherList
+   * this list is stored as an arrayList and afterwards the arrayList is written in the file.
+   * The written information is also separated by ,.
+   */
   public void writeTeachers() throws Exception
   {
     PrintWriter outT = null;
     try
     {
-      String fileName = "sep\\src\\ourTxt\\teacherList.txt";
+      String fileName = "src\\ourTxt\\teacherList.txt";
       File file = new File(fileName);
       outT = new PrintWriter(file);
       for (int i = 0; i < teacherList.getAllTeachersAsArrayList().size(); i++)
@@ -122,12 +174,19 @@ public class Reader
     }
   }
 
+  /**
+   * @throws Exception the usage of the import java.io.PrintWriter constitutes the use of throwing an exception
+   * in order for it to work
+   *
+   * The method performs a writing operation in the specified text file. By making use of a list of courses stored as
+   * an arrayList. The written information is also separated by ,.
+   */
   public void writeCourses() throws Exception
   {
     PrintWriter outC = null;
     try
     {
-      String fileName = "sep\\src\\ourTxt\\courseList.txt";
+      String fileName = "src\\ourTxt\\courseList.txt";
       File file = new File(fileName);
       outC = new PrintWriter(file);
       for (int i = 0; i < courseList.getAllCoursesAsArrayList().size(); i++)
@@ -180,12 +239,19 @@ public class Reader
     }
   }
 
+  /**
+   * @throws Exception the usage of the import java.io.PrintWriter constitutes the use of throwing an exception
+   * in order for it to work
+   *
+   * The method performs a writing operation in the specified text file. Utilizing a list of rooms stored as an arrayList.
+   * The written information is also separated by ,.
+   */
   public void writeRooms() throws Exception
   {
     PrintWriter outR = null;
     try
     {
-      String fileName = "sep\\src\\ourTxt\\roomList.txt";
+      String fileName = "src\\ourTxt\\roomList.txt";
       File file = new File(fileName);
       outR = new PrintWriter(file);
       for (int i = 0; i < roomList.getAllRoomsAsArrayList().size(); i++)
@@ -209,12 +275,21 @@ public class Reader
       outR.close();
     }
   }
+
+  /**
+   * @throws Exception the usage of the import java.io.PrintWriter constitutes the use of throwing an exception
+   * in order for it to work
+   *
+   * The method performs a writing operation in the specified text file. In this case, it makes use of a list of sessions
+   * and afterwards writes it as an arrayList.
+   * The written information is also separated by ,.
+   */
   public void writeSessions() throws Exception
   {
     PrintWriter outSe = null;
     try
     {
-      String fileName = "sep\\src\\ourTxt\\sessionList.txt";
+      String fileName = "src\\ourTxt\\sessionList.txt";
       File file = new File(fileName);
       outSe = new PrintWriter(file);
       for (int i = 0; i < sessionList.getAllSessions().size(); i++)
@@ -289,11 +364,17 @@ public class Reader
     }
   }
 
+  /**
+   * @throws Exception the usage of java.util.Scanner requires to throw an exception
+   *
+   * The method performs a scan of the specified text file line by line and stores the information in variables
+   * that are added afterwards as a Student object to a studentList.
+   */
   //readers
   public void readStudents() throws Exception
   {
     File file = new File(
-        "sep\\src\\ourTxt\\studentList.txt");
+        "src\\ourTxt\\studentList.txt");
     Scanner in = new Scanner(file);
     //in.nextLine();
     while (in.hasNext())
@@ -308,10 +389,17 @@ public class Reader
       studentList.addStudent(student);
     }
   }
+
+  /**
+   * @throws Exception the usage of java.util.Scanner requires to throw an exception
+   *
+   * The method performs a scan of the specified text file line by line and stores the information in variables
+   * that are added afterwards as a Teacher object to a TeacherList.
+   */
   public void readTeachers() throws Exception
   {
     File file = new File(
-        "sep\\src\\ourTxt\\teacherList.txt");
+        "src\\ourTxt\\teacherList.txt");
     Scanner in = new Scanner(file);
 
     //in.nextLine();
@@ -326,10 +414,17 @@ public class Reader
       teacherList.addTeacher(teacher);
     }
   }
+
+  /**
+   * @throws Exception the usage of java.util.Scanner requires to throw an exception
+   *
+   * The method performs a scan of the specified text file line by line and stores the information in variables
+   * that are added afterwards as a Course object to a CourseList.
+   */
   public void readCourses() throws Exception
   {
     File file = new File(
-        "sep\\src\\ourTxt\\courseList.txt");
+        "src\\ourTxt\\courseList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
@@ -373,10 +468,17 @@ public class Reader
       }
     }
   }
+
+  /**
+   * @throws Exception the usage of java.util.Scanner requires to throw an exception
+   *
+   * The method performs a scan of the specified text file line by line and stores the information in variables
+   * that are added afterwards as a Room object to a RoomList.
+   */
   public void readRooms() throws Exception
   {
     File file = new File(
-        "sep\\src\\ourTxt\\roomList.txt");
+        "src\\ourTxt\\roomList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
@@ -396,10 +498,17 @@ public class Reader
       roomList.addRoom(room);
     }
   }
+
+  /**
+   * @throws Exception the usage of java.util.Scanner requires to throw an exception
+   *
+   * The method performs a scan of the specified text file line by line and stores the information in variables
+   * that are added afterwards as a Session object to a SessionList.
+   */
   public void readSessions() throws Exception
   {
     File file = new File(
-        "sep\\src\\ourTxt\\sessionList.txt");
+        "src\\ourTxt\\sessionList.txt");
     Scanner in = new Scanner(file);
 
     while (in.hasNext())
@@ -455,22 +564,53 @@ public class Reader
       sessionList.addSession(session);
     }
   }
+
+  /**
+   * @return studentList.
+   *
+   * Getter method for the case of a StudentList Object.
+   */
   public StudentList getStudentList()
   {
     return studentList;
   }
+
+  /**
+   * @return teacherList.
+   *
+   * Getter method for the case of a TeacherList Object.
+   */
   public TeacherList getTeacherList()
   {
     return teacherList;
   }
+
+  /**
+   * @return courseList.
+   *
+   * Getter method for the case of a CourseList Object.
+   */
   public CourseList getCourseList()
   {
     return courseList;
   }
+
+  /**
+   * @return roomList.
+   *
+   * Getter method for the case of a RoomList Object.
+   */
+
   public RoomList getRoomList()
   {
     return roomList;
   }
+
+  /**
+   * @return sessionList.
+   *
+   * Getter method for the case of a SessionList Object.
+   */
   public SessionList getSessionList()
   {
     return sessionList;

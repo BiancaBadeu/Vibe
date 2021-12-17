@@ -2,15 +2,24 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * A class representing a list of rooms
+ */
 public class RoomList
 {
    private ArrayList<Room> roomList;
 
+   /**
+    * A 0 argument constructor that initializes an instance variable
+    */
    public RoomList()
    {
       this.roomList = new ArrayList<>();
    }
 
+   /**
+    * @return the rooms contained in a roomList
+    */
    public RoomList getAllRooms()
    {
       RoomList rooms = new RoomList();
@@ -19,16 +28,29 @@ public class RoomList
 
       return rooms;
    }
+
+   /**
+    * @return the rooms contained in a roomList as an arrayList
+    */
    public ArrayList<Room> getAllRoomsAsArrayList()
    {
       return roomList;
    }
 
+   /**
+    * @param room room to be added
+    *
+    * The room parameter is added to a roomList
+    */
    public void addRoom(Room room)
    {
       roomList.add(room);
    }
 
+   /**
+    * @param id room's ID
+    * @return the room that has the id parameter
+    */
    public Room getRoomByID(String id)
    {
       for(int i=0;i<roomList.size();i++)
@@ -38,6 +60,11 @@ public class RoomList
       }
       return null;
    }
+
+   /**
+    * @param capacity rooms capacity
+    * @return rooms from the roomList that have the capacity parameter
+    */
    public RoomList getRoomsBySize(int capacity)
    {
       RoomList roomsBySize = new RoomList();
@@ -48,6 +75,11 @@ public class RoomList
       }
       return roomsBySize;
    }
+
+   /**
+    * @param capacity rooms capacity
+    * @return rooms in the roomList that have a capacity larger than the parameter
+    */
    public RoomList getRoomsBySizeBiggerThan(int capacity)
    {
       RoomList roomsBySizeBiggerThan = new RoomList();
@@ -58,6 +90,10 @@ public class RoomList
       }
       return roomsBySizeBiggerThan;
    }
+
+   /**
+    * @return rooms in the roomList that can be united
+    */
    public RoomList getUnitableRooms()
    {
       RoomList unitableRooms = new RoomList();
@@ -69,6 +105,10 @@ public class RoomList
       return unitableRooms;
    }
 
+   /**
+    * @param room room
+    * @return room that the room can be united with
+    */
    public Room getRoomUnitedWith(Room room)
    {
       RoomList unitableRooms = getUnitableRooms();
@@ -80,6 +120,10 @@ public class RoomList
       }
       return null;
    }
+
+   /**
+    * @return an arrayList of rooms that contains all unbooked rooms from the roomList
+    */
    public ArrayList<Room> getAllUnbookedRooms()
    {
       ArrayList<Room> unbookedRooms = new ArrayList<>();
@@ -90,6 +134,10 @@ public class RoomList
       }
       return unbookedRooms;
    }
+
+   /**
+    * @return an arrayList of rooms that contains all booked rooms from the roomList
+    */
    public ArrayList<Room> getAllBookedRooms()
    {
       ArrayList<Room> bookedRooms = new ArrayList<>();
@@ -101,6 +149,9 @@ public class RoomList
       return bookedRooms;
    }
 
+   /**
+    * @return the list of rooms
+    */
    public String toString()
    {
       return "Room list: " + roomList;
