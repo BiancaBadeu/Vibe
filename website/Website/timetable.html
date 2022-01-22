@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vibe  website</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+        <link href="css/styles.css" type="text/css" rel="stylesheet">
+
+        <script src="js/bootstrap.bundle.js"></script>
+        
+    </head>
+    <body>
+        <img id="banner" src="pictures/banner.png"> 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img class="img-fluid" src="pictures/logo.gif"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-4 ">
+                        <a class="nav-link" href="index.html">HOME</a>
+                        </li>
+                        <li class="nav-item dropdown mx-4">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" >COURSES</a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="sdj1.html">SDJ</a></li>
+                                <li><a class="dropdown-item" href="dma1.html">DMA</a></li>
+                                <li><a class="dropdown-item" href="rwd1.html">RWD</a></li>
+                                <li><a class="dropdown-item" href="sep1.html">SEP</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mx-4 ">
+                        <a class="nav-link active" href="timetable.html">TIMETABLE</a>
+                        </li>
+                        <li class="nav-item mx-4 ">
+                            <a class="nav-link" href="contact.html">CONTACT</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
+    <br>  
+    <div class="container text-center" id="contact_file">
+        <div class="row">
+            <div class="text-center">
+                <p class="contact_title">TIMETABLE</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+<div id="error">
+
+</div>
+
+<div class="d-grid gap-2 d-flex justify-content-center mt-2 mb-4">
+    <button type="button" class="btn btn-outline-dark" id = "X">Class X</button>
+    <button type="button" class="btn btn-outline-dark" id = "Y">Class Y</button>
+    <button type="button" class="btn btn-outline-dark" id = "Z">Class Z</button>
+    <button type="button" class="btn btn-outline-dark" id = "DK">Danish Class</button>
+    </div>
+
+    <div class="table-responsive-md mx-5">
+        <table id="schedule" class="table table-hover table-striped table-bordered table-light mb-5 text-center">
+            <thead>
+                <th scope="col" class="table-light"> Week X </th>
+                <th scope="col" class="table-light"> SDJ1 </th>
+                <th scope="col" class="table-light"> DMA1 </th>
+                <th scope="col" class="table-light"> RWD1 </th>
+                <th scope="col" class="table-light"> SEP1 </th>
+            </thead>
+            <tbody>
+                <tr id="monday">
+                    <th scope="row">Monday</th>
+                    <td class="firstcol">8:20-11:50</td>
+                    <td class="secondcol">vfsvd</td>
+                    <td class="thirdcol"></td>
+                    <td class="fourthcol"></td>
+                </tr>
+                <tr id="tuesday">
+                    <th scope="row">Tuesday</th>
+                    <td class="firstcol">8:20-11:50</td>
+                    <td class="secondcol">12:45-16:05</td>
+                    <td class="thirdcol"></td>
+                    <td class="fourthcol"></td>
+                </tr>
+                <tr id="wednesday">
+                    <th scope="row">Wednesday</th>
+                    <td class="firstcol"></td>
+                    <td class="secondcol"></td>
+                    <td class="thirdcol"></td>
+                    <td class="fourthcol">8:20-11:50</td>
+                </tr>
+                <tr id="thursday">
+                    <th scope="row">Thursday</th>
+                    <td class="firstcol"></td>
+                    <td class="secondcol"></td>
+                    <td class="thirdcol"></td>
+                    <td class="fourthcol">8:20-11:50</td>
+                </tr>
+                <tr id="friday">
+                    <th scope="row">Friday</th>
+                    <td class="firstcol"></td>
+                    <td class="secondcol"></td>
+                    <td class="thirdcol">8:20-11:50</td>
+                    <td class="fourthcol"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <footer class="bg-dark text-center text-white ">
+            <div class="container p-4 ">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 mb-4 mb-md-0 ">
+                    <ul class="list-unstyled mb-0">
+                      <li>Facebook:</li>
+                      <li>Instagram:</li>
+                      <li>Twitter:</li>
+                    </ul>
+                  </div>
+      
+                  <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <ul class="list-unstyled mb-0">
+                      <li><img src="pictures/cat.gif"></li>
+                    </ul>
+                  </div>
+            
+                  <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Contact</h5>
+                    <ul class="list-unstyled mb-0">
+                      <li>Adress: Banegårdsgade 2, 8700 Horsens</li>
+                      <li>Phone number: +45 87550020</li>
+                      <li> Email: via@via.dk</li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="text-center p-3">
+              © 2021 Copyright:Vibe ✓
+            </div>
+          </footer>
+          <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>
