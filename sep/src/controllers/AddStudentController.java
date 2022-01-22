@@ -7,9 +7,7 @@ import view.ViewHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
-/**
- * A class representing a controller for an FXML file AddStudent @see view.AddStudent.fxml
- */
+
 public class AddStudentController
 {
   private Region root;
@@ -22,18 +20,8 @@ public class AddStudentController
 
   static Student student;
 
-  /**
-   * A 0 argument empty constructor
-   */
   public AddStudentController() {}
 
-  /**
-   * @param viewHandler a ViewHandler variable for control over the GUI
-   * @param model a Model variable for the interface
-   * @param root a Region variable for location within the GUI
-   *
-   * The method initializes the GUI window by making use of the three parameters previously mentioned.
-   */
   public void init(ViewHandler viewHandler, model.Model model, Region root)
   {
     this.model = model;
@@ -41,16 +29,7 @@ public class AddStudentController
     this.viewHandler = viewHandler;
   }
 
-  /**
-   * An FXML method that when the button with the action #addButtonPressed is pressed,
-   * a validation is called for the input checking if the name, the id and the class are illegal values.
-   * If the test is passed, a student is created and a GUI window is opened.
-   * @see CheckAddStudentController
-   *
-   * If the check is not passed then an error message is displayed.
-   *
-   * Disregarding the error label's text, it calls the reset method.
-   */
+
   @FXML void addButtonPressed()
   {
 
@@ -75,19 +54,11 @@ public class AddStudentController
     reset();
   }
 
-  /**
-   * An FXML method that when the button with the action #cancelButtonPressed is pressed,
-   * the current GUI window is closed and another one is opened.
-   * @see ManageStudentsAndTeachersController
-   */
   @FXML void cancelButtonPressed()
   {
     viewHandler.openView("ManageStudentsAndTeachers");
   }
 
-  /**
-   * The method resets the TextFields within the GUI when used
-   */
   public void reset()
   {
     nameField.setText("");
@@ -95,11 +66,6 @@ public class AddStudentController
     classField.setText("");
   }
 
-  /**
-   * @return root the root
-   *
-   * A method to return the current root
-   */
   public Region getRoot()
   {
     return root;

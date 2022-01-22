@@ -12,9 +12,6 @@ import model.Session;
 import view.ViewHandler;
 import javafx.scene.layout.Region;
 
-/**
- * A class representing the controller for an FXML file RemoveBooking
- */
 public class RemoveBookingController
 {
 
@@ -27,20 +24,8 @@ public class RemoveBookingController
   ViewHandler viewHandler;
   Region root;
 
-  /**
-   * Empty 0 argument constructor
-   */
   public RemoveBookingController(){}
 
-  /**
-   * @param viewHandler a ViewHandler variable for control over the GUI
-   * @param model a Model variable for the interface
-   * @param root a Region variable for location within the GUI
-   *
-   * Initializer for the class. The parameters are initialized and table columns are created for the TableView and
-   * their contents are obtained through a for loop where the sessions with bookings from the listOfSessions
-   * are returned with their details.
-   */
   public void init(ViewHandler viewHandler, Model model, Region root){
     this.root=root;
     this.viewHandler=viewHandler;
@@ -79,21 +64,11 @@ public class RemoveBookingController
     filterChoiceBox.setItems(filterChoiceBoxList);
   }
 
-  /**
-   * An FXML method called when the button Go Back is pressed. The current window is closed and a new one opens
-   * @see BookingSystemController
-   */
   @FXML public void goBackButtonRB()
   {
     viewHandler.openView("BookingSystem");
   }
 
-  /**
-   * @throws Exception the java.io.PrintWriter requires an exception to be thrown in order to perform operations
-   *
-   * An FXML method called when the Remove button is pressed. A check is performed regarding if something is being
-   * hovered in the GUI. The session selected is then removed and the files are updated
-   */
   @FXML public void removePressed() throws Exception
   {
     int index = bookTableView.getSelectionModel().getFocusedIndex();
@@ -106,9 +81,6 @@ public class RemoveBookingController
     reset();
   }
 
-  /**
-   * Reset method for the class. The columns contents are cleared and updated with the current listOfBookings
-   */
   public void reset()
   {
     bookTableView.getItems().clear();
@@ -145,11 +117,6 @@ public class RemoveBookingController
     filterChoiceBox.setItems(filterChoiceBoxList);
   }
 
-  /**
-   * @return root
-   *
-   * The current root is returned
-   */
   public Region getRoot(){
     return root;
   }

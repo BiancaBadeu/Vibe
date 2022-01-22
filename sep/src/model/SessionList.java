@@ -2,61 +2,33 @@ package model;
 
 import java.util.ArrayList;
 
-/**
- * A class representing a list of sessions
- */
 public class SessionList
 {
   private ArrayList<Session> sessionList;
 
-  /**
-   *  A 0 argument constructor initializing instance variables
-   */
   public SessionList()
   {
     this.sessionList = new ArrayList<>();
   }
 
-  /**
-   * @param session session to be added
-   *
-   * The session parameter is added to the list of sessions
-   */
   public void addSession(Session session)
   {
     sessionList.add(session);
   }
-
-  /**
-   * @param session session to be removed
-   *
-   * The session parameter is removed from the session list
-   */
   public void removeSession(Session session)
   {
     sessionList.remove(session);
   }
 
-  /**
-   * @param course course for lessons to be calculated
-   * @return number of lessons for the course
-   */
   public int calculateNumberOfLessonsForCourse(Course course)
   {
     return sessionList.get(0).calculateNumberOfLessonsForCourse(course);
   }
-
-  /**
-   * @return all sessions within the sessionList
-   */
   public ArrayList<Session> getAllSessions()
   {
     return sessionList;
   }
 
-  /**
-   * @return all sessions as a sessionList
-   */
   public SessionList getAllSessionsAsList()
   {
     SessionList sessions = new SessionList();
@@ -67,9 +39,6 @@ public class SessionList
     return sessions;
   }
 
-  /**
-   * @return an arrayList of sessions that are booked within a sessionList
-   */
   public ArrayList<Session> getBookedSessions()
   {
     ArrayList<Session> bookedSessions = new ArrayList<>();
@@ -82,10 +51,17 @@ public class SessionList
     }
     return bookedSessions;
   }
-
-  /**
-   * @return a list of sessions that contains booked sessions
-   */
+  public ArrayList<Session> getBookedSessionsWithRoom()
+  {
+    ArrayList<Session> booked = getBookedSessions();
+    ArrayList<Session> array = new ArrayList<>();
+    for(int i=0;i<booked.size();i++)
+    {
+      if(booked.get(i).getRoom() != null)
+        array.add(booked.get(i));
+    }
+    return array;
+  }
   public SessionList getBookedSessionsAsList()
   {
     SessionList bookedSessions = new SessionList();
@@ -98,10 +74,6 @@ public class SessionList
     }
     return bookedSessions;
   }
-
-  /**
-   * @return an arrayList of sessions that are unbooked from a sessionList
-   */
   public ArrayList<Session> getUnbookedSessions()
   {
     ArrayList<Session> unbookedSessions = new ArrayList<>();
@@ -112,28 +84,35 @@ public class SessionList
     }
     return unbookedSessions;
   }
+  public ArrayList<Session> getUnbookedSessionsForCourse(Course course)
+  {
+    ArrayList<Session> unbookedSessions = getUnbookedSessions();
+    ArrayList<Session> unbookedSessionByCourse = new ArrayList<>();
+    for(int i=0;i<unbookedSessions.size();i++)
+    {
+      if(unbookedSessions.get(i).getCourse().equals(course))
+        unbookedSessionByCourse.add(unbookedSessions.get(i));
+    }
+    return unbookedSessionByCourse;
+  }
 
-  /**
-   * @param dateAndStartTime date and start time of a session
-   * @param dateAndEndTime date and end time of a session
-   * @param rooms rooms
-   * @return an arrayList of rooms that are available in a period between the DateTime objects
-   */
   public ArrayList<Room> getRoomsAvailableInPeriod(DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
     ArrayList<Room> roomsAvailable = new ArrayList<>();
     for(int i=0;i<rooms.getAllBookedRooms().size();i++)
     {
       int ok=1;
-      for(int j=0;j<sessionList.size();j++)
+      for(int j=0;j< getBookedSessionsWithRoom().size();j++)
       {
-        if(sessionList.get(j).getRoom().equals(rooms.getAllBookedRooms().get(i)))
-          if(sessionList.get(j).getDateAndStartTime().isAfter(dateAndStartTime) &&
-              dateAndEndTime.isAfter(sessionList.get(j).getDateAndStartTime()))
-              ok=0;
-          else if(sessionList.get(j).getDateAndEndTime().isAfter(dateAndStartTime) &&
-              dateAndEndTime.isAfter(sessionList.get(j).getDateAndEndTime()))
-            ok=0;
+        if(getBookedSessionsWithRoom().get(j).getRoom().equals(rooms.getAllBookedRooms().get(i)))
+        {
+          if (getBookedSessionsWithRoom().get(j).getDateAndStartTime().isAfter(dateAndStartTime) && dateAndEndTime.isAfter(
+              getBookedSessionsWithRoom().get(j).getDateAndStartTime()))
+            ok = 0;
+          else if (getBookedSessionsWithRoom().get(j).getDateAndEndTime().isAfter(dateAndStartTime) && dateAndEndTime.isAfter(
+              getBookedSessionsWithRoom().get(j).getDateAndEndTime()))
+            ok = 0;
+        }
       }
       if(ok==1)
         roomsAvailable.add(rooms.getAllBookedRooms().get(i));
@@ -144,14 +123,6 @@ public class SessionList
     }
     return roomsAvailable;
   }
-
-  /**
-   * @param capacity rooms capacity
-   * @param dateAndStartTime date and start time of a session
-   * @param dateAndEndTime date and end time of a session
-   * @param rooms rooms
-   * @return an arrayList of rooms that are available in between the two DateTime objects and have the capacity
-   */
   public ArrayList<Room> getRoomsAvailableInPeriodBySize(int capacity, DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
     ArrayList<Room> roomsAvailableBySize = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms);
@@ -162,32 +133,39 @@ public class SessionList
     }
     return roomsAvailableBySize;
   }
-
-  /**
-   * @param capacity rooms capacity
-   * @param dateAndStartTime date and start time for a session
-   * @param dateAndEndTime date and end time for a session
-   * @param rooms rooms
-   * @return an arrayList of rooms that are available in between the two DateTime objects and have a capacity larger than
-   * the parameter
-   */
   public ArrayList<Room> getRoomsAvailableInPeriodBySizeBiggerThan(int capacity, DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
     ArrayList<Room> roomsAvailableBySizeBiggerThan = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms);
+    ArrayList<Room> array = new ArrayList<>();
     for(int i=0;i<roomsAvailableBySizeBiggerThan.size();i++)
     {
-      if(roomsAvailableBySizeBiggerThan.get(i).getCapacity() < capacity)
-        roomsAvailableBySizeBiggerThan.remove(roomsAvailableBySizeBiggerThan.get(i));
+      if(roomsAvailableBySizeBiggerThan.get(i).getCapacity() >= capacity)
+        array.add(roomsAvailableBySizeBiggerThan.get(i));
     }
-    return roomsAvailableBySizeBiggerThan;
+    return array;
   }
-
-  /**
-   * @param dateAndStartTime date and start time of a session
-   * @param dateAndEndTime date and end time of a session
-   * @param rooms rooms
-   * @return an arrayList of rooms that are available in between two DateTime objects and can be united
-   */
+  public ArrayList<Room> getRoomsAvailableInPeriodBySizeBiggerThanUnitable(int capacity, DateTime startTime, DateTime endTime, RoomList rooms)
+  {
+    ArrayList<Room> roomsAvailable = getRoomsAvailableInPeriodBySizeBiggerThan(capacity, startTime, endTime, rooms);
+    ArrayList<Room> array = new ArrayList<>();
+    for(int i=0;i<roomsAvailable.size();i++)
+    {
+      if(roomsAvailable.get(i).getUnitedWith() != null)
+        array.add(roomsAvailable.get(i));
+    }
+    return array;
+  }
+  public ArrayList<Room> getRoomsAvailableInPeriodBySizeBiggerThanNotUnitable(int capacity, DateTime startTime, DateTime endTime, RoomList rooms)
+  {
+    ArrayList<Room> roomsAvailable = getRoomsAvailableInPeriodBySizeBiggerThan(capacity, startTime, endTime, rooms);
+    ArrayList<Room> array = new ArrayList<>();
+    for(int i=0;i<roomsAvailable.size();i++)
+    {
+      if(roomsAvailable.get(i).getUnitedWith() == null)
+        array.add(roomsAvailable.get(i));
+    }
+    return array;
+  }
   public ArrayList<Room> getUnitableRoomsInPeriod(DateTime dateAndStartTime, DateTime dateAndEndTime, RoomList rooms)
   {
     ArrayList<Room> unitableRooms = getRoomsAvailableInPeriod(dateAndStartTime, dateAndEndTime, rooms);
@@ -205,16 +183,6 @@ public class SessionList
     return unitableRooms;
   }
 
-  /**
-   * @param courseField course ID
-   * @param sessionField session number
-   * @param lessonField number of lessons for the session
-   *
-   * The course ID is checked to see if it begins with a number followed by a letter that has to be uppercase, next the course name should not be longer
-   * than 4
-   * The session number has to be a number
-   * The number of lessons has to be a number
-   */
     public void validateAddSession(String courseField, String sessionField, String lessonField)
     {
       String error="Error one of the fields has not valid data!";
@@ -245,11 +213,6 @@ public class SessionList
         throw new IllegalArgumentException(error);
     }
 
-  /**
-   * @param lessonField number of lessons for a session
-   *
-   * The number of lessons has to be a number
-   */
   public void validateEditSession(String lessonField)
   {
     String error="Error not valid data!";
@@ -265,9 +228,6 @@ public class SessionList
     }
   }
 
-  /**
-   * @return a string with the sessionList content
-   */
   public String toString()
   {
     return "Session list: " + sessionList;

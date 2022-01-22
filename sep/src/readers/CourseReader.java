@@ -5,41 +5,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
 
-/**
- * A class representing reader for courses
- */
 public class CourseReader
 {
   private CourseList listOfCourses;
 
-  /**
-   * A 0 argument constructor which functions by initializing a listOfCourses variable of type CourseList
-   */
   public CourseReader()
   {
     this.listOfCourses = new CourseList();
   }
-
-  /**
-   * @return listOfCourses the list of courses
-   *
-   * A getter for the variable listOfCourses of type CourseList
-   */
   public CourseList getListOfCourses()
   {
     return listOfCourses;
   }
 
-  /**
-   * @throws Exception the import java.util.Scanner requires to throw an exception to work
-   *
-   * The method performs a scan of a specified text file and obtains the necessary information to create
-   * Courses and add them to the listOfCourses.
-   */
   public void readCourses() throws Exception
   {
     /* file variable is created with the data from the text file */
-    File file = new File("src\\txt\\Courses.txt");
+    File file = new File("sep\\src\\txt\\Courses.txt");
 
     Scanner in = new Scanner(file);
     TeacherList teacherList;
